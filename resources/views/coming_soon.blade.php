@@ -36,7 +36,7 @@
 			</h3>
 
 			<p class="m2-txt1 txt-center p-b-48">
-				Our website is under construction, follow us for update now!
+				<strong>SekolahSunnah.com</strong> is under construction, follow us for update now!
 			</p>
 
 			<div class="flex-w flex-c-m cd100 p-b-33">
