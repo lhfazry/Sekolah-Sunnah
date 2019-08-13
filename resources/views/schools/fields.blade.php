@@ -87,7 +87,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -137,7 +136,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="form-group form-group-sm col-sm-6">
                 <div class="row">
@@ -192,6 +190,51 @@
                 </div>
             </div>
 
+        </div>
+    </div>
+</div>
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Social Media</h3>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="form-group form-group-sm col-sm-6">
+                <div class="row">
+                    {!! Form::label('facebook', 'Facebook', ['class' => 'col-sm-3 col-form-label']) !!}
+                    <div class="col-sm-9">
+                    {!! Form::text('facebook', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm col-sm-6">
+                <div class="row">
+                    {!! Form::label('instagram', 'Instagram', ['class' => 'col-sm-3 col-form-label']) !!}
+                    <div class="col-sm-9">
+                    {!! Form::text('instagram', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm col-sm-6">
+                <div class="row">
+                    {!! Form::label('twitter', 'Twitter', ['class' => 'col-sm-3 col-form-label']) !!}
+                    <div class="col-sm-9">
+                    {!! Form::text('twitter', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm col-sm-6">
+                <div class="row">
+                    {!! Form::label('youtube', 'Youtube', ['class' => 'col-sm-3 col-form-label']) !!}
+                    <div class="col-sm-9">
+                    {!! Form::text('youtube', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
