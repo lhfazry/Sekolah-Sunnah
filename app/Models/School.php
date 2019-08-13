@@ -137,7 +137,9 @@ class School extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-        'nama_sekolah' => 'required'
+        'nama_sekolah' => 'required',
+        'level_id' => 'required',
+        'city_id' => 'required'
     ];
 
     /**
