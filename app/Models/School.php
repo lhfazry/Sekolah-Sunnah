@@ -129,7 +129,7 @@ class School extends Model implements HasMedia
      * @var array
      */
     public static $rules = [
-
+        'nama_sekolah' => 'required'
     ];
 
     /**
