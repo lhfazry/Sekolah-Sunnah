@@ -22,7 +22,7 @@ class ModifyTableSchoolRemoveSomeFields extends Migration
             $table->integer('level_id')->unsigned()->nullable()->after('id');
             $table->integer('city_id')->unsigned()->nullable()->after('level_id');
             $table->text('brochure')->nullable()->after('video_profil');
-            $table->timestamp('verified_at')->unsigned()->nullable()->after('description');
+            $table->timestamp('verified_at')->nullable()->after('description');
 
             $table->foreign('level_id')->references('id')->on('levels');
             $table->foreign('city_id')->references('id')->on('cities');
