@@ -21,6 +21,8 @@ Route::group([
     Auth::routes();
 });
 
+Route::get('landing', 'WebController@index');
+
 Route::group([
     'prefix' => 'admin',
     'middleware' => 'auth'

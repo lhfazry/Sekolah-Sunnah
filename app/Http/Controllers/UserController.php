@@ -100,7 +100,6 @@ class UserController extends AppBaseController
     public function show($id)
     {
         $user = $this->userRepository->findWithoutFail($id);
-        $userEmployee = \App\Models\UserEmployee::where('user_id', $user->id)->first();
 
         if (empty($user)) {
             Flash::error('User not found');
@@ -108,7 +107,7 @@ class UserController extends AppBaseController
             return redirect(route('users.index'));
         }
 
-        return view('users.show', compact('userEmployee'))->with('user', $user);
+        return view('users.show')->with('user', $user);
     }
 
     /**

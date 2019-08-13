@@ -1,0 +1,72 @@
+.navbar-light .navbar-brand img,
+.footer .brand img {
+    max-width: 400px;
+    width: 100%;
+}
+.page .hero-wrapper {
+    position: relative;
+    background: rgba(0,0,0,.5);
+}
+.hero .page-title h1 {
+    padding: 0 10rem;
+}
+.form.hero-form {
+    padding-top: 6rem;
+    padding-bottom: 2rem;
+}
+.item .meta span.red {
+    color: red!important;
+}
+.newsletter-box {
+    background-color: rgba(0,0,0,.5)!important;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+@media (max-width: 767px) {
+    .block {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .navbar-light .navbar-toggler {
+        background: #fff;
+    }
+    .hero .main-navigation .navbar ul.navbar-nav > li.nav-item a.nav-link {
+        text-align: center;
+        display: block;
+    }
+    .hero .secondary-navigation .left {
+        display: none;
+    }
+    .hero .secondary-navigation {
+        text-align: center;
+    }
+    .hero .secondary-navigation .right {
+        float: none;
+        display: inline-block;
+        margin-bottom: -5px;
+    }
+    .hero .page-title h1 {
+        padding: 0;
+    }
+    .navbar-light .navbar-brand img, .footer .brand img {
+        max-width: 250px;
+        width: 100%;
+    }
+    .form.hero-form {
+        padding-top: 0;
+    }
+    .form.hero-form .main-search-form {
+        margin-bottom: 0;
+    }
+    .form .alternative-search-form {
+        padding: 0 3rem;
+    }
+    .footer {
+        padding: 5rem;
+        text-align: center;
+    }
+    .footer h2 {
+        margin-bottom: 1rem;
+    }
+}
