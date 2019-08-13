@@ -40,7 +40,7 @@
     <div class="register-box-body">
         <p class="login-box-msg">Register a new membership</p>
 
-        <form method="post" action="{{ url('/register') }}">
+        <form method="post" action="{{ url('/admin/register') }}">
 
             {!! csrf_field() !!}
 

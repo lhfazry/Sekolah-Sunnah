@@ -1,0 +1,198 @@
+[
+    {
+        "name": "id",
+        "dbType": "increments",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": true,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "nama_sekolah",
+        "dbType": "string",
+        "htmlType": "text"
+    },
+    {
+        "name": "jenjang",
+        "dbType": "string:nullable",
+        "htmlType": "select,Paud,TK,SD,SMP,SMA,SMK,Pesantren,Perguruan Tinggi"
+    },
+    {
+        "name": "ikhwan",
+        "dbType": "boolean:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "akhowat",
+        "dbType": "boolean:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "boarding",
+        "dbType": "boolean:nullable",
+        "htmlType": "select,1:Ya,0:Tidak"
+    },
+    {
+        "name": "full_day",
+        "dbType": "boolean:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "biaya_pendaftaran",
+        "dbType": "biginteger:unsigned:nullable",
+        "htmlType": "number"
+    },
+    {
+        "name": "biaya_spp",
+        "dbType": "biginteger:unsigned:nullable",
+        "htmlType": "number"
+    },
+    {
+        "name": "yayasan",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "address",
+        "dbType": "text:nullable",
+        "htmlType": "textarea"
+    },
+    {
+        "name": "lat",
+        "dbType": "decimal,11,8:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "lng",
+        "dbType": "decimal,11,8:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "map",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "email",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "website",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "phone1",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "phone2",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "logo",
+        "dbType": "text:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "photo1",
+        "dbType": "text:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "photo2",
+        "dbType": "text:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "photo3",
+        "dbType": "text:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "photo4",
+        "dbType": "text:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "video_profil",
+        "dbType": "text:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "short_description",
+        "dbType": "text:nullable",
+        "htmlType": "textarea"
+    },
+    {
+        "name": "description",
+        "dbType": "text:nullable",
+        "htmlType": "textarea"
+    },
+    {
+        "name": "status",
+        "dbType": "string:nullable",
+        "htmlType": "text"
+    },
+    {
+        "name": "created_by",
+        "dbType": "biginteger:unsigned:nullable:foreign,users,id",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_by",
+        "dbType": "biginteger:unsigned:nullable:foreign,users,id",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "deleted_by",
+        "dbType": "biginteger:unsigned:nullable:foreign,users,id",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "created_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    },
+    {
+        "name": "updated_at",
+        "dbType": "timestamp",
+        "htmlType": "",
+        "validations": "",
+        "searchable": false,
+        "fillable": false,
+        "primary": false,
+        "inForm": false,
+        "inIndex": false
+    }
+]

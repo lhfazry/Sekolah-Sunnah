@@ -1,166 +1,280 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="UTF-8">
-    <title>InfyOm Generator</title>
-    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
-    <!-- Bootstrap 3.3.7 -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sekolah Sunnah Admin Page</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <!-- Theme style -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/css/skins/_all-skins.min.css">
-
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
     <!-- iCheck -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/dist/css/adminlte.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="{{asset('AdminLTE')}}/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
 
-    <!-- Ionicons -->
-    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <style>
+        form {
+            width: 100%;
+        }
+        @font-face {
+            font-family: OpenSans;
+            src: url('{{ asset('fonts/OpenSans/OpenSans-Regular.ttf') }}');
+        }
 
+        @font-face {
+            font-family: OpenSans;
+            src: url('{{ asset('fonts/OpenSans/OpenSans-Bold.ttf') }}');
+            font-weight: bold;
+        }
+
+        @font-face {
+            font-family: OpenSans;
+            src: url('{{ asset('fonts/OpenSans/OpenSans-Italic.ttf') }}');
+            font-style: italic;
+        }
+
+        body {
+            /*font-family: "CoreSansG", 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif !important; */
+            font-family: OpenSans,Helvetica, Arial,sans-serif;
+        }
+
+        h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+            font-family: OpenSans,Helvetica, Arial,sans-serif;
+        }
+
+        .select2 {
+            width: 100%!important;
+        }
+
+        .select2-container {
+            /*vertical-align: inherit!important;*/
+        }
+
+        input[type="text"], input[type="email"],input[type="number"],input[type="date"], input[type="password"], textarea
+             {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #999;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        textarea.form-control {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #999;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            border-radius: 0;
+        }
+
+        input[type="text"]:focus,input[type="email"]:focus,input[type="number"]:focus,input[type="date"]:focus, textarea:focus,
+            select.form-control:focus {
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+
+        .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+
+            opacity: 1;
+        }
+
+        .form-group label {
+            font-weight: normal;
+        }
+
+        .box-title {
+            font-size: 16px;
+        }
+
+        .main-sidebar {
+            position: fixed;
+            overflow-y: scroll;
+            top: 0;
+            bottom: 0;
+            /* width: 300px;*/
+        }
+
+        /*.main-header .navbar, .content-wrapper, .main-footer {
+            margin-left: 300px;
+        } */
+
+        .select2-container .select2-selection--single {
+            border: none;
+            border-bottom: 1px solid #999;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+            height: 34px !important;
+            padding: 6px 12px !important;
+            border-radius: 0px !important;
+            border-color: #d2d6de;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 30px !important;
+            right: 3px !important;
+        }
+
+        .content-header {
+            padding-bottom: 25px;
+        }
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            padding: 1px !important;
+        }
+
+        th {
+            text-align: center;
+        }
+
+
+        .badge:hover {
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .badge-error {
+            background-color: #b94a48;
+        }
+        .badge-error:hover {
+            background-color: #953b39;
+        }
+        .badge-warning {
+            background-color: #f89406;
+        }
+        .badge-warning:hover {
+            background-color: #c67605;
+        }
+        .badge-success {
+            background-color: #468847;
+        }
+        .badge-success:hover {
+            background-color: #356635;
+        }
+        .badge-info {
+            background-color: #3a87ad;
+        }
+        .badge-info:hover {
+            background-color: #2d6987;
+        }
+        .badge-inverse {
+            background-color: #333333;
+        }
+        .badge-inverse:hover {
+            background-color: #1a1a1a;
+        }
+
+        .form-horizontal .col-form-label {
+            text-align: right;
+            font-weight: normal !important;
+        }
+    </style>
     @yield('css')
 </head>
 
-<body class="skin-blue sidebar-mini">
-@if (!Auth::guest())
-    <div class="wrapper">
-        <!-- Main Header -->
-        <header class="main-header">
+<body class="hold-transition sidebar-mini layout-fixed">
+  <div class="wrapper">
 
-            <!-- Logo -->
-            <a href="#" class="logo">
-                <b>InfyOm</b>
-            </a>
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+        </li>
+        <!--
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="index3.html" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+          <a href="#" class="nav-link">Contact</a>
+        </li>-->
+      </ul>
 
-            <!-- Header Navbar -->
-            <nav class="navbar navbar-static-top" role="navigation">
-                <!-- Sidebar toggle button-->
-                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-                    <span class="sr-only">Toggle navigation</span>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                {!! Form::open(['route' => 'logout', 'id'=>'myform']) !!}
+                <a class="nav-link" href="javascript:{}" onclick="document.getElementById('myform').submit();">
+                    <i class="fas fa-sign-out-alt"></i>
                 </a>
-                <!-- Navbar Right Menu -->
-                <div class="navbar-custom-menu">
-                    <ul class="nav navbar-nav">
-                        <!-- User Account Menu -->
-                        <li class="dropdown user user-menu">
-                            <!-- Menu Toggle Button -->
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- The user image in the navbar-->
-                                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                     class="user-image" alt="User Image"/>
-                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">{!! Auth::user()->name !!}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- The user image in the menu -->
-                                <li class="user-header">
-                                    <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg"
-                                         class="img-circle" alt="User Image"/>
-                                    <p>
-                                        {!! Auth::user()->name !!}
-                                        <small>Member since {!! Auth::user()->created_at->format('M. Y') !!}</small>
-                                    </p>
-                                </li>
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                                    </div>
-                                    <div class="pull-right">
-                                        <a href="{!! url('/logout') !!}" class="btn btn-default btn-flat"
-                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                            Sign out
-                                        </a>
-                                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </header>
-
-        <!-- Left side column. contains the logo and sidebar -->
-        @include('layouts.sidebar')
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            @yield('content')
-        </div>
-
-        <!-- Main Footer -->
-        <footer class="main-footer" style="max-height: 100px;text-align: center">
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
-        </footer>
-
-    </div>
-@else
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="navbar-header">
-
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <!-- Branding Image -->
-                <a class="navbar-brand" href="{!! url('/') !!}">
-                    InfyOm Generator
-                </a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    <li><a href="{!! url('/home') !!}">Home</a></li>
-                </ul>
-
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    <li><a href="{!! url('/login') !!}">Login</a></li>
-                    <li><a href="{!! url('/register') !!}">Register</a></li>
-                </ul>
-            </div>
-        </div>
+                {!! Form::close() !!}
+            </li>
+        </ul>
     </nav>
+    <!-- /.navbar -->
 
-    <div id="page-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    @yield('content')
-                </div>
-            </div>
-        </div>
+
+    @include('layouts.sidebar')
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        @yield('content')
     </div>
-    @endif
 
-    <!-- jQuery 3.1.1 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.3/js/adminlte.min.js"></script>
+    <footer class="main-footer">
+      <strong>Copyright &copy; 2019 <a href="https://sekolahsunnah.com">Sekolah Sunnah</a>.</strong>
+      All rights reserved.
+      <div class="float-right d-none d-sm-inline-block">
+        <b>Version</b> 1.0.0-beta.2
+      </div>
+    </footer>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
 
-    @yield('scripts')
+  <!-- jQuery -->
+  <script src="{{asset('AdminLTE')}}/plugins/jquery/jquery.min.js"></script>
+  <!-- jQuery UI 1.11.4 -->
+  <script src="{{asset('AdminLTE')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
+  <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+  <script>
+    $.widget.bridge('uibutton', $.ui.button)
+
+  </script>
+  <!-- Bootstrap 4 -->
+  <script src="{{asset('AdminLTE')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- daterangepicker -->
+  <script src="{{asset('AdminLTE')}}/plugins/moment/moment.min.js"></script>
+  <script src="{{asset('AdminLTE')}}/plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="{{asset('AdminLTE')}}/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+
+  <!-- overlayScrollbars -->
+  <script src="{{asset('AdminLTE')}}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+  <!-- FastClick -->
+  <script src="{{asset('AdminLTE')}}/plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="{{asset('AdminLTE')}}/dist/js/adminlte.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+  @yield('scripts')
+    <script>
+        $(document).ready(function(){
+            $('select').select2();
+        });
+    </script>
 </body>
 </html>
+

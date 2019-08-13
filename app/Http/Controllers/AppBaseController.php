@@ -27,4 +27,14 @@ class AppBaseController extends Controller
     {
         return Response::json(ResponseUtil::makeError($error), $code);
     }
+
+    public function dropDown($collection, $name, $id, $title = 'None') {
+        $items = $collection->pluck($name, $id);
+        return ['' => $title] + $items->all();
+    }
+
+    public function dropDownWithoutNone($collection, $name, $id) {
+        $items = $collection->pluck($name, $id);
+        return $items->all();
+    }
 }

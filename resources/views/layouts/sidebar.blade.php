@@ -1,41 +1,31 @@
-<aside class="main-sidebar" id="sidebar-wrapper">
+<!-- Main Sidebar Container -->
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+        <!--<img src="{{asset('AdminLTE')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+        <span class="brand-text font-weight-light">Sekolah Sunnah</span> -->
+    </a>
 
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-
+    <!-- Sidebar -->
+    <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="http://infyom.com/images/logo/blue_logo_150x150.jpg" class="img-circle"
-                     alt="User Image"/>
-            </div>
-            <div class="pull-left info">
-                @if (Auth::guest())
-                <p>InfyOm</p>
-                @else
-                    <p>{{ Auth::user()->name}}</p>
-                @endif
-                <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+            <img src="{{asset('AdminLTE')}}/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+            <a href="#" class="d-block">{{ Auth::user()->name}}</a>
+        </div>
         </div>
 
-        <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-          <span class="input-group-btn">
-            <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i>
-            </button>
-          </span>
-            </div>
-        </form>
         <!-- Sidebar Menu -->
-
-        <ul class="sidebar-menu" data-widget="tree">
+        <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             @include('layouts.menu')
         </ul>
+        </nav>
         <!-- /.sidebar-menu -->
-    </section>
+    </div>
     <!-- /.sidebar -->
 </aside>
