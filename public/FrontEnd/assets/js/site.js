@@ -204,6 +204,7 @@ $(document).ready(function($) {
     $('[data-toggle="tooltip"]').tooltip();
 
 //  iCheck
+    console.log('asdfsdf');
 
     $("input[type=checkbox], input[type=radio]").iCheck();
 

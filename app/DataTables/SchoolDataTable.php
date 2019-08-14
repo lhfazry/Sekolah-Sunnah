@@ -106,11 +106,11 @@ class SchoolDataTable extends DataTable
     {
         return [
             'updated_at' => ['searchable' => false, 'visible' => false],
-            'nama_sekolah' => ['searchable' => true, 'title' => 'Name'],
-            'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center'],
-            'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center'],
-            'facility' => ['searchable' => true, 'class' => 'text-center'],
-            'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center'],
+            'nama_sekolah' => ['searchable' => true, 'title' => 'Name', 'width' => '200'],
+            'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center', 'width' => '200'],
+            'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center', 'width' => '100'],
+            'facility' => ['searchable' => true, 'class' => 'text-center', 'width' => '150'],
+            'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center', 'width' => '80'],
             'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'width' => '120']
         ];
     }

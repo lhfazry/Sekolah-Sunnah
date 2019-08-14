@@ -22,6 +22,15 @@ class VerifiedSchoolDataTable extends DataTable
             ->addColumn('level_name', function($school){
                 return $school->level->name;
             })
+            ->addColumn('city_name', function($school){
+                $city_name = "";
+
+                if(!empty($school->city)) {
+                    $city_name = $school->city_province();
+                }
+
+                return $city_name;
+            })
             ->addColumn('status_name', function($school){
                 if($school->status == 'Published'){
                     return "<span class=\"badge badge-success\">Published</span>";
@@ -97,10 +106,11 @@ class VerifiedSchoolDataTable extends DataTable
     {
         return [
             'updated_at' => ['searchable' => false, 'visible' => false],
-            'nama_sekolah' => ['searchable' => true, 'title' => 'Name'],
-            'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center'],
-            'facility' => ['searchable' => true, 'class' => 'text-center'],
-            'status_name' => ['searchable' => true, 'title' => 'Status', 'class' => 'text-center'],
+            'nama_sekolah' => ['searchable' => true, 'title' => 'Name', 'width' => '220'],
+            'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center', 'width' => '200'],
+            'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center', 'width' => '100'],
+            'facility' => ['searchable' => true, 'class' => 'text-center', 'width' => '150'],
+            'status_name' => ['searchable' => true, 'title' => 'Status', 'class' => 'text-center', 'width' => '80'],
             'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'width' => '120']
         ];
     }

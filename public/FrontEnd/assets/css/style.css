@@ -744,7 +744,7 @@
     line-height: 1.1;
 }
 .hero:after {
-    background-image: url("../assets/img/highlight-overlay.png");
+    background-image: url("../img/highlight-overlay.png");
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;
@@ -1459,7 +1459,7 @@
     width: 100%;
 }
 .map .infobox-wrapper:after {
-    background-image: url("../assets/img/infobox-arrow.png");
+    background-image: url("../img/infobox-arrow.png");
     content: "";
     display: block;
     width: 100%;
@@ -1477,7 +1477,7 @@
     margin-bottom: 5rem;
 }
 .map#map-contact:before {
-    background-image: url("../assets/img/footer-overlay.png");
+    background-image: url("../img/footer-overlay.png");
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;
@@ -1545,7 +1545,7 @@
     opacity: 1;
 }
 .owl-carousel.full-width-carousel:before {
-    background-image: url("../assets/img/footer-overlay.png");
+    background-image: url("../img/footer-overlay.png");
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;
@@ -1625,7 +1625,7 @@
     z-index: 1;
 }
 .page >.content:after {
-    background-image: url("../assets/img/footer-overlay.png");
+    background-image: url("../img/footer-overlay.png");
     background-size: contain;
     background-position: top center;
     background-repeat: no-repeat;

@@ -18,7 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-
+/*
 Route::resource('provinces', 'ProvinceAPIController');
 
 Route::resource('cities', 'CityAPIController');
@@ -30,4 +30,4 @@ Route::resource('facilities', 'FacilityAPIController');
 
 Route::resource('school_facilities', 'SchoolFacilityAPIController');
 
-Route::resource('levels', 'LevelAPIController');
+Route::resource('levels', 'LevelAPIController');*/

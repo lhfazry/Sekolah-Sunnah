@@ -512,7 +512,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
-    <script src="{{asset('FrontEnd/assets/js/site.js"')}}></script>
+    <script src="{{asset('FrontEnd/assets/js/site.js')}}"></script>
 </body>
 
 </html>

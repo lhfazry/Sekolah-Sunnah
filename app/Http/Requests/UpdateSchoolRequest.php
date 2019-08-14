@@ -15,7 +15,22 @@ class UpdateSchoolRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(\App\Models\Role::isAdmin()) {
+            return true;
+        }
+
+        $id = $this->reoute('id');
+        $school = \App\Models\School::find($id);
+
+        if(!empty($school)) {
+            if($school->creator->id == auth()->user()->id) {
+                if(!$school->isVerified()) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     /**
