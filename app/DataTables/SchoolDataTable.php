@@ -48,6 +48,9 @@ class SchoolDataTable extends DataTable
                     return "<span class=\"badge badge-danger\">Unverified</span>";
                 }
             })
+            ->addColumn('creator_name', function($school){
+                return !empty($school->creator)?$school->creator->name:'';
+            })
             ->filterColumn('level_name', function($query, $keyword) {
                 $query->whereHas('level', function ($query) use ($keyword) {
                     $query->where('name', 'LIKE', "%{$keyword}%");
@@ -105,7 +108,8 @@ class SchoolDataTable extends DataTable
             'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center'],
             'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center'],
             'facility' => ['searchable' => true, 'class' => 'text-center'],
-            'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center']
+            'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center'],
+            'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center']
         ];
     }
 

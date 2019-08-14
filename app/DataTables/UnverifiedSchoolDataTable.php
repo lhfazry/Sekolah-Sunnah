@@ -36,6 +36,9 @@ class UnverifiedSchoolDataTable extends DataTable
                     $query->where('name', 'LIKE', "%{$keyword}%");
                 });
             })
+            ->addColumn('creator_name', function($school){
+                return !empty($school->creator)?$school->creator->name:'';
+            })
             ->rawColumns(['action', 'facility']);
     }
 
@@ -86,7 +89,8 @@ class UnverifiedSchoolDataTable extends DataTable
             'updated_at' => ['searchable' => false, 'visible' => false],
             'nama_sekolah' => ['searchable' => true, 'title' => 'Name'],
             'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center'],
-            'facility' => ['searchable' => true, 'class' => 'text-center']
+            'facility' => ['searchable' => true, 'class' => 'text-center'],
+            'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center']
         ];
     }
 
