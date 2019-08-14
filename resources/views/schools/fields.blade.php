@@ -1,6 +1,8 @@
 @section('css')
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" charset="utf-8">
+<!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
 <style>
     .boxzone {
         min-height: 150px;
@@ -317,11 +319,15 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 
     <script>
         var uploadedPhotoMap = {}
 
         $(document).ready(function(){
+            $('#short_description').summernote({height: 200});
+            $('#description').summernote({height: 200});
+
             $( "#city" ).autocomplete({
                 source: "{{ route('cities.autocomplete') }}",
                 minLength: 3,
