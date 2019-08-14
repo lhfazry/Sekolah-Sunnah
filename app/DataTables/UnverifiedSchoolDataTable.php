@@ -34,8 +34,14 @@ class UnverifiedSchoolDataTable extends DataTable
             ->addColumn('facility', function($school){
                 $html = "";
 
-                foreach($school->facilities as $facility) {
-                    $html .= "<i title=\"".$facility->facility->name."\" style=\"font-size:24px;\" class=\"text-success fas ".$facility->facility->icon."\"></i>&nbsp;";
+                foreach($school->facilities as $fct) {
+                    $facility = $fct->facility;
+
+                    if(empty($facility)) {
+                        continue;
+                    }
+
+                    $html .= "<i title=\"".$facility->name."\" style=\"font-size:24px;\" class=\"text-success fas ".$facility->icon."\"></i>&nbsp;";
                 }
 
                 return $html;
@@ -77,8 +83,8 @@ class UnverifiedSchoolDataTable extends DataTable
                 'dom'       => 'frtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                "sScrollX" => "140%",
-                "sScrollXInner" => "140%",
+                "sScrollX" => "120%",
+                "sScrollXInner" => "120%",
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],

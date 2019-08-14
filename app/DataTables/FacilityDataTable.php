@@ -47,8 +47,8 @@ class FacilityDataTable extends DataTable
                 'dom'       => 'frtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                "sScrollX" => "140%",
-                "sScrollXInner" => "140%",
+                "sScrollX" => "100%",
+                "sScrollXInner" => "100%",
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -68,8 +68,8 @@ class FacilityDataTable extends DataTable
     {
         return [
             'updated_at' => ['searchable' => false, 'visible' => false],
-            'name' => ['searchable' => true],
-            'description' => ['searchable' => true]
+            'name' => ['searchable' => true, 'width' => 100],
+            'description' => ['searchable' => true, 'width' => 100]
         ];
     }
 

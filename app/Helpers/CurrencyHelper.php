@@ -6,7 +6,7 @@ class CurrencyHelper
 {
     public static function formatCurrency($amount) {
         $amount = floatval($amount);
-        return number_format($amount, 2,',','.');
+        return number_format($amount, 0,',','.');
 
         /*switch($currency) {
             case "USD":

@@ -2,7 +2,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" charset="utf-8">
 <!-- include summernote css/js -->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
 <style>
     .boxzone {
         min-height: 150px;
@@ -15,6 +15,7 @@
 </style>
 @endsection
 
+{!! Form::text('hidden', null, ['autocomplete' => "autocomplete_off_hack_xfr4!k", 'style'=> 'display:none;']) !!}
 {!! Form::hidden('city_id', !empty($school)?$school->city_id:null, ['class' => 'form-control', 'id' => 'city_id']) !!}
 {!! Form::hidden('status', 'Unpublished', ['class' => 'form-control']) !!}
 
@@ -103,7 +104,7 @@
                 <div class="row">
                     {!! Form::label('city', 'City', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::text('city', (!empty($school) && !empty($school->city))?$school->city->name.', '.$school->city->province->name:null, ['class' => 'form-control']) !!}
+                    {!! Form::text('city', (!empty($school) && !empty($school->city))?$school->city->name.', '.$school->city->province->name:null, ['class' => 'form-control', 'autocomplete' => 'autocomplete_off_hack_xfr4!k']) !!}
                     </div>
                 </div>
             </div>
@@ -319,7 +320,7 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
 
     <script>
         var uploadedPhotoMap = {}

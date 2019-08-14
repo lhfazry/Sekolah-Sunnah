@@ -22,6 +22,9 @@ Route::group([
 });
 
 Route::get('landing', 'WebController@index');
+Route::get('search', 'WebController@search')->name('web.search');
+Route::get('submit', 'WebController@submit')->name('web.submit');
+Route::get('cities/autocomplete', 'CityController@autocomplete')->name('cities.autocomplete');
 
 Route::group([
     'prefix' => 'admin',
@@ -38,7 +41,6 @@ Route::group([
 
     //Route::post('schools\{id}\media', 'SchoolController@storeMedia')->name('schools.media')->where('id', '[0-9]+');Route::post('schools\{id}\media', 'SchoolController@storeMedia')->name('schools.media')->where('id', '[0-9]+');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
-    Route::get('cities/autocomplete', 'CityController@autocomplete')->name('cities.autocomplete');
     Route::get('schools/{id}/verify', 'SchoolController@verify')->name('schools.verify');
     Route::get('schools/{id}/publish', 'SchoolController@publish')->name('schools.publish');
     Route::get('schools/{id}/unpublish', 'SchoolController@unpublish')->name('schools.unpublish');

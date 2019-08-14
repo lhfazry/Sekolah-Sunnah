@@ -77,8 +77,8 @@ class CityDataTable extends DataTable
     {
         return [
             'updated_at' => ['searchable' => false, 'visible' => false],
-            'province_name' => ['searchable' => true, 'title' => 'Province', 'width' => 300],
-            'name' => ['searchable' => true]
+            'province_name' => ['searchable' => true, 'title' => 'Province', 'width' => 200],
+            'name' => ['searchable' => true, 'width' => 200]
         ];
     }
 

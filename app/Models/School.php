@@ -242,6 +242,14 @@ class School extends Model implements HasMedia
         return \App\Helpers\CurrencyHelper::formatCurrency($this->biaya_spp);
     }
 
+    public function displaySPP() {
+        return "Rp. " .$this->formattedBiayaSPP()."/Bulan";
+    }
+
+    public function displayBiayaPendaftaran() {
+        return "Rp. " .$this->formattedBiayaPendaftaran();
+    }
+
     public function isVerified() {
         return !empty($this->verified_at);
     }
@@ -252,5 +260,71 @@ class School extends Model implements HasMedia
 
     public function city_province() {
         return !empty($this->city)?$this->city->name.', '.$this->city->province->name:'';
+    }
+
+    public function exceprt() {
+        return \App\Helpers\StringHelper::exceprt($this->short_description);
+    }
+
+    public function getTags() {
+        $tags = "";
+
+        foreach($this->facilities as $fct) {
+            $facility = $fct->facility;
+
+            if(empty($facility)) {
+                continue;
+            }
+
+            if($facility->name == "Ikhwan") {
+                $tags .= "<a href=\"#\" class=\"tag category\">Ikhwan</a>&nbsp;";
+            }
+
+            if($facility->name == "Akhwat") {
+                $tags .= "<a href=\"#\" class=\"tag category\">Akhwat</a>&nbsp;";
+            }
+        }
+
+        return $tags;
+    }
+
+    public function getOtherFacilities() {
+        $tags = "";
+
+        foreach($this->facilities as $fct) {
+            $facility = $fct->facility;
+
+            if(empty($facility)) {
+                continue;
+            }
+
+            if(in_array($facility->name, ['Ikhwan', 'Akhwat'])) {
+                continue;
+            }
+
+            $tags .= "<figure><i class=\"fas ".$facility->icon."\"></i>".$facility->name."</figure>";
+        }
+
+        return $tags;
+    }
+
+    public function getPhotoCoverUrl() {
+        if(!empty($this->photo1)) {
+            return $this->getPhoto1Url();
+        }
+
+        if(!empty($this->photo2)) {
+            return $this->getPhoto2Url();
+        }
+
+        if(!empty($this->photo3)) {
+            return $this->getPhoto3Url();
+        }
+
+        if(!empty($this->photo4)) {
+            return $this->getPhoto4Url();
+        }
+
+        return "http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
     }
 }
