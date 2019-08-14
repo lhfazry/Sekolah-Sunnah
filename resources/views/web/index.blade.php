@@ -83,7 +83,7 @@
                                 <div class="col-md-3 col-sm-3">
                                     <div class="form-group">
                                         <label for="input-location" class="col-form-label">Dimana?</label>
-                                        <input name="location" type="text" class="form-control" id="input-location" placeholder="Masukkan lokasi..."><span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span></div>
+                                        <input name="location" type="text" class="form-control" id="input-location" placeholder="Masukkan kota..."><!--<span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>--></div>
                                 </div>
                                 <div class="col-md-3 col-sm-3">
                                     <button type="submit" class="btn btn-primary width-100">Tampilkan Pencarian</button>

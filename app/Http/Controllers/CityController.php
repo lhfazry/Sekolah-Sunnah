@@ -169,4 +169,25 @@ class CityController extends AppBaseController
 
         return Response::json($results);
     }
+
+    public function cleaning() {
+        $provinces = \App\Models\Province::all();
+
+        foreach($provinces as $province) {
+            $province->name = trim(ucwords(strtolower($province->name)));
+            $province->save();
+        }
+
+        $cities = \App\Models\City::all();
+
+        foreach($cities as $city) {
+            $name = str_replace("KOTA", "", $city->name);
+            $name = str_replace("KABUPATEN", "", $name);
+
+            $city->name = ucwords(strtolower($name));
+            $city->save();
+        }
+
+        echo "success";
+    }
 }
