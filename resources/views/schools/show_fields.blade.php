@@ -190,7 +190,7 @@
                 <div class="row">
                     {!! Form::label('facebook', 'Facebook', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::text('facebook', null, ['class' => 'form-control', 'readonly']) !!}
+                    {!! Form::text('facebook', $school->facebook, ['class' => 'form-control', 'readonly']) !!}
                     </div>
                 </div>
             </div>
@@ -199,7 +199,7 @@
                 <div class="row">
                     {!! Form::label('instagram', 'Instagram', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::text('instagram', null, ['class' => 'form-control', 'readonly']) !!}
+                    {!! Form::text('instagram', $school->instagram, ['class' => 'form-control', 'readonly']) !!}
                     </div>
                 </div>
             </div>
@@ -208,7 +208,7 @@
                 <div class="row">
                     {!! Form::label('twitter', 'Twitter', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::text('twitter', null, ['class' => 'form-control', 'readonly']) !!}
+                    {!! Form::text('twitter', $school->twitter, ['class' => 'form-control', 'readonly']) !!}
                     </div>
                 </div>
             </div>
@@ -217,7 +217,7 @@
                 <div class="row">
                     {!! Form::label('youtube', 'Youtube', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::text('youtube', null, ['class' => 'form-control', 'readonly']) !!}
+                    {!! Form::text('youtube', $school->youtube, ['class' => 'form-control', 'readonly']) !!}
                     </div>
                 </div>
             </div>
