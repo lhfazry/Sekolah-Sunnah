@@ -46,7 +46,8 @@ class UserDataTable extends DataTable
             ->parameters([
                 'dom'     => 'frtip',
                 'order'   => [[0, 'desc']],
-                'scrollX' => true,
+                "sScrollX" => "140%",
+                "sScrollXInner" => "140%",
                 'buttons' => [
                     //['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     //['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],

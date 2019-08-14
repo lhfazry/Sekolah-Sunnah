@@ -16,7 +16,7 @@
                 <div class="col-sm-6">
                     <h1 class="float-sm-right">
                         @if(Request::is('admin/schools*'))
-                        <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('schools.create') !!}">Add New</a>
+                        <a class="btn btn-sm btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('schools.create') !!}">Add New</a>
                         @endif
                     </h1>
                 </div>

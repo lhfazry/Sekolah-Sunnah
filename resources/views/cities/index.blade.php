@@ -9,7 +9,7 @@
                 </div>
                 <div class="col-sm-6">
                     <h1 class="float-sm-right">
-                        <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('cities.create') !!}">Add New</a>
+                        <a class="btn btn-sm btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('cities.create') !!}">Add New</a>
                     </h1>
                 </div>
             </div>

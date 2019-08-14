@@ -47,6 +47,8 @@ class FacilityDataTable extends DataTable
                 'dom'       => 'frtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
+                "sScrollX" => "140%",
+                "sScrollXInner" => "140%",
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
