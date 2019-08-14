@@ -109,7 +109,7 @@ class SchoolDataTable extends DataTable
             'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center'],
             'facility' => ['searchable' => true, 'class' => 'text-center'],
             'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center'],
-            'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center']
+            'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'width' => '120']
         ];
     }
 
