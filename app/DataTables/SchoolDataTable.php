@@ -26,7 +26,7 @@ class SchoolDataTable extends DataTable
                 $city_name = "";
 
                 if(!empty($school->city)) {
-                    $city_name = $school->city->name.' '.$school->city->province->name;
+                    $city_name = $school->city_province();
                 }
 
                 return $city_name;

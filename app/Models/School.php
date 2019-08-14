@@ -251,6 +251,6 @@ class School extends Model implements HasMedia
     }
 
     public function city_province() {
-        return !empty($this->city)?$this->city->name.','.$this->city->province->name:'';
+        return !empty($this->city)?$this->city->name.', '.$this->city->province->name:'';
     }
 }
