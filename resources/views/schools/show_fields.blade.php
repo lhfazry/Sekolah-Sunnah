@@ -25,7 +25,7 @@
 
                 <div class="form-group col-sm-6">
                     <div class="row">
-                        {!! Form::label('name', 'Biaya Pendaftaran', ['class' => 'col-sm-3 col-form-label']) !!}
+                        {!! Form::label('name', 'Uang Masuk', ['class' => 'col-sm-3 col-form-label']) !!}
                         <div class="col-sm-9">
                             {!! Form::text('name', $school->formattedBiayaPendaftaran(), ['class' => 'form-control', 'readonly']) !!}
                         </div>

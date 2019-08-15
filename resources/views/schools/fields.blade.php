@@ -44,7 +44,7 @@
 
             <div class="form-group form-group-sm col-sm-6">
                 <div class="row">
-                    {!! Form::label('biaya_pendaftaran', 'Biaya Pendaftaran', ['class' => 'col-sm-3 col-form-label']) !!}
+                    {!! Form::label('biaya_pendaftaran', 'Uang Masuk', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
                     {!! Form::number('biaya_pendaftaran', null, ['class' => 'form-control']) !!}
                     </div>

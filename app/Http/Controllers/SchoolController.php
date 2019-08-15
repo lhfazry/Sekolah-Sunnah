@@ -59,7 +59,7 @@ class SchoolController extends AppBaseController
      */
     public function create()
     {
-        $levels = $this->dropDownWithoutNone(\App\Models\Level::get(), 'name', 'id');
+        $levels = $this->dropDownWithoutNone(\App\Models\Level::orderBy('sequence')->get(), 'name', 'id');
         $facilities = \App\Models\Facility::all();
         return view('schools.create', compact('levels', 'facilities'));
     }
@@ -142,7 +142,7 @@ class SchoolController extends AppBaseController
             return redirect(route('schools.index'));
         }
 
-        $levels = $this->dropDownWithoutNone(\App\Models\Level::get(), 'name', 'id');
+        $levels = $this->dropDownWithoutNone(\App\Models\Level::orderBy('sequence')->get(), 'name', 'id');
         $facilities = \App\Models\Facility::all();
 
         return view('schools.edit', compact('levels', 'facilities'))->with('school', $school);
