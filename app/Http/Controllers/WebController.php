@@ -25,9 +25,11 @@ class WebController extends Controller
     public function index()
     {
         $facilities = \App\Models\Facility::all();
+        $editor_choices = \App\Models\School::orderBy('created_at', 'desc')->where('editor_choice', true)->take(4)->get();
         $latest_schools = \App\Models\School::orderBy('created_at', 'desc')->take(8)->get();
+        $levels = \App\Models\Level::orderBy('sequence')->get();
 
-        return view('web.index', compact('facilities', 'latest_schools'));
+        return view('web.index', compact('facilities', 'editor_choices', 'latest_schools', 'levels'));
     }
 
     public function search() {

@@ -80,54 +80,14 @@
         <div class="container">
             <h2>Kategori Sekolah</h2>
             <ul class="categories-list clearfix">
+                @foreach($levels as $level)
                 <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">TK/Paud</a></h3>
+                    <h3><a href="#">{{$level->name}}</a></h3>
                     <div class="sub-categories">
-                        Pendidikan Anak Usia Dini
+                        {{$level->description}}
                     </div>
                 </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">MI</a></h3>
-                    <div class="sub-categories">
-                        Madrasah Ibtidaiyah
-                    </div>
-                </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">MTs</a></h3>
-                    <div class="sub-categories">
-                        Madrasah Tsanawiyah
-                    </div>
-                </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">MA</a></h3>
-                    <div class="sub-categories">
-                        Madrasah Aliyah
-                    </div>
-                </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">TK/Paud</a></h3>
-                    <div class="sub-categories">
-                        Pendidikan Anak Usia Dini
-                    </div>
-                </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">MI</a></h3>
-                    <div class="sub-categories">
-                        Madrasah Ibtidaiyah
-                    </div>
-                </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">MTs</a></h3>
-                    <div class="sub-categories">
-                        Madrasah Tsanawiyah
-                    </div>
-                </li>
-                <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">MA</a></h3>
-                    <div class="sub-categories">
-                        Madrasah Aliyah
-                    </div>
-                </li>
+                @endforeach
             </ul>
         </div>
     </section>
@@ -135,60 +95,24 @@
         <div class="container">
             <h2>Sekolah Pilihan</h2>
             <div class="items grid grid-xl-3-items grid-lg-3-items grid-md-2-items">
+                @foreach($editor_choices as $school)
                 <div class="item">
                     <div class="wrapper">
                         <div class="image">
-                            <h3><a href="#" class="tag category">Ikhwan</a><a href="#" class="title">Fitrah Islamic World Academy</a><span class="tag">Pilihan</span></h3>
-                            <a href="#" class="image-wrapper background-image"><img src="http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg" alt=""></a>
+                            <h3>{!!$school->getTags()!!}<a href="#" class="title">{{$school->nama_sekolah}}</a><span class="tag">Pilihan</span></h3>
+                            <a href="#" class="image-wrapper background-image"><img src="{{$school->getPhotoCoverUrl()}}" alt=""></a>
                         </div>
-                        <h4 class="location"><a href="#">Bogor, Jawa Barat</a></h4>
-                        <div class="price">Rp3.000.000/Bulan</div>
+                        <h4 class="location"><a href="#">{{$school->city_province()}}</a></h4>
+                        <div class="price">{{$school->displaySPP()}}</div>
                         <div class="meta">
-                            <figure><i class="fa fa-building"></i>Boarding School
-                            </figure>
-                            <figure><a href="#"><i class="fa fa-money"></i><span class="red">$$$</span>$$
-                                </a></figure>
+                            {!!$school->getOtherFacilities()!!}
+                            <figure><a href="#" title="Uang Pangkal"><i class="fa fa-money"></i>&nbsp;{{$school->displayBiayaPendaftaran()}}</a></figure>
                         </div>
                         <div class="description">
-                            <p>Fitrah Islamic World Academy atau dikenal dengan FIWA terletak di kabupaten Bogor...</p>
+                            <p>{{$school->exceprt()}}</p>
                         </div><a href="#" class="detail text-caps underline">Lihat Sekolah</a></div>
                 </div>
-                <div class="item">
-                    <div class="wrapper">
-                        <div class="image">
-                            <h3><a href="#" class="tag category">Ikhwan</a><a href="#" class="title">Fitrah Islamic World Academy</a><span class="tag">Pilihan</span></h3>
-                            <a href="#" class="image-wrapper background-image"><img src="http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg" alt=""></a>
-                        </div>
-                        <h4 class="location"><a href="#">Bogor, Jawa Barat</a></h4>
-                        <div class="price">Rp3.000.000/Bulan</div>
-                        <div class="meta">
-                            <figure><i class="fa fa-building"></i>Boarding School
-                            </figure>
-                            <figure><a href="#"><i class="fa fa-money"></i><span class="red">$$$</span>$$
-                                </a></figure>
-                        </div>
-                        <div class="description">
-                            <p>Fitrah Islamic World Academy atau dikenal dengan FIWA terletak di kabupaten Bogor...</p>
-                        </div><a href="#" class="detail text-caps underline">Lihat Sekolah</a></div>
-                </div>
-                <div class="item">
-                    <div class="wrapper">
-                        <div class="image">
-                            <h3><a href="#" class="tag category">Ikhwan</a><a href="#" class="title">Fitrah Islamic World Academy</a><span class="tag">Pilihan</span></h3>
-                            <a href="#" class="image-wrapper background-image"><img src="http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg" alt=""></a>
-                        </div>
-                        <h4 class="location"><a href="#">Bogor, Jawa Barat</a></h4>
-                        <div class="price">Rp3.000.000/Bulan</div>
-                        <div class="meta">
-                            <figure><i class="fa fa-building"></i>Boarding School
-                            </figure>
-                            <figure><a href="#"><i class="fa fa-money"></i><span class="red">$$$</span>$$
-                                </a></figure>
-                        </div>
-                        <div class="description">
-                            <p>Fitrah Islamic World Academy atau dikenal dengan FIWA terletak di kabupaten Bogor...</p>
-                        </div><a href="#" class="detail text-caps underline">Lihat Sekolah</a></div>
-                </div>
+                @endforeach
             </div>
         </div>
         <div class="background" data-background-color="#fff"></div>

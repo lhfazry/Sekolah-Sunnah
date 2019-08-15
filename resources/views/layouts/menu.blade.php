@@ -26,6 +26,12 @@ $is_school = Request::is('admin/schools*') || Request::is('admin/unverified_scho
         <li class="nav-item">
             <a href="{!! route('schools.verified') !!}" class="nav-link {{ Request::is('admin/verified_schools*') ? 'active' : '' }}"><i class="fa fa-check-circle nav-icon"></i><p>Verified</p></a>
         </li>
+
+        @if(\App\Models\Role::isAdmin())
+        <li class="nav-item">
+            <a href="{!! route('schools.editor_choice') !!}" class="nav-link {{ Request::is('admin/schools/editor_choice*') ? 'active' : '' }}"><i class="fa fa-gift nav-icon"></i><p>Editor Choice</p></a>
+        </li>
+        @endif
     </ul>
 </li>
 

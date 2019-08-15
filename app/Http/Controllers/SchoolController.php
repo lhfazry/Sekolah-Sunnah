@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\DataTables\SchoolDataTable;
 use App\DataTables\VerifiedSchoolDataTable;
 use App\DataTables\UnverifiedSchoolDataTable;
+use App\DataTables\EditorChoiceSchoolDataTable;
 use App\Http\Requests;
 use App\Http\Requests\CreateSchoolRequest;
 use App\Http\Requests\UpdateSchoolRequest;
@@ -44,6 +45,11 @@ class SchoolController extends AppBaseController
     public function unverified(UnverifiedSchoolDataTable $schoolDataTable)
     {
         return $schoolDataTable->render('schools.index');
+    }
+
+    public function editor_choice(EditorChoiceSchoolDataTable $schoolDataTable)
+    {
+        return $schoolDataTable->render('schools.editor_choice');
     }
 
     /**
@@ -263,6 +269,42 @@ class SchoolController extends AppBaseController
         Flash::success('School unpublished successfully.');
 
         return redirect(route('schools.verified'));
+    }
+
+    public function make_choice($id)
+    {
+        $school = $this->schoolRepository->find($id);
+
+        if (empty($school)) {
+            Flash::error('School not found');
+
+            return redirect(route('schools.verified'));
+        }
+
+        $school->editor_choice = true;
+        $school->save();
+
+        Flash::success('School updated successfully.');
+
+        return redirect(route('schools.editor_choice'));
+    }
+
+    public function remove_from_choice($id)
+    {
+        $school = $this->schoolRepository->find($id);
+
+        if (empty($school)) {
+            Flash::error('School not found');
+
+            return redirect(route('schools.verified'));
+        }
+
+        $school->editor_choice = false;
+        $school->save();
+
+        Flash::success('School updated successfully.');
+
+        return redirect(route('schools.editor_choice'));
     }
 
     /*

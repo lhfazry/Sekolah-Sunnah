@@ -83,20 +83,7 @@
                                 <h2>Dapatkan Info Sekolah Sunnah Terkini di Email Anda</h2>
                                 <form class="form email">
                                     <div class="form-row">
-                                        <div class="col-md-4 col-sm-4">
-                                            <div class="form-group">
-                                                <label for="newsletter_category" class="col-form-label">Kategori</label>
-                                                <select name="newsletter_category" id="newsletter_category" data-placeholder="Pilih Kategori">
-                                                    <option value="">Pilih Kategori</option>
-                                                    <option value="1">TK/Paud</option>
-                                                    <option value="2">Madrasah Ibtidaiyah</option>
-                                                    <option value="3">Madrasah Tsanawiyah</option>
-                                                    <option value="4">Madrasah Aliyah</option>
-                                                    <option value="5">Sekolah Tinggi</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7 col-sm-7">
+                                        <div class="col-md-11 col-sm-11">
                                             <div class="form-group">
                                                 <label for="newsletter_email" class="col-form-label">Alamat Email</label>
                                                 <input name="newsletter_email" type="email" class="form-control" id="newsletter_email" placeholder="Alamat Email">

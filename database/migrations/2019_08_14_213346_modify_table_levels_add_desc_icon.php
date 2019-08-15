@@ -14,8 +14,9 @@ class ModifyTableLevelsAddDescIcon extends Migration
     public function up()
     {
         Schema::table('levels', function (Blueprint $table) {
-            $table->string('icon')->nullable()->after('name');
+            $table->integer('sequence')->unsigned()->nullable()->after('name');
             $table->text('description')->nullable()->after('icon');
+            $table->string('icon')->nullable()->after('description');
         });
     }
 
@@ -27,8 +28,9 @@ class ModifyTableLevelsAddDescIcon extends Migration
     public function down()
     {
         Schema::table('levels', function (Blueprint $table) {
-            $table->dropColumn('icon');
+            $table->dropColumn('sequence');
             $table->dropColumn('description');
+            $table->dropColumn('icon');
         });
     }
 }

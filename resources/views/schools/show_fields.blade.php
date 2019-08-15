@@ -232,10 +232,17 @@
     <div class="card-body">
         <div class="row">
             <div class="form-group">
-                @foreach($school->facilities as $facility)
+                @foreach($school->facilities as $fct)
+                @php
+                $facility = $fct->facility;
+
+                if(empty($facility)) {
+                    continue;
+                }
+                @endphp
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" name="facilities[]" checked disabled>
-                    <label class="form-check-label"><i class="fas {{$facility->facility->icon}}"></i>&nbsp;<strong>{{ $facility->facility->name }}</strong></label> <br/>{{ $facility->facility->description }}
+                    <label class="form-check-label"><i class="fas {{$facility->icon}}"></i>&nbsp;<strong>{{ $facility->name }}</strong></label> <br/>{{ $facility->description }}
                 </div>
                 @endforeach
             </div>
@@ -367,6 +374,12 @@
                     @endif
 
                     @if($school->isVerified() && $school->isPublished())
+                    @if(!$school->editor_choice)
+                    <a href="{!! route('schools.make_choice', $school->id) !!}" class="btn btn-warning">Make Editor Choice</a>
+                    @else
+                    <a href="{!! route('schools.remove_from_choice', $school->id) !!}" class="btn btn-warning">Remove From Editor Choice</a>
+                    @endif
+
                     <a href="{!! route('schools.unpublish', $school->id) !!}" class="btn btn-danger">Unpublish</a>
                     @endif
                 @endif
