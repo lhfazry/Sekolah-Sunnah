@@ -67,7 +67,9 @@ class LevelDataTable extends DataTable
     protected function getColumns()
     {
         return [
-            'name' => ['searchable' => false, 'width' => 200]
+            'name' => ['searchable' => false, 'width' => 100],
+            'icon' => ['searchable' => false, 'width' => 50],
+            'description' => ['searchable' => false, 'width' => 100]
         ];
     }
 
