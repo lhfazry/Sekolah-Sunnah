@@ -123,7 +123,7 @@
 
             <div class="form-group form-group-sm col-sm-6">
                 <div class="row">
-                    {!! Form::label('map', 'Map', ['class' => 'col-sm-3 col-form-label']) !!}
+                    {!! Form::label('map', 'Map (Ex: https://goo.gl/maps/9vGtzHtNCG9waxvB6)', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
                     {!! Form::text('map', $school->map, ['class' => 'form-control', 'readonly']) !!}
                     </div>
