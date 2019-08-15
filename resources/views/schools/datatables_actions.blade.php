@@ -3,8 +3,11 @@
     <a href="{{ route('schools.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="fa fa-eye"></i>
     </a>
+    @php
+        $school = \App\Models\School::find($id);
+    @endphp
     @if(Request::is('admin/schools*'))
-        @if($theSchool->isVerified())
+        @if($school->isVerified())
             @if(\App\Models\Role::isAdmin())
             <a href="{{ route('schools.edit', $id) }}" class='btn btn-default btn-xs'>
                 <i class="fa fa-edit"></i>
