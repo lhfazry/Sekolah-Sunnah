@@ -23,10 +23,8 @@ class UpdateSchoolRequest extends FormRequest
         $school = \App\Models\School::find($id);
 
         if(!empty($school)) {
-            if($school->creator->id == auth()->user()->id) {
-                if(!$school->isVerified()) {
-                    return true;
-                }
+            if($school->isMySchool()) {
+                return true;
             }
         }
 

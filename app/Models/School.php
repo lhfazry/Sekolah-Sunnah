@@ -327,4 +327,19 @@ class School extends Model implements HasMedia
 
         return "http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
     }
+
+    public function isMySchool() {
+        $userId = auth()->user()->id;
+        $creatorId = 0;
+
+        if(!empty($this->creator)) {
+            $creatorId = $this->creator->id;
+        }
+
+        if($userId == $creatorId) {
+            return true;
+        }
+
+        return false;
+    }
 }

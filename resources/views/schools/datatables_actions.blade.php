@@ -3,14 +3,6 @@
     <a href="{{ route('schools.show', $id) }}" class='btn btn-default btn-xs'>
         <i class="fa fa-eye"></i>
     </a>
-    @php
-        $theSchool = \App\Models\School::find($id);
-        $mySchool = false;
-
-        if($theSchool->creator->id == auth()->user()->id) {
-            $mySchool = true;
-        }
-    @endphp
     @if(Request::is('admin/schools*'))
         @if($theSchool->isVerified())
             @if(\App\Models\Role::isAdmin())
@@ -24,7 +16,7 @@
             ]) !!}
             @endif
         @else
-            @if(\App\Models\Role::isAdmin() || $mySchool)
+            @if(\App\Models\Role::isAdmin() || $school->isMySchool())
             <a href="{{ route('schools.edit', $id) }}" class='btn btn-default btn-xs'>
                 <i class="fa fa-edit"></i>
             </a>
@@ -36,7 +28,7 @@
             @endif
         @endif
     @elseif(Request::is('admin/unverified_schools*'))
-        @if(\App\Models\Role::isAdmin() || $mySchool)
+        @if(\App\Models\Role::isAdmin() || $school->isMySchool())
         <a href="{{ route('schools.edit', $id) }}" class='btn btn-default btn-xs'>
             <i class="fa fa-edit"></i>
         </a>
