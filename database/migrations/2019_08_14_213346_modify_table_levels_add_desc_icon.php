@@ -15,8 +15,8 @@ class ModifyTableLevelsAddDescIcon extends Migration
     {
         Schema::table('levels', function (Blueprint $table) {
             $table->integer('sequence')->unsigned()->nullable()->after('name');
+            $table->string('icon')->nullable()->after('sequence');
             $table->text('description')->nullable()->after('icon');
-            $table->string('icon')->nullable()->after('description');
         });
     }
 
