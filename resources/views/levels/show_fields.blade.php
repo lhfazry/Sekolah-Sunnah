@@ -12,6 +12,24 @@
                             {!! Form::text('name', $level->name, ['class' => 'form-control', 'readonly']) !!}
                         </div>
                     </div>
+                    <div class="row">
+                        {!! Form::label('sequence', 'Sequence', ['class' => 'col-sm-3 col-form-label']) !!}
+                        <div class="col-sm-9">
+                        {!! Form::number('sequence', $level->sequence, ['class' => 'form-control', 'readonly']) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        {!! Form::label('icon', 'Icon', ['class' => 'col-sm-3 col-form-label']) !!}
+                        <div class="col-sm-9">
+                        {!! Form::text('icon', $level->icon, ['class' => 'form-control', 'readonly']) !!}
+                        </div>
+                    </div>
+                    <div class="row">
+                        {!! Form::label('description', 'Description', ['class' => 'col-sm-3 col-form-label']) !!}
+                        <div class="col-sm-9">
+                        {!! Form::text('description', $level->description, ['class' => 'form-control', 'readonly']) !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

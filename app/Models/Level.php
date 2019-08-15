@@ -24,7 +24,9 @@ class Level extends Model
 
 
     public $fillable = [
-        'name'
+        'name',
+        'icon',
+        'description'
     ];
 
     /**

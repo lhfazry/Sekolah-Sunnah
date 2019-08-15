@@ -86,6 +86,7 @@ class School extends Model implements HasMedia
         'brochure',
         'short_description',
         'description',
+        'editor_choice',
         'status'
     ];
 
