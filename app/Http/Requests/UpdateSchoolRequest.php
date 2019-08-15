@@ -19,16 +19,16 @@ class UpdateSchoolRequest extends FormRequest
             return true;
         }
 
-        $id = $this->route('id');
+        /*$id = $this->route('id');
         $school = \App\Models\School::find($id);
 
         if(!empty($school)) {
             if($school->isMySchool()) {
                 return true;
             }
-        }
+        }*/
 
-        return false;
+        return true;
     }
 
     /**
