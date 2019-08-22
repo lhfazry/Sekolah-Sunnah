@@ -184,6 +184,10 @@
             text-align: right;
             font-weight: normal !important;
         }
+
+        .note-editor .dropdown-item {
+            color: black !important;
+        }
     </style>
     @yield('css')
 </head>
