@@ -53,7 +53,7 @@
 
             <div class="form-group form-group-sm col-sm-6">
                 <div class="row">
-                    {!! Form::label('biaya_spp', 'Biaya SPP', ['class' => 'col-sm-3 col-form-label']) !!}
+                    {!! Form::label('biaya_spp', 'Uang Bulanan', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
                     {!! Form::number('biaya_spp', null, ['class' => 'form-control']) !!}
                     </div>
@@ -142,7 +142,7 @@
 
             <div class="form-group form-group-sm col-sm-6">
                 <div class="row">
-                    {!! Form::label('map', 'Map', ['class' => 'col-sm-3 col-form-label']) !!}
+                    {!! Form::label('map', 'Map (Ex: https://goo.gl/maps/9vGtzHtNCG9waxvB6)', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
                     {!! Form::text('map', null, ['class' => 'form-control']) !!}
                     </div>
@@ -251,7 +251,7 @@
             <div class="form-group">
                 @foreach($facilities as $facility)
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" name="facilities[]" {{ (!empty($school) && $school->hasFacility($facility->id))?'checked':''}} value="{{ $facility->id }}">
+                    {!! Form::checkbox('facilities[]', $facility->id, (!empty($school) && $school->hasFacility($facility->id))?true:false, ['class' => 'form-check-input']) !!}
                     <label class="form-check-label"><i class="fas {{$facility->icon}}"></i>&nbsp;<strong>{{ $facility->name }}</strong></label> <br/>{{ $facility->description }}
                 </div>
                 @endforeach
@@ -279,7 +279,7 @@
                         <div class="col-sm-12 boxzone" id="logo">
                             <div class="dz-message needsclick">
                                 Drop files here or click to upload.<br>
-                                <!--<span class="note needsclick">(This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.)</span>-->
+
                             </div>
                         </div>
                     </div>
@@ -324,6 +324,21 @@
 
     <script>
         var uploadedPhotoMap = {}
+        var uploadedBrochureMap = {}
+
+        Dropzone.autoDiscover = false;
+        var initFileUpload = function(name, field, url, dz) {
+            if(name == '') { return }
+
+            var file = {'size': 5400, 'name': name};
+            var ss = dz.files.push(file);
+
+            dz.options.addedfile.call(dz, file);
+            dz.options.thumbnail.call(dz, file, url);
+            file.previewElement.classList.add('dz-complete');
+            $('#myForm').append('<input type="hidden" name="' + field + '" value="' + file.name + '">');
+            console.log('<input type="hidden" name="' + field + '" value="' + file.name + '">');
+        }
 
         $(document).ready(function(){
             $('#short_description').summernote({height: 200});
@@ -347,7 +362,7 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 success: function (file, response) {
-                    $('form').append('<input type="hidden" name="logo" value="' + response.filePath + '">')
+                    $('#myForm').append('<input type="hidden" name="logo" value="' + response.filePath + '">')
                 },
                 removedfile: function (file) {
                     file.previewElement.remove()
@@ -357,22 +372,31 @@
                         name = file.file_name
                     }
 
-                    $('form').find('input[name="logo"][value="' + name + '"]').remove()
+                    $('#myForm').find('input[name="logo"][value="' + name + '"]').remove()
                 },
                 init: function () {
-                    @if(isset($school) && $school->logo)
-                        console.log(this);
-                        var file = {'name': '{!! $school->logo !!}', 'size': 5300}
+                    @if((!empty($school) && !empty($school->logo)) || !empty(Input::old('logo')))
+                        var file = {'size': 5300};
+                        var url = "";
+
+                        @if((!empty($school) && !empty($school->logo)))
+                            file['name'] = '{!! $school->logo !!}';
+                            url = "{!! $school->getLogoUrl() !!}";
+                        @elseif(!empty(Input::old('logo')))
+                            file['name'] = "{!! Input::old('logo') !!}";
+                            url = "{!! \App\Helpers\S3Helper::getUrl(Input::old('logo')) !!}";
+                        @endif
+
                         this.files.push(file);
-                        this.options.addedfile.call(this, file)
-                        this.options.thumbnail.call(this, file, '{!! $school->getLogoUrl() !!}')
-                        file.previewElement.classList.add('dz-complete')
-                        $('form').append('<input type="hidden" name="logo" value="' + file.name + '">')
+                        this.options.addedfile.call(this, file);
+                        this.options.thumbnail.call(this, file, url);
+                        file.previewElement.classList.add('dz-complete');
+                        $('#myForm').append('<input type="hidden" name="logo" value="' + file.name + '">');
                     @endif
                 }
             });
 
-            $("#brochure").dropzone({
+            /*$("#brochure").dropzone({
                 url: "{{ route('media.store') }}?collection=brochures",
                 maxFilesize: 5, // MB
                 maxFiles: 1,
@@ -381,7 +405,7 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 success: function (file, response) {
-                    $('form').append('<input type="hidden" name="brochure" value="' + response.filePath + '">')
+                    $('#myForm').append('<input type="hidden" name="brochure" value="' + response.filePath + '">')
                 },
                 removedfile: function (file) {
                     file.previewElement.remove()
@@ -391,7 +415,7 @@
                         name = file.file_name
                     }
 
-                    $('form').find('input[name="brochure"][value="' + name + '"]').remove()
+                    $('#myForm').find('input[name="brochure"][value="' + name + '"]').remove()
                 },
                 init: function () {
                     @if(isset($school) && $school->brochure)
@@ -400,21 +424,72 @@
                         this.options.addedfile.call(this, file)
                         this.options.thumbnail.call(this, file, '{!! $school->getBrochureUrl() !!}')
                         file.previewElement.classList.add('dz-complete')
-                        $('form').append('<input type="hidden" name="brochure" value="' + file.name + '">')
+                        $('#myForm').append('<input type="hidden" name="brochure" value="' + file.name + '">')
                     @endif
+                }
+            });*/
+
+            $("#brochure").dropzone({
+                url: "{{ route('media.store') }}?collection=brochures",
+                maxFilesize: 5, // MB
+                maxFiles: 8,
+                addRemoveLinks: true,
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                success: function (file, response) {
+                    $('#myForm').append('<input type="hidden" name="brochures[]" value="' + response.filePath + '">')
+                    uploadedBrochureMap[file.name] = response.name
+                },
+                removedfile: function (file) {
+                    file.previewElement.remove()
+                    var name = ''
+
+                    if (typeof file.file_name !== 'undefined') {
+                        name = file.file_name
+                    } else {
+                        name = uploadedBrochureMap[file.name]
+                    }
+
+                    $('#myForm').find('input[name="brochures[]"][value="' + name + '"]').remove()
+                },
+                init: function () {
+                    @php
+                        $files = [];
+                        $urls = [];
+
+                        for($i=0; $i<8; $i++) {
+                            if(!empty($school) && !empty($school->{"brochure".($i + 1)})) {
+                                $files[$i] = $school->{"brochure".($i + 1)};
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)});
+                            }
+                            elseif(!empty(Input::old('brochures')) && sizeof(Input::old('brochures')) > $i) {
+                                $files[$i] = Input::old("brochures")[$i];
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl(Input::old("brochures")[$i]);
+                            }
+                            else {
+                                $files[$i] = "";
+                                $urls[$i] = "";
+                            }
+                        }
+                    @endphp
+
+                    @foreach($files as $k=>$file)
+                        initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                    @endforeach
                 }
             });
 
             $("#photo").dropzone({
                 url: "{{ route('media.store') }}?collection=photos",
                 maxFilesize: 5, // MB
-                maxFiles: 4,
+                maxFiles: 8,
                 addRemoveLinks: true,
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 success: function (file, response) {
-                    $('form').append('<input type="hidden" name="photos[]" value="' + response.filePath + '">')
+                    $('#myForm').append('<input type="hidden" name="photos[]" value="' + response.filePath + '">')
                     uploadedPhotoMap[file.name] = response.name
                 },
                 removedfile: function (file) {
@@ -427,44 +502,32 @@
                         name = uploadedPhotoMap[file.name]
                     }
 
-                    $('form').find('input[name="photos[]"][value="' + name + '"]').remove()
+                    $('#myForm').find('input[name="photos[]"][value="' + name + '"]').remove()
                 },
                 init: function () {
-                    @if(isset($school) && $school->photo1)
-                        var file = {'name': '{!! $school->photo1 !!}', 'size': 5400}
-                        this.files.push(file);
-                        this.options.addedfile.call(this, file)
-                        this.options.thumbnail.call(this, file, '{!! $school->getPhoto1Url() !!}')
-                        file.previewElement.classList.add('dz-complete')
-                        $('form').append('<input type="hidden" name="photos[]" value="' + file.name + '">')
-                    @endif
+                    @php
+                        $files = [];
+                        $urls = [];
 
-                    @if(isset($school) && $school->photo2)
-                        var file = {'name': '{!! $school->photo2 !!}', 'size': 5400}
-                        this.files.push(file);
-                        this.options.addedfile.call(this, file)
-                        this.options.thumbnail.call(this, file, '{!! $school->getPhoto2Url() !!}')
-                        file.previewElement.classList.add('dz-complete')
-                        $('form').append('<input type="hidden" name="photos[]" value="' + file.name + '">')
-                    @endif
+                        for($i=0; $i<8; $i++) {
+                            if(!empty($school) && !empty($school->{"photo".($i + 1)})) {
+                                $files[$i] = $school->{"photo".($i + 1)};
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)});
+                            }
+                            elseif(!empty(Input::old('photos')) && sizeof(Input::old('photos')) > $i) {
+                                $files[$i] = Input::old("photos")[$i];
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl(Input::old("photos")[$i]);
+                            }
+                            else {
+                                $files[$i] = "";
+                                $urls[$i] = "";
+                            }
+                        }
+                    @endphp
 
-                    @if(isset($school) && $school->photo3)
-                        var file = {'name': '{!! $school->photo3 !!}', 'size': 5400}
-                        this.files.push(file);
-                        this.options.addedfile.call(this, file)
-                        this.options.thumbnail.call(this, file, '{!! $school->getPhoto3Url() !!}')
-                        file.previewElement.classList.add('dz-complete')
-                        $('form').append('<input type="hidden" name="photos[]" value="' + file.name + '">')
-                    @endif
-
-                    @if(isset($school) && $school->photo4)
-                        var file = {'name': '{!! $school->photo4 !!}', 'size': 5400}
-                        this.files.push(file);
-                        this.options.addedfile.call(this, file)
-                        this.options.thumbnail.call(this, file, '{!! $school->getPhoto4Url() !!}')
-                        file.previewElement.classList.add('dz-complete')
-                        $('form').append('<input type="hidden" name="photos[]" value="' + file.name + '">')
-                    @endif
+                    @foreach($files as $k=>$file)
+                        initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                    @endforeach
                 }
             });
         });

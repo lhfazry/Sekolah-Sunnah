@@ -40,4 +40,9 @@ class UpdateSchoolRequest extends FormRequest
     {
         return School::$rules;
     }
+
+    public function messages()
+    {
+        return School::$messages;
+    }
 }

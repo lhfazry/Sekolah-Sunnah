@@ -80,10 +80,14 @@ class SchoolController extends AppBaseController
         //$logo_url = Storage::disk('s3')->url($input['logo']);
         //$school->addMedia(storage_path('tmp/uploads/' . $input['logo']))->toMediaCollection('logos');
         //unlink(storage_path('tmp/uploads/' . $input['logo']));
-        $school->photo1 = null;
-        $school->photo2 = null;
-        $school->photo3 = null;
-        $school->photo4 = null;
+        for($i = 0; $i < 8; $i++){
+            $school->{"brochure".($i+1)} = null;
+            $school->{"photo".($i+1)} = null;
+        }
+
+        foreach ($request->input('brochures', []) as $k=>$brochure) {
+            $school->{"brochure".($k+1)} = $brochure;
+        }
 
         foreach ($request->input('photos', []) as $k=>$photo) {
             $school->{"photo".($k+1)} = $photo;
@@ -168,10 +172,14 @@ class SchoolController extends AppBaseController
 
         $school = $this->schoolRepository->update($request->all(), $id);
 
-        $school->photo1 = null;
-        $school->photo2 = null;
-        $school->photo3 = null;
-        $school->photo4 = null;
+        for($i = 0; $i < 8; $i++){
+            $school->{"brochure".($i+1)} = null;
+            $school->{"photo".($i+1)} = null;
+        }
+
+        foreach ($request->input('brochures', []) as $k=>$brochure) {
+            $school->{"brochure".($k+1)} = $brochure;
+        }
 
         foreach ($request->input('photos', []) as $k=>$photo) {
             $school->{"photo".($k+1)} = $photo;

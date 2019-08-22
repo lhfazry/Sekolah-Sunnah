@@ -34,7 +34,7 @@
 
                 <div class="form-group col-sm-6">
                     <div class="row">
-                        {!! Form::label('name', 'Biaya SPP', ['class' => 'col-sm-3 col-form-label']) !!}
+                        {!! Form::label('name', 'Uang Bulanan', ['class' => 'col-sm-3 col-form-label']) !!}
                         <div class="col-sm-9">
                             {!! Form::text('name', $school->formattedBiayaSPP(), ['class' => 'form-control', 'readonly']) !!}
                         </div>
@@ -275,8 +275,16 @@
                     </div>
                     <div class="form-group form-group-sm col-sm-6">
                         {!! Form::label('brochure', 'Brochure', ['class' => 'col-sm-3 ']) !!}
-                        <div class="col-sm-12 dropzone" id="brochure">
-                            <img width="100%" src="{{ $school->getBrochureUrl()}}" alt="">
+                        <div class="col-sm-12" id="brochure">
+                            <div class="row">
+                                @for($i=0; $i < 8; $i++)
+                                @if(!empty($school->{"brochure".($i+1)}))
+                                <div class="col-sm-3 dropzone">
+                                    <img width="100%" src="{{ \App\Helpers\S3Helper::getUrl($school->{"brochure".($i + 1)})}}" alt="">
+                                </div>
+                                @endif
+                                @endfor
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -284,26 +292,13 @@
             <div class="form-group form-group-sm col-sm-12">
                 {!! Form::label('photo', 'Photos', ['class' => 'col-sm-3 ']) !!}
                 <div class="row">
-                    @if(!empty($school->photo1))
+                    @for($i=0; $i < 8; $i++)
+                    @if(!empty($school->{"photo".($i+1)}))
                     <div class="col-sm-3 dropzone">
-                        <img width="100%" src="{{ $school->getPhoto1Url()}}" alt="">
+                        <img width="100%" src="{{ \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)})}}" alt="">
                     </div>
                     @endif
-                    @if(!empty($school->photo2))
-                    <div class="col-sm-3 dropzone">
-                        <img width="100%" src="{{ $school->getPhoto2Url()}}" alt="">
-                    </div>
-                    @endif
-                    @if(!empty($school->photo3))
-                    <div class="col-sm-3 dropzone">
-                        <img width="100%" src="{{ $school->getPhoto3Url()}}" alt="">
-                    </div>
-                    @endif
-                    @if(!empty($school->photo4))
-                    <div class="col-sm-3 dropzone">
-                        <img width="100%" src="{{ $school->getPhoto4Url()}}" alt="">
-                    </div>
-                    @endif
+                    @endfor
                 </div>
             </div>
         </div>

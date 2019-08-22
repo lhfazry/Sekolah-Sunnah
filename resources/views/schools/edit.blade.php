@@ -13,7 +13,7 @@
    <div class="content">
        <div class="container-fluid">
             @include('adminlte-templates::common.errors')
-            {!! Form::model($school, ['route' => ['schools.update', $school->id], 'method' => 'patch', 'class' => 'form-horizontal dropzone', 'files' => true, 'autocomplete' => "autocomplete_off_hack_xfr4!k"]) !!}
+            {!! Form::model($school, ['route' => ['schools.update', $school->id], 'method' => 'patch', 'class' => 'form-horizontal dropzone', 'files' => true, 'autocomplete' => "autocomplete_off_hack_xfr4!k", 'id' => 'myForm']) !!}
             @include('schools.fields')
             {!! Form::close() !!}
        </div>

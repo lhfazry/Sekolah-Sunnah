@@ -82,8 +82,20 @@ class School extends Model implements HasMedia
         'photo2',
         'photo3',
         'photo4',
+        'photo5',
+        'photo6',
+        'photo7',
+        'photo8',
         'video_profil',
         'brochure',
+        'brochure1',
+        'brochure2',
+        'brochure3',
+        'brochure4',
+        'brochure5',
+        'brochure6',
+        'brochure7',
+        'brochure8',
         'short_description',
         'description',
         'editor_choice',
@@ -123,7 +135,19 @@ class School extends Model implements HasMedia
         'photo2' => 'string',
         'photo3' => 'string',
         'photo4' => 'string',
+        'photo5' => 'string',
+        'photo6' => 'string',
+        'photo7' => 'string',
+        'photo8' => 'string',
         'video_profil' => 'string',
+        'brochure1' => 'string',
+        'brochure2' => 'string',
+        'brochure3' => 'string',
+        'brochure4' => 'string',
+        'brochure5' => 'string',
+        'brochure6' => 'string',
+        'brochure7' => 'string',
+        'brochure8' => 'string',
         'short_description' => 'string',
         'description' => 'string',
         'status' => 'string',
@@ -141,6 +165,10 @@ class School extends Model implements HasMedia
         'nama_sekolah' => 'required',
         'level_id' => 'required',
         'city_id' => 'required'
+    ];
+
+    public static $messages = [
+        'city_id.required' => 'The city field is required'
     ];
 
     /**

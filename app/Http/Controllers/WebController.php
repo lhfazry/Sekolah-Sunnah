@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Input;
+use App\Http\Controllers\AppBaseController;
 
-class WebController extends Controller
+class WebController extends AppBaseController
 {
     /**
      * Create a new controller instance.
@@ -69,6 +70,9 @@ class WebController extends Controller
     }
 
     public function submit() {
+        $levels = $this->dropDownWithoutNone(\App\Models\Level::orderBy('sequence')->get(), 'name', 'id');
+        $facilities = \App\Models\Facility::all();
 
+        return view('web.submit', compact('levels', 'facilities'));
     }
 }
