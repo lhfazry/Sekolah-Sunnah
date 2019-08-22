@@ -372,7 +372,7 @@
                         name = file.file_name
                     }
 
-                    $('#myForm').find('input[name="logo"][value="' + name + '"]').remove()
+                    $('#myForm').find('input[name="logo"]').remove()
                 },
                 init: function () {
                     @if((!empty($school) && !empty($school->logo)) || !empty(Input::old('logo')))
@@ -396,39 +396,6 @@
                 }
             });
 
-            /*$("#brochure").dropzone({
-                url: "{{ route('media.store') }}?collection=brochures",
-                maxFilesize: 5, // MB
-                maxFiles: 1,
-                addRemoveLinks: true,
-                headers: {
-                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
-                },
-                success: function (file, response) {
-                    $('#myForm').append('<input type="hidden" name="brochure" value="' + response.filePath + '">')
-                },
-                removedfile: function (file) {
-                    file.previewElement.remove()
-                    var name = ''
-
-                    if (typeof file.file_name !== 'undefined') {
-                        name = file.file_name
-                    }
-
-                    $('#myForm').find('input[name="brochure"][value="' + name + '"]').remove()
-                },
-                init: function () {
-                    @if(isset($school) && $school->brochure)
-                        var file = {'name': '{!! $school->brochure !!}', 'size': 6300}
-                        this.files.push(file);
-                        this.options.addedfile.call(this, file)
-                        this.options.thumbnail.call(this, file, '{!! $school->getBrochureUrl() !!}')
-                        file.previewElement.classList.add('dz-complete')
-                        $('#myForm').append('<input type="hidden" name="brochure" value="' + file.name + '">')
-                    @endif
-                }
-            });*/
-
             $("#brochure").dropzone({
                 url: "{{ route('media.store') }}?collection=brochures",
                 maxFilesize: 5, // MB
@@ -439,9 +406,10 @@
                 },
                 success: function (file, response) {
                     $('#myForm').append('<input type="hidden" name="brochures[]" value="' + response.filePath + '">')
-                    uploadedBrochureMap[file.name] = response.name
+                    uploadedBrochureMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
+                    console.log(file);
                     file.previewElement.remove()
                     var name = ''
 
@@ -450,6 +418,8 @@
                     } else {
                         name = uploadedBrochureMap[file.name]
                     }
+
+                    console.log('deleting: ' + name);
 
                     $('#myForm').find('input[name="brochures[]"][value="' + name + '"]').remove()
                 },
@@ -490,7 +460,7 @@
                 },
                 success: function (file, response) {
                     $('#myForm').append('<input type="hidden" name="photos[]" value="' + response.filePath + '">')
-                    uploadedPhotoMap[file.name] = response.name
+                    uploadedPhotoMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
                     file.previewElement.remove()
@@ -501,6 +471,8 @@
                     } else {
                         name = uploadedPhotoMap[file.name]
                     }
+
+                    console.log('deleting: ' + name);
 
                     $('#myForm').find('input[name="photos[]"][value="' + name + '"]').remove()
                 },

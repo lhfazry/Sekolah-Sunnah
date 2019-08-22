@@ -273,20 +273,18 @@
                             <img width="100%" src="{{ $school->getLogoUrl()}}" alt="">
                         </div>
                     </div>
-                    <div class="form-group form-group-sm col-sm-6">
-                        {!! Form::label('brochure', 'Brochure', ['class' => 'col-sm-3 ']) !!}
-                        <div class="col-sm-12" id="brochure">
-                            <div class="row">
-                                @for($i=0; $i < 8; $i++)
-                                @if(!empty($school->{"brochure".($i+1)}))
-                                <div class="col-sm-3 dropzone">
-                                    <img width="100%" src="{{ \App\Helpers\S3Helper::getUrl($school->{"brochure".($i + 1)})}}" alt="">
-                                </div>
-                                @endif
-                                @endfor
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="form-group form-group-sm col-sm-12">
+                {!! Form::label('brochure', 'Brochures', ['class' => 'col-sm-3 ']) !!}
+                <div class="row">
+                    @for($i=0; $i < 8; $i++)
+                    @if(!empty($school->{"brochure".($i+1)}))
+                    <div class="col-sm-3 dropzone">
+                        <img width="100%" src="{{ \App\Helpers\S3Helper::getUrl($school->{"brochure".($i + 1)})}}" alt="">
                     </div>
+                    @endif
+                    @endfor
                 </div>
             </div>
             <div class="form-group form-group-sm col-sm-12">
