@@ -16,7 +16,7 @@ class WebController extends AppBaseController
 
     public function __construct(SchoolRepository $schoolRepo)
     {
-        $this->middleware('auth');
+        //$this->middleware('auth');
         $this->schoolRepository = $schoolRepo;
     }
 
