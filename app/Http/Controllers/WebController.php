@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Input;
 use App\Http\Controllers\AppBaseController;
+use App\Http\Requests\CreateSchoolRequest;
+use App\Repositories\SchoolRepository;
+use Flash;
+use Response;
 
 class WebController extends AppBaseController
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private $schoolRepository;
+
+    public function __construct(SchoolRepository $schoolRepo)
     {
         $this->middleware('auth');
+        $this->schoolRepository = $schoolRepo;
     }
 
     /**
@@ -75,4 +77,40 @@ class WebController extends AppBaseController
 
         return view('web.submit', compact('levels', 'facilities'));
     }
+
+    public function store(CreateSchoolRequest $request)
+    {
+        $input = $request->all();
+
+        $school = $this->schoolRepository->create($input);
+
+        for($i = 0; $i < 8; $i++){
+            $school->{"brochure".($i+1)} = null;
+            $school->{"photo".($i+1)} = null;
+        }
+
+        foreach ($request->input('brochures', []) as $k=>$brochure) {
+            $school->{"brochure".($k+1)} = $brochure;
+        }
+
+        foreach ($request->input('photos', []) as $k=>$photo) {
+            $school->{"photo".($k+1)} = $photo;
+        }
+
+        \App\Models\SchoolFacility::where('school_id', $school->id)->delete();
+
+        foreach ($request->input('facilities', []) as $k=>$facility) {
+            $schoolFacility = new \App\Models\SchoolFacility;
+            $schoolFacility->school_id = $school->id;
+            $schoolFacility->facility_id = $facility;
+            $schoolFacility->save();
+        }
+
+        $school->save();
+
+        Flash::success('Data sekolah berhasil ditambahkan.');
+
+        return redirect(route('web.submit'));
+    }
+
 }

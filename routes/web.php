@@ -24,6 +24,7 @@ Route::group([
 Route::get('landing', 'WebController@index');
 Route::get('search', 'WebController@search')->name('web.search');
 Route::get('submit', 'WebController@submit')->name('web.submit');
+Route::post('submit', 'WebController@store')->name('web.store');
 Route::get('cities/autocomplete', 'CityController@autocomplete')->name('cities.autocomplete');
 
 Route::group([

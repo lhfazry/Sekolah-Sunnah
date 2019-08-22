@@ -1,6 +1,7 @@
 @extends('web.web')
 @section('css')
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/jquery-ui.min.css') }}" type="text/css" charset="utf-8">
     <style>
         .form-row {
@@ -30,6 +31,11 @@
             border: 2px dashed #0087F7;
             border-radius: 5px;
         }
+
+        #myform {
+            background: #f2f2f2 !important;
+            border: none !important;
+        }
     </style>
 @endsection
 
@@ -46,7 +52,10 @@
 @section('content')
     <section class="block">
         <div class="container">
-            {!! Form::open(['route' => 'schools.store', 'class' => 'form-horizontal hero-form form', 'files' => true, 'autocomplete' => "autocomplete_off_hack_xfr4!k"]) !!}
+            @include('adminlte-templates::common.errors')
+            @include('flash::message')
+
+            {!! Form::open(['route' => 'web.store', 'class' => 'form-horizontal hero-form form dropzone', 'files' => true, 'autocomplete' => "autocomplete_off_hack_xfr4!k", 'id' => 'myform']) !!}
                 {!! Form::text('hidden', null, ['autocomplete' => "autocomplete_off_hack_xfr4!k", 'style'=> 'display:none;']) !!}
                 {!! Form::hidden('city_id', null, ['class' => 'form-control', 'id' => 'city_id']) !!}
                 <div class="main-search-form">
@@ -98,8 +107,8 @@
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('descrption', 'Keterangan Sekolah', ['class' => 'col-form-label']) !!}
-                                    {!! Form::textarea('descrption', null, ['class' => 'form-control', 'placeholder' => "Masukkan keterangan sekolah...", 'rows' => 6]) !!}
+                                    {!! Form::label('description', 'Keterangan Sekolah', ['class' => 'col-form-label']) !!}
+                                    {!! Form::textarea('description', null, ['class' => 'form-control', 'placeholder' => "Masukkan keterangan sekolah...", 'rows' => 6]) !!}
                                 </div>
                             </div>
                         </div>
@@ -203,28 +212,87 @@
                     </div>
 
                     <div class="section">
-                            <div class="form-row">
-                                <div class="col-md-12 col-sm-12">
-                                    <div class="section-header">
-                                        <span class="section-title">Fasilitas</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                @foreach($facilities as $facility)
-                                <div class="col-md-6 col-sm-6">
-                                    <label>
-                                        <input type="checkbox" name="facilities[]" value="{{$facility->id}}"> <i class="fa {{$facility->icon}}"></i>&nbsp;<strong>{{ $facility->name }}</strong> ({{ $facility->description }})
-                                    </label>
-                                </div>
-                                @endforeach
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-3 col-sm-3">
-                                    {!! Form::submit('Submit', ['class' => 'btn btn-primary width-100']) !!}
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="section-header">
+                                    <span class="section-title">Fasilitas</span>
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row">
+                            @foreach($facilities as $facility)
+                            <div class="col-md-6 col-sm-6">
+                                <label>
+                                    <input type="checkbox" name="facilities[]" value="{{$facility->id}}"> <i class="fa {{$facility->icon}}"></i>&nbsp;<strong>{{ $facility->name }}</strong> ({{ $facility->description }})
+                                </label>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div class="section">
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="section-header">
+                                    <span class="section-title">Logo, Foto, Brosur dan Video</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label('video_profil', 'Video Profile (Youtube)', ['class' => 'col-form-label']) !!}
+                                    {!! Form::text('video_profil', null, ['class' => 'form-control', 'placeholder' => "Masukkan url youtube ..."]) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div class="form-group">
+                                    {!! Form::label('youtube', 'Logo', ['class' => 'col-form-label']) !!}
+                                    <div class="col-sm-12 boxzone" id="logo">
+                                        <div class="dz-message needsclick">
+                                            Drop files here or click to upload.<br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    {!! Form::label('youtube', 'Brosur', ['class' => 'col-form-label']) !!}
+                                    <div class="col-sm-12 boxzone" id="brochure">
+                                        <div class="dz-message needsclick">
+                                            Drop files here or click to upload.<br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="form-group">
+                                    {!! Form::label('youtube', 'Photo', ['class' => 'col-form-label']) !!}
+                                    <div class="col-sm-12 boxzone" id="photo">
+                                        <div class="dz-message needsclick">
+                                            Drop files here or click to upload.<br>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                {!! Form::submit('Submit', ['class' => 'btn btn-primary width-100']) !!}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {!! Form::close() !!}
         </div>
@@ -233,12 +301,30 @@
 
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
     <script>
         var uploadedPhotoMap = {}
+        var uploadedBrochureMap = {}
+
+        Dropzone.autoDiscover = false;
+        var initFileUpload = function(name, field, url, dz) {
+            if(name == '') { return }
+
+            var file = {'size': 5400, 'name': name};
+            var ss = dz.files.push(file);
+
+            dz.options.addedfile.call(dz, file);
+            dz.options.thumbnail.call(dz, file, url);
+            file.previewElement.classList.add('dz-complete');
+            $('#myForm').append('<input type="hidden" name="' + field + '" value="' + file.name + '">');
+            console.log('<input type="hidden" name="' + field + '" value="' + file.name + '">');
+        }
 
         $(document).ready(function(){
+            //$('#description').summernote({height: 200});
+
             $( "#city" ).autocomplete({
                 source: "{{ route('cities.autocomplete') }}",
                 minLength: 3,
@@ -257,7 +343,7 @@
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 success: function (file, response) {
-                    $('form').append('<input type="hidden" name="logo" value="' + response.filePath + '">')
+                    $('#myForm').append('<input type="hidden" name="logo" value="' + response.filePath + '">')
                 },
                 removedfile: function (file) {
                     file.previewElement.remove()
@@ -267,50 +353,95 @@
                         name = file.file_name
                     }
 
-                    $('form').find('input[name="logo"][value="' + name + '"]').remove()
+                    $('#myForm').find('input[name="logo"]').remove()
                 },
                 init: function () {
+                    @if((!empty($school) && !empty($school->logo)) || !empty(Input::old('logo')))
+                        var file = {'size': 5300};
+                        var url = "";
 
+                        @if((!empty($school) && !empty($school->logo)))
+                            file['name'] = '{!! $school->logo !!}';
+                            url = "{!! $school->getLogoUrl() !!}";
+                        @elseif(!empty(Input::old('logo')))
+                            file['name'] = "{!! Input::old('logo') !!}";
+                            url = "{!! \App\Helpers\S3Helper::getUrl(Input::old('logo')) !!}";
+                        @endif
+
+                        this.files.push(file);
+                        this.options.addedfile.call(this, file);
+                        this.options.thumbnail.call(this, file, url);
+                        file.previewElement.classList.add('dz-complete');
+                        $('#myForm').append('<input type="hidden" name="logo" value="' + file.name + '">');
+                    @endif
                 }
             });
 
             $("#brochure").dropzone({
                 url: "{{ route('media.store') }}?collection=brochures",
                 maxFilesize: 5, // MB
-                maxFiles: 1,
+                maxFiles: 8,
                 addRemoveLinks: true,
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 success: function (file, response) {
-                    $('form').append('<input type="hidden" name="brochure" value="' + response.filePath + '">')
+                    $('#myForm').append('<input type="hidden" name="brochures[]" value="' + response.filePath + '">')
+                    uploadedBrochureMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
+                    console.log(file);
                     file.previewElement.remove()
                     var name = ''
 
                     if (typeof file.file_name !== 'undefined') {
                         name = file.file_name
+                    } else {
+                        name = uploadedBrochureMap[file.name]
                     }
 
-                    $('form').find('input[name="brochure"][value="' + name + '"]').remove()
+                    console.log('deleting: ' + name);
+
+                    $('#myForm').find('input[name="brochures[]"][value="' + name + '"]').remove()
                 },
                 init: function () {
+                    @php
+                        $files = [];
+                        $urls = [];
 
+                        for($i=0; $i<8; $i++) {
+                            if(!empty($school) && !empty($school->{"brochure".($i + 1)})) {
+                                $files[$i] = $school->{"brochure".($i + 1)};
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)});
+                            }
+                            elseif(!empty(Input::old('brochures')) && sizeof(Input::old('brochures')) > $i) {
+                                $files[$i] = Input::old("brochures")[$i];
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl(Input::old("brochures")[$i]);
+                            }
+                            else {
+                                $files[$i] = "";
+                                $urls[$i] = "";
+                            }
+                        }
+                    @endphp
+
+                    @foreach($files as $k=>$file)
+                        initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                    @endforeach
                 }
             });
 
             $("#photo").dropzone({
                 url: "{{ route('media.store') }}?collection=photos",
                 maxFilesize: 5, // MB
-                maxFiles: 4,
+                maxFiles: 8,
                 addRemoveLinks: true,
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
                 success: function (file, response) {
-                    $('form').append('<input type="hidden" name="photos[]" value="' + response.filePath + '">')
-                    uploadedPhotoMap[file.name] = response.name
+                    $('#myForm').append('<input type="hidden" name="photos[]" value="' + response.filePath + '">')
+                    uploadedPhotoMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
                     file.previewElement.remove()
@@ -322,10 +453,34 @@
                         name = uploadedPhotoMap[file.name]
                     }
 
-                    $('form').find('input[name="photos[]"][value="' + name + '"]').remove()
+                    console.log('deleting: ' + name);
+
+                    $('#myForm').find('input[name="photos[]"][value="' + name + '"]').remove()
                 },
                 init: function () {
+                    @php
+                        $files = [];
+                        $urls = [];
 
+                        for($i=0; $i<8; $i++) {
+                            if(!empty($school) && !empty($school->{"photo".($i + 1)})) {
+                                $files[$i] = $school->{"photo".($i + 1)};
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)});
+                            }
+                            elseif(!empty(Input::old('photos')) && sizeof(Input::old('photos')) > $i) {
+                                $files[$i] = Input::old("photos")[$i];
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl(Input::old("photos")[$i]);
+                            }
+                            else {
+                                $files[$i] = "";
+                                $urls[$i] = "";
+                            }
+                        }
+                    @endphp
+
+                    @foreach($files as $k=>$file)
+                        initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                    @endforeach
                 }
             });
         });
