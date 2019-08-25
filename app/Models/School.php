@@ -164,11 +164,15 @@ class School extends Model implements HasMedia
     public static $rules = [
         'nama_sekolah' => 'required',
         'level_id' => 'required',
-        'city_id' => 'required'
+        'city_id' => 'required',
+        'biaya_pendaftaran' => 'required',
+        'biaya_spp' => 'required',
     ];
 
     public static $messages = [
-        'city_id.required' => 'The city field is required'
+        'city_id.required' => 'The city field is required',
+        'biaya_pendaftaran.required' => 'The uang masuk field is required',
+        'biaya_spp.required' => 'The biaya bulanan field is required',
     ];
 
     /**

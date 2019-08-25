@@ -57,7 +57,7 @@
 
             {!! Form::open(['route' => 'web.store', 'class' => 'form-horizontal hero-form form dropzone', 'files' => true, 'autocomplete' => "autocomplete_off_hack_xfr4!k", 'id' => 'myform']) !!}
                 {!! Form::text('hidden', null, ['autocomplete' => "autocomplete_off_hack_xfr4!k", 'style'=> 'display:none;']) !!}
-                {!! Form::hidden('city_id', null, ['class' => 'form-control', 'id' => 'city_id']) !!}
+
                 <div class="main-search-form">
                     <div class="section">
                         <div class="form-row">
@@ -98,7 +98,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('biaya_spp', 'Biaya SPP', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('biaya_spp', 'Biaya Bulanan', ['class' => 'col-form-label']) !!}
                                     {!! Form::text('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP.."]) !!}
                                     <!--<span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>-->
                                 </div>
@@ -123,14 +123,21 @@
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="col-md-4 col-sm-4">
+                            <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
-                                    {!! Form::label('city', 'Kota', ['class' => 'col-form-label']) !!}
-                                    {!! Form::text('city', null, ['class' => 'form-control', 'placeholder' => "Masukkan nama kota..."]) !!}
+                                    {!! Form::label('province_id', 'Provinsi', ['class' => 'col-form-label']) !!}
+                                    {!! Form::select('province_id', $provinces, null, []) !!}
                                 </div>
                             </div>
 
-                            <div class="col-md-8 col-sm-8">
+                            <div class="col-md-3 col-sm-3">
+                                <div class="form-group">
+                                    {!! Form::label('city_id', 'Kota', ['class' => 'col-form-label']) !!}
+                                    {!! Form::select('city_id', [], null, []) !!}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('address', 'Alamat', ['class' => 'col-form-label']) !!}
                                     {!! Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => "Masukkan alamat...", 'rows' => 4]) !!}
@@ -325,13 +332,28 @@
         $(document).ready(function(){
             //$('#description').summernote({height: 200});
 
-            $( "#city" ).autocomplete({
+            /*$( "#city" ).autocomplete({
                 source: "{{ route('cities.autocomplete') }}",
                 minLength: 3,
                 select: function(event, ui) {
                     $('#city').val(ui.item.value);
                     $('#city_id').val(ui.item.id);
                 }
+            });*/
+
+            $('#province_id').on('change', function() {
+                var province_id = this.value;
+
+                $.get("{{ route('provinces.cities') }}?id=" + province_id, function(data, status){
+                    $('#city_id')[0].selectize.clearOptions();
+
+                    $.each(data.cities, function(index, value) {
+                        //console.log(value);
+                        //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
+                        $('#city_id')[0].selectize.addOption({value: value.id, text: value.name});
+                        $('#city_id')[0].selectize.addItem(value.id);
+                    });
+                });
             });
 
             $("#logo").dropzone({

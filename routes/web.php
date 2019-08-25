@@ -42,13 +42,14 @@ Route::group([
 
     //Route::post('schools\{id}\media', 'SchoolController@storeMedia')->name('schools.media')->where('id', '[0-9]+');Route::post('schools\{id}\media', 'SchoolController@storeMedia')->name('schools.media')->where('id', '[0-9]+');
     Route::get('dashboard', 'DashboardController@index')->name('dashboard.index');
-    Route::get('schools/{id}/verify', 'SchoolController@verify')->name('schools.verify');
-    Route::get('schools/{id}/publish', 'SchoolController@publish')->name('schools.publish');
-    Route::get('schools/{id}/unpublish', 'SchoolController@unpublish')->name('schools.unpublish');
-    Route::get('schools/{id}/make_choice', 'SchoolController@make_choice')->name('schools.make_choice');
-    Route::get('schools/{id}/remove_from_choice', 'SchoolController@remove_from_choice')->name('schools.remove_from_choice');
+    Route::get('schools/{id}/verify', 'SchoolController@verify')->name('schools.verify')->where('id', '[0-9]+');
+    Route::get('schools/{id}/publish', 'SchoolController@publish')->name('schools.publish')->where('id', '[0-9]+');
+    Route::get('schools/{id}/unpublish', 'SchoolController@unpublish')->name('schools.unpublish')->where('id', '[0-9]+');
+    Route::get('schools/{id}/make_choice', 'SchoolController@make_choice')->name('schools.make_choice')->where('id', '[0-9]+');
+    Route::get('schools/{id}/remove_from_choice', 'SchoolController@remove_from_choice')->name('schools.remove_from_choice')->where('id', '[0-9]+');
     Route::get('cities/cleaning', 'CityController@cleaning')->name('cities.cleaning');
     Route::get('schools/editor_choice', 'SchoolController@editor_choice')->name('schools.editor_choice');
+    Route::get('provinces/cities', 'ProvinceController@getCities')->name('provinces.cities');
 
     Route::resource('provinces', 'ProvinceController');
     Route::resource('cities', 'CityController');

@@ -10,6 +10,7 @@ use App\Repositories\ProvinceRepository;
 use Flash;
 use App\Http\Controllers\AppBaseController;
 use Response;
+use Input;
 
 class ProvinceController extends AppBaseController
 {
@@ -147,5 +148,18 @@ class ProvinceController extends AppBaseController
         Flash::success('Province deleted successfully.');
 
         return redirect(route('provinces.index'));
+    }
+
+    public function getCities() {
+        $id = Input::get('id');
+        $province = $this->provinceRepository->find($id);
+
+        if (empty($province)) {
+            return $this->sendError('Province not found');
+        }
+
+        $cities = \App\Models\City::where('province_id', $id)->orderBy('name')->get();
+        $data = ['success' => true, 'cities' => $cities];
+        return Response::json($data);
     }
 }
