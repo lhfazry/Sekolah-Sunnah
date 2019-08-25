@@ -375,7 +375,7 @@
                         $('#city_id')[0].selectize.addItem(value.id);
                     });
 
-                    $('#city_id')[0].selectize.refreshOptions();
+                    $('#city_id')[0].selectize.destroy();
                 });
             });
 
