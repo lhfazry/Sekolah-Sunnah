@@ -166,7 +166,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
-    <script src="{{asset('FrontEnd/assets/js/site.js')}}"></script>
+    <script src="{{asset('FrontEnd/assets/js/site.js')}}?t=12312312"></script>
 
     @yield('scripts')
 </body>
