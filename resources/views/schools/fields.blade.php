@@ -406,6 +406,7 @@
                 },
                 success: function (file, response) {
                     $('#myForm').append('<input type="hidden" name="brochures[]" value="' + response.filePath + '">')
+                    console.log(file);
                     uploadedBrochureMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
@@ -431,7 +432,7 @@
                         for($i=0; $i<8; $i++) {
                             if(!empty($school) && !empty($school->{"brochure".($i + 1)})) {
                                 $files[$i] = $school->{"brochure".($i + 1)};
-                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)});
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"brochure".($i + 1)});
                             }
                             elseif(!empty(Input::old('brochures')) && sizeof(Input::old('brochures')) > $i) {
                                 $files[$i] = Input::old("brochures")[$i];
@@ -445,7 +446,8 @@
                     @endphp
 
                     @foreach($files as $k=>$file)
-                        initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                        initFileUpload('{!! $file !!}', 'brochures[]', '{!! $urls[$k] !!}', this);
+                        uploadedBrochureMap['{!! $file !!}'] = '{!! $file !!}';
                     @endforeach
                 }
             });
@@ -463,6 +465,7 @@
                     uploadedPhotoMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
+                    console.log(file);
                     file.previewElement.remove()
                     var name = ''
 
@@ -499,6 +502,7 @@
 
                     @foreach($files as $k=>$file)
                         initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                        uploadedPhotoMap['{!! $file !!}'] = '{!! $file !!}';
                     @endforeach
                 }
             });

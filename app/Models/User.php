@@ -36,6 +36,7 @@ class User extends Model
         'email',
         'email_verified_at',
         'password',
+        'role',
         'remember_token',
         'created_by',
         'updated_by',
@@ -52,6 +53,7 @@ class User extends Model
         'name' => 'string',
         'email' => 'string',
         'password' => 'string',
+        'role' => 'string',
         'remember_token' => 'string'
     ];
 

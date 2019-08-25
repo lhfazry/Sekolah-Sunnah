@@ -62,6 +62,11 @@ class SchoolDataTable extends DataTable
                     $query->where('name', 'LIKE', "%{$keyword}%");
                 });
             })
+            ->filterColumn('city_name', function($query, $keyword) {
+                $query->whereHas('city', function ($query) use ($keyword) {
+                    $query->where('name', 'LIKE', "%{$keyword}%");
+                });
+            })
             ->rawColumns(['action', 'status_name', 'facility']);
     }
 
@@ -115,7 +120,7 @@ class SchoolDataTable extends DataTable
             'nama_sekolah' => ['searchable' => true, 'title' => 'Name', 'width' => '200'],
             'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center', 'width' => '200'],
             'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center', 'width' => '100'],
-            'facility' => ['searchable' => true, 'class' => 'text-center', 'width' => '150'],
+            'facility' => ['searchable' => false, 'orderable' => false, 'class' => 'text-center', 'width' => '150'],
             'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center', 'width' => '80'],
             'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'width' => '120']
         ];

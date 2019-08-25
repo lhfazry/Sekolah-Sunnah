@@ -70,7 +70,7 @@
 
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
-                                <div class="alert alert-info"><strong>Perhatian</strong> Jika satu sekolah memiliki lebih dari satu jenjang (SD, SMP, SMA, dst), maka masing-masing jenjang harus diinput secara individu.</div>
+                                <div class="alert alert-info"><strong>Perhatian</strong> Jika lembaga pendidikan memiliki lebih dari satu jenjang (SD, SMP, SMA, dst), mohon diisikan secara terpisah.</div>
                             </div>
                         </div>
 
@@ -267,6 +267,11 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="alert alert-info"><strong>Perhatian</strong> Brosur dan Photo bisa lebih dari satu</div>
+                            </div>
+                        </div>
 
                         <div class="form-row">
                             <div class="col-md-6 col-sm-6">
@@ -277,7 +282,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('youtube', 'Logo', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('logo', 'Logo', ['class' => 'col-form-label']) !!}
                                     <div class="col-sm-12 boxzone" id="logo">
                                         <div class="dz-message needsclick">
                                             Drop files here or click to upload.<br>
@@ -291,7 +296,7 @@
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('youtube', 'Brosur', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('brochure', 'Brosur', ['class' => 'col-form-label']) !!}
                                     <div class="col-sm-12 boxzone" id="brochure">
                                         <div class="dz-message needsclick">
                                             Drop files here or click to upload.<br>
@@ -306,7 +311,7 @@
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('youtube', 'Photo', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('photo', 'Photo', ['class' => 'col-form-label']) !!}
                                     <div class="col-sm-12 boxzone" id="photo">
                                         <div class="dz-message needsclick">
                                             Drop files here or click to upload.<br>
@@ -439,6 +444,7 @@
                 },
                 success: function (file, response) {
                     $('#myForm').append('<input type="hidden" name="brochures[]" value="' + response.filePath + '">')
+                    console.log(file);
                     uploadedBrochureMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
@@ -464,7 +470,7 @@
                         for($i=0; $i<8; $i++) {
                             if(!empty($school) && !empty($school->{"brochure".($i + 1)})) {
                                 $files[$i] = $school->{"brochure".($i + 1)};
-                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"photo".($i + 1)});
+                                $urls[$i] = \App\Helpers\S3Helper::getUrl($school->{"brochure".($i + 1)});
                             }
                             elseif(!empty(Input::old('brochures')) && sizeof(Input::old('brochures')) > $i) {
                                 $files[$i] = Input::old("brochures")[$i];
@@ -478,7 +484,8 @@
                     @endphp
 
                     @foreach($files as $k=>$file)
-                        initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                        initFileUpload('{!! $file !!}', 'brochures[]', '{!! $urls[$k] !!}', this);
+                        uploadedBrochureMap['{!! $file !!}'] = '{!! $file !!}';
                     @endforeach
                 }
             });
@@ -496,6 +503,7 @@
                     uploadedPhotoMap[file.name] = response.filePath
                 },
                 removedfile: function (file) {
+                    console.log(file);
                     file.previewElement.remove()
                     var name = ''
 
@@ -532,6 +540,7 @@
 
                     @foreach($files as $k=>$file)
                         initFileUpload('{!! $file !!}', 'photos[]', '{!! $urls[$k] !!}', this);
+                        uploadedPhotoMap['{!! $file !!}'] = '{!! $file !!}';
                     @endforeach
                 }
             });
