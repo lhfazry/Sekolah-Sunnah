@@ -378,7 +378,7 @@
                         var option = document.createElement("option");
                         option.text = value.name;
                         option.value = value.id;
-                        document.getElementById("#city_id").appendChild(option);
+                        document.getElementById("city_id").appendChild(option);
                         //$('#city_id').appendChild();
                         //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
                         //$('#city_id').append(new Option(value.name, value.id));
