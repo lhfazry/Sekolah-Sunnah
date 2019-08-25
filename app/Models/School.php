@@ -170,9 +170,9 @@ class School extends Model implements HasMedia
     ];
 
     public static $messages = [
-        'city_id.required' => 'The city field is required',
-        'biaya_pendaftaran.required' => 'The uang masuk field is required',
-        'biaya_spp.required' => 'The biaya bulanan field is required',
+        'city_id.required' => 'Kota tidak boleh kosong',
+        'biaya_pendaftaran.required' => 'Uang masuk tidak boleh kosong',
+        'biaya_spp.required' => 'Biaya bulanan tidak boleh kosong',
     ];
 
     /**

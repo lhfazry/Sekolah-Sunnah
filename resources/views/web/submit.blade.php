@@ -77,14 +77,14 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('nama_sekolah', 'Nama Sekolah', ['class' => 'col-form-label']) !!}
-                                    {!! Form::text('nama_sekolah', null, ['class' => 'form-control', 'placeholder' => "Masukkan nama sekolah..."]) !!}
+                                    {!! Form::text('nama_sekolah', null, ['class' => 'form-control', 'placeholder' => "Masukkan nama sekolah...", 'required']) !!}
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('level_id', 'Jenjang', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('level_id', $levels, null, []) !!}
+                                    {!! Form::select('level_id', $levels, null, ['required']) !!}
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3">
@@ -99,13 +99,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('uang_masuk', 'Uang Masuk', ['class' => 'col-form-label']) !!}
-                                    {!! Form::text('uang_masuk', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk..."]) !!}
+                                    {!! Form::number('uang_masuk', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk...", 'required']) !!}
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('biaya_spp', 'Biaya Bulanan', ['class' => 'col-form-label']) !!}
-                                    {!! Form::text('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP.."]) !!}
+                                    {!! Form::number('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP..", 'required']) !!}
                                     <!--<span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>-->
                                 </div>
                             </div>
@@ -139,7 +139,7 @@
                             <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('city_id', 'Kabupaten/Kota', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('city_id', [], null, []) !!}
+                                    {!! Form::select('city_id', [], null, ['required']) !!}
                                 </div>
                             </div>
 
