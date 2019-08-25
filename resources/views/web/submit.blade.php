@@ -153,8 +153,8 @@
 
                             <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
-                                    {!! Form::label('city', 'Kabupaten/Kota', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('city', [], null, []) !!}
+                                    {!! Form::label('city_id', 'Kabupaten/Kota', ['class' => 'col-form-label']) !!}
+                                    {!! Form::select('city_id', $provinces, null, []) !!}
                                 </div>
                             </div>
 
@@ -366,13 +366,13 @@
                 var province_id = this.value;
 
                 $.get("{{ route('provinces.cities') }}?id=" + province_id, function(data, status){
-                    $('#city')[0].selectize.clearOptions();
+                    $('#city_id')[0].selectize.clearOptions();
 
                     $.each(data.cities, function(index, value) {
                         //console.log(value);
                         //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
-                        $('#city')[0].selectize.addOption({value: value.id, text: value.name});
-                        $('#city')[0].selectize.addItem(value.id);
+                        $('#city_id')[0].selectize.addOption({value: value.id, text: value.name});
+                        $('#city_id')[0].selectize.addItem(value.id);
                     });
                 });
             });
