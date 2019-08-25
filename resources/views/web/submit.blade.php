@@ -374,6 +374,8 @@
                         $('#city_id')[0].selectize.addOption({value: value.id, text: value.name});
                         $('#city_id')[0].selectize.addItem(value.id);
                     });
+
+                    $('#city_id')[0].selectize.refreshOptions();
                 });
             });
 
