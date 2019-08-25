@@ -352,7 +352,7 @@
         }
 
         $(document).ready(function(){
-            $('select').select2();
+            //$('select').select2();
             //$('#description').summernote({height: 200});
 
             /*$( "#city" ).autocomplete({
@@ -374,7 +374,7 @@
                         .end();
 
                     $.each(data.cities, function(index, value) {
-                        console.log(value);
+                        //console.log(value);
                         $('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
                     });
                 });
