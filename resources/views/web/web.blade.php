@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}">
+    <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
     @yield('css')
     <title>Direktori Sekolah Sunnah se-Indonesia | SekolahSunnah.com</title>
 </head>
