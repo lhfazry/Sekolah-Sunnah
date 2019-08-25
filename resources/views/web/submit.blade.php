@@ -96,6 +96,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="alert alert-info"><strong>Perhatian</strong> Uang masuk dan Biaya bulanan tidak boleh pakai titik dan koma. Cukup ditulis dengan angka saja</div>
+                            </div>
+                        </div>
+
                         <div class="form-row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
@@ -132,7 +139,7 @@
 
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
-                                <div class="alert alert-info"><strong>Perhatian</strong> Harap memilih provinsi dulu sebelum kota.</div>
+                                <div class="alert alert-info"><strong>Perhatian</strong> Harap memilih provinsi dulu sebelum Kota. Pilihan daftar kota akan muncul setelah memilih provinsi.</div>
                             </div>
                         </div>
 
