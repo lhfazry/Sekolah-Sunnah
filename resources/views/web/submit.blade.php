@@ -73,6 +73,7 @@
                                 <div class="alert alert-info"><strong>Perhatian</strong> Jika satu sekolah memiliki lebih dari satu jenjang (SD, SMP, SMA, dst), maka masing-masing jenjang harus diinput secara individu.</div>
                             </div>
                         </div>
+
                         <div class="form-row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
@@ -128,6 +129,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-row">
+                            <div class="col-md-12 col-sm-12">
+                                <div class="alert alert-info"><strong>Perhatian</strong> Harap memilih provinsi dulu sebelum kota.</div>
+                            </div>
+                        </div>
+
                         <div class="form-row">
                             <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
