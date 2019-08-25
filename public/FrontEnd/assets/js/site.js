@@ -27,6 +27,7 @@ $(document).ready(function($) {
 
     var select = $("select");
     select.selectize({
+        persist: true,
         onDropdownOpen: dropdownOpen,
         onDropdownClose: dropdownClose,
         allowEmptyOption: true,
