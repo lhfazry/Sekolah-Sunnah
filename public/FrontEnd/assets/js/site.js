@@ -19,19 +19,14 @@ $(document).ready(function($) {
 
     $("[data-enable-search=true]").each(function(){
         $(this).selectize({
+            searchField: 'name',
             onDropdownOpen: dropdownOpen,
             onDropdownClose: dropdownClose,
             allowEmptyOption: false
         });
     });
 
-    var select = $("select");
-    select.selectize({
-        searchField: 'text',
-        onDropdownOpen: dropdownOpen,
-        onDropdownClose: dropdownClose,
-        allowEmptyOption: true,
-    });
+
 
     function dropdownOpen($dropdown){
         $dropdown.addClass("opening");

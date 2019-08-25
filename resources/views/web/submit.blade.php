@@ -78,14 +78,14 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('nama_sekolah', 'Nama Sekolah', ['class' => 'col-form-label']) !!}
-                                    {!! Form::text('nama_sekolah', null, ['class' => 'form-control', 'placeholder' => "Masukkan nama sekolah...", 'required']) !!}
+                                    {!! Form::text('nama_sekolah', null, ['class' => 'form-control', 'placeholder' => "Masukkan nama sekolah..."]) !!}
                                 </div>
                             </div>
 
                             <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('level_id', 'Jenjang', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('level_id', $levels, null, ['required']) !!}
+                                    {!! Form::select('level_id', $levels, null, []) !!}
                                 </div>
                             </div>
                             <div class="col-md-3 col-sm-3">
@@ -107,13 +107,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('uang_masuk', 'Uang Masuk', ['class' => 'col-form-label']) !!}
-                                    {!! Form::number('uang_masuk', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk...", 'required']) !!}
+                                    {!! Form::number('uang_masuk', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk..."]) !!}
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('biaya_spp', 'Biaya Bulanan', ['class' => 'col-form-label']) !!}
-                                    {!! Form::number('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP..", 'required']) !!}
+                                    {!! Form::number('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP.."]) !!}
                                     <!--<span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>-->
                                 </div>
                             </div>
@@ -137,6 +137,7 @@
                             </div>
                         </div>
 
+
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="alert alert-info"><strong>Perhatian</strong> Harap memilih provinsi dulu sebelum Kota. Pilihan daftar kota akan muncul setelah memilih provinsi.</div>
@@ -154,7 +155,7 @@
                             <div class="col-md-3 col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('city_id', 'Kabupaten/Kota', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('city_id', [], null, []) !!}
+                                    {!! Form::select('city_id', [], null, ['placeholder' => 'Pilih Kabupaten/Kota']) !!}
                                 </div>
                             </div>
 
@@ -351,6 +352,7 @@
         }
 
         $(document).ready(function(){
+            $('select').select2();
             //$('#description').summernote({height: 200});
 
             /*$( "#city" ).autocomplete({
@@ -362,27 +364,19 @@
                 }
             });*/
 
-            $('#province_id')[0].selectize.on('change', function(value) {
-                console.log('asd');
-                var province_id = value;
+            $('#province_id').on('change', function() {
+                var province_id = this.value;
 
                 $.get("{{ route('provinces.cities') }}?id=" + province_id, function(data, status){
-                    $('#city_id')[0].selectize.clear();
-                    $('#city_id')[0].selectize.clearOptions();
-                    var values = [];
+                    $('#city_id')
+                        .find('option')
+                        .remove()
+                        .end();
 
                     $.each(data.cities, function(index, value) {
-                        //console.log(value);
-                        //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
-                        values.push({value: value.id, text: value.name});
+                        console.log(value);
+                        $('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
                     });
-
-                    if(data.cities.length > 0) {
-                        $('#city_id')[0].selectize.addOption(values);
-                        //$('#city_id')[0].selectize.setValue(data.cities[0].id);
-                    }
-
-                    $('#city_id')[0].selectize.refreshOptions();
                 });
             });
 

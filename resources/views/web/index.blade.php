@@ -147,6 +147,14 @@
 @section('scripts')
 <script>
     $(document).ready(function(){
+        var select = $("select");
+        select.selectize({
+            create: true,
+            onDropdownOpen: dropdownOpen,
+            onDropdownClose: dropdownClose,
+            allowEmptyOption: true,
+        });
+
         $( "#city_name" ).autocomplete({
             source: "{{ route('cities.autocomplete') }}",
             minLength: 3,

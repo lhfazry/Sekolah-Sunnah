@@ -73,8 +73,10 @@ class WebController extends AppBaseController
 
     public function submit() {
         $provinces = $this->dropDown(\App\Models\Province::orderBy('name')->get(), 'name', 'id', 'Pilih Provinsi');
+        //$theCities = \App\Models\City::all();
         $levels = $this->dropDownWithoutNone(\App\Models\Level::orderBy('sequence')->get(), 'name', 'id');
         $facilities = \App\Models\Facility::all();
+
 
         return view('web.submit', compact('levels', 'facilities', 'provinces'));
     }
