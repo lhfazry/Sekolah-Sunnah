@@ -362,8 +362,9 @@
                 }
             });*/
 
-            $('#province_id').on('change', function() {
-                var province_id = this.value;
+            $('#province_id')[0].selectize.on('change', function(value) {
+                console.log('asd');
+                var province_id = value;
 
                 $.get("{{ route('provinces.cities') }}?id=" + province_id, function(data, status){
                     $('#city_id')[0].selectize.clear();
