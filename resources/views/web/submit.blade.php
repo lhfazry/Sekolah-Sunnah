@@ -378,10 +378,10 @@
 
                     if(data.cities.length > 0) {
                         $('#city_id')[0].selectize.addOption(values);
-                        $('#city_id')[0].selectize.setValue(data.cities[0].id);
+                        //$('#city_id')[0].selectize.setValue(data.cities[0].id);
                     }
 
-                    //$('#city_id')[0].selectize.refreshOptions();
+                    $('#city_id')[0].selectize.refreshOptions();
                 });
             });
 
