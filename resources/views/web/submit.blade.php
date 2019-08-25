@@ -366,16 +366,22 @@
                 var province_id = this.value;
 
                 $.get("{{ route('provinces.cities') }}?id=" + province_id, function(data, status){
+                    $('#city_id')[0].selectize.clear();
                     $('#city_id')[0].selectize.clearOptions();
+                    var values = [];
 
                     $.each(data.cities, function(index, value) {
                         //console.log(value);
                         //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
-                        $('#city_id')[0].selectize.addOption({value: value.id, text: value.name});
-                        $('#city_id')[0].selectize.addItem(value.id);
+                        values.push({value: value.id, text: value.name});
                     });
 
-                    $('#city_id')[0].selectize.refreshOptions();
+                    if(data.cities.length > 0) {
+                        $('#city_id')[0].selectize.addOption(values);
+                        $('#city_id')[0].selectize.setValue(data.cities[0].id);
+                    }
+
+                    //$('#city_id')[0].selectize.refreshOptions();
                 });
             });
 
