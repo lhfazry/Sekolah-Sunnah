@@ -375,7 +375,8 @@
 
                     $.each(data.cities, function(index, value) {
                         //console.log(value);
-                        $('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
+                        //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
+                        $('#city_id').append(new Option(value.name, value.id));
                     });
                 });
             });
