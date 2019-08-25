@@ -138,28 +138,28 @@
                         </div>
 
 
-                        <div class="form-row">
+                        <!--<div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="alert alert-info"><strong>Perhatian</strong> Harap memilih provinsi dulu sebelum Kota. Pilihan daftar kota akan muncul setelah memilih provinsi.</div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-row">
-                            <div class="col-md-3 col-sm-3">
+                            <!--<div class="col-md-3 col-sm-3">
                                 <div class="form-group">
                                     {!! Form::label('province_id', 'Provinsi', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('province_id', $provinces, null, []) !!}
+                                    {!! Form::select('province_id', [], null, []) !!}
                                 </div>
-                            </div>
+                            </div>-->
 
-                            <div class="col-md-3 col-sm-3">
+                            <div class="col-md-4 col-sm-4">
                                 <div class="form-group">
                                     {!! Form::label('city_id', 'Kabupaten/Kota', ['class' => 'col-form-label']) !!}
-                                    {!! Form::select('city_id', [], null, ['placeholder' => 'Pilih Kabupaten/Kota']) !!}
+                                    {!! Form::select('city_id', $cities, null, ['placeholder' => 'Pilih Kabupaten/Kota']) !!}
                                 </div>
                             </div>
 
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-md-8 col-sm-8">
                                 <div class="form-group">
                                     {!! Form::label('address', 'Alamat', ['class' => 'col-form-label']) !!}
                                     {!! Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => "Masukkan alamat...", 'rows' => 4]) !!}
@@ -352,7 +352,7 @@
         }
 
         $(document).ready(function(){
-            //$('select').select2();
+            $('select').select2();
             //$('#description').summernote({height: 200});
 
             /*$( "#city" ).autocomplete({
@@ -364,7 +364,7 @@
                 }
             });*/
 
-            $('#province_id').on('change', function() {
+            /*$('#province_id').on('change', function() {
                 var province_id = this.value;
 
                 $.get("{{ route('provinces.cities') }}?id=" + province_id, function(data, status){
@@ -384,7 +384,7 @@
                         //$('#city_id').append(new Option(value.name, value.id));
                     });
                 });
-            });
+            });*/
 
             $("#logo").dropzone({
                 url: "{{ route('media.store') }}?collection=logos",
