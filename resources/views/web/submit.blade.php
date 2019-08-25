@@ -106,8 +106,8 @@
                         <div class="form-row">
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('uang_masuk', 'Uang Masuk', ['class' => 'col-form-label']) !!}
-                                    {!! Form::number('uang_masuk', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk..."]) !!}
+                                    {!! Form::label('biaya_pendaftaran', 'Uang Masuk', ['class' => 'col-form-label']) !!}
+                                    {!! Form::number('biaya_pendaftaran', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk..."]) !!}
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">

@@ -171,7 +171,7 @@ class School extends Model implements HasMedia
 
     public static $messages = [
         'city_id.required' => 'Kota tidak boleh kosong',
-        'uang_masuk.required' => 'Uang masuk tidak boleh kosong',
+        'biaya_pendaftaran.required' => 'Uang masuk tidak boleh kosong',
         'biaya_spp.required' => 'Biaya bulanan tidak boleh kosong',
     ];
 
