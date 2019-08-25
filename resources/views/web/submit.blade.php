@@ -375,8 +375,13 @@
 
                     $.each(data.cities, function(index, value) {
                         //console.log(value);
+                        var option = document.createElement("option");
+                        option.text = value.name;
+                        option.value = value.id;
+                        document.getElementById("#city_id").appendChild(option);
+                        //$('#city_id').appendChild();
                         //$('#city_id').append("<option value='"+value.id+"'>"+value.name+"</>");
-                        $('#city_id').append(new Option(value.name, value.id));
+                        //$('#city_id').append(new Option(value.name, value.id));
                     });
                 });
             });
