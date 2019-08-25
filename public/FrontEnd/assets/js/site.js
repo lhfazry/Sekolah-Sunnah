@@ -26,7 +26,13 @@ $(document).ready(function($) {
         });
     });
 
-
+    /*var select = $("select");
+    select.selectize({
+        create: true,
+        onDropdownOpen: dropdownOpen,
+        onDropdownClose: dropdownClose,
+        allowEmptyOption: true,
+    });*/
 
     function dropdownOpen($dropdown){
         $dropdown.addClass("opening");
