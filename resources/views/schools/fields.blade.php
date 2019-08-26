@@ -351,7 +351,8 @@
                 digitGroupSeparator: "."
             };
 
-            AutoNumeric.multiple(['#biaya_pendaftaran', '#biaya_spp'], numericOption);
+            new AutoNumeric('#biaya_pendaftaran', numericOption);
+            new AutoNumeric('#biaya_spp', numericOption);
 
             $( "#city" ).autocomplete({
                 source: "{{ route('cities.autocomplete') }}",
