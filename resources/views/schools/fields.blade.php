@@ -46,7 +46,7 @@
                 <div class="row">
                     {!! Form::label('biaya_pendaftaran', 'Uang Masuk', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::number('biaya_pendaftaran', null, ['class' => 'form-control']) !!}
+                    {!! Form::text('biaya_pendaftaran', null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                 <div class="row">
                     {!! Form::label('biaya_spp', 'Uang Bulanan', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
-                    {!! Form::number('biaya_spp', null, ['class' => 'form-control']) !!}
+                    {!! Form::text('biaya_spp', null, ['class' => 'form-control']) !!}
                     </div>
                 </div>
             </div>
