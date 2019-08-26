@@ -44,27 +44,30 @@
 
             <div class="form-group form-group-sm col-sm-6">
                 <div class="row">
-                    {!! Form::label('biaya_pendaftaran', 'Uang Masuk', ['class' => 'col-sm-3 col-form-label']) !!}
-                    <div class="col-sm-9">
-                    {!! Form::text('biaya_pendaftaran', null, ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group form-group-sm col-sm-6">
-                <div class="row">
-                    {!! Form::label('biaya_spp', 'Uang Bulanan', ['class' => 'col-sm-3 col-form-label']) !!}
-                    <div class="col-sm-9">
-                    {!! Form::text('biaya_spp', null, ['class' => 'form-control']) !!}
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group form-group-sm col-sm-6">
-                <div class="row">
                     {!! Form::label('yayasan', 'Yayasan', ['class' => 'col-sm-3 col-form-label']) !!}
                     <div class="col-sm-9">
                     {!! Form::text('yayasan', null, ['class' => 'form-control']) !!}
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm col-sm-12">
+                <div class="row">
+                    <div class="form-group form-group-sm col-sm-6">
+                        <div class="row">
+                            {!! Form::label('biaya_pendaftaran', 'Uang Masuk', ['class' => 'col-sm-3 col-form-label']) !!}
+                            <div class="col-sm-9">
+                            {!! Form::text('biaya_pendaftaran', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-group-sm col-sm-6">
+                        <div class="row">
+                            {!! Form::label('biaya_spp', 'Uang Bulanan', ['class' => 'col-sm-3 col-form-label']) !!}
+                            <div class="col-sm-9">
+                            {!! Form::text('biaya_spp', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -351,8 +354,7 @@
                 digitGroupSeparator: "."
             };
 
-            new AutoNumeric('#biaya_pendaftaran', numericOption);
-            new AutoNumeric('#biaya_spp', numericOption);
+            AutoNumeric.multiple(['#biaya_pendaftaran', '#biaya_spp'], numericOption);
 
             $( "#city" ).autocomplete({
                 source: "{{ route('cities.autocomplete') }}",
