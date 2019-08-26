@@ -274,11 +274,13 @@ class School extends Model implements HasMedia
     }
 
     public function formattedBiayaPendaftaran() {
-        return \App\Helpers\CurrencyHelper::formatCurrency($this->biaya_pendaftaran);
+        //return \App\Helpers\CurrencyHelper::formatCurrency($this->biaya_pendaftaran);
+        return $this->biaya_pendaftaran;
     }
 
     public function formattedBiayaSPP() {
-        return \App\Helpers\CurrencyHelper::formatCurrency($this->biaya_spp);
+        // return \App\Helpers\CurrencyHelper::formatCurrency($this->biaya_spp);
+        return $this->biaya_spp;
     }
 
     public function displaySPP() {
