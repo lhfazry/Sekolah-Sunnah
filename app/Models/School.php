@@ -207,6 +207,7 @@ class School extends Model implements HasMedia
     public function getEmbeddedVideoProfileUrl() {
         $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_-]+)\??/i';
         $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))([a-zA-Z0-9_-]+)/i';
+        $youtube_id = '';
 
         if (preg_match($longUrlRegex, $this->video_profil, $matches)) {
             $youtube_id = $matches[count($matches) - 1];
