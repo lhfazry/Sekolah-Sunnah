@@ -321,6 +321,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
 
     <script>
         var uploadedPhotoMap = {}
@@ -343,6 +344,14 @@
         $(document).ready(function(){
             $('#short_description').summernote({height: 200});
             $('#description').summernote({height: 200});
+
+            var numericOption = {
+                decimalPlaces: 0,
+                decimalCharacter: ",",
+                digitGroupSeparator: "."
+            };
+
+            AutoNumeric.multiple(['#biaya_pendaftaran', '#biaya_spp'], numericOption);
 
             $( "#city" ).autocomplete({
                 source: "{{ route('cities.autocomplete') }}",
