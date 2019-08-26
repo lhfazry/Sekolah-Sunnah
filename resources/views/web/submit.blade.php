@@ -107,13 +107,13 @@
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('biaya_pendaftaran', 'Uang Masuk', ['class' => 'col-form-label']) !!}
-                                    {!! Form::number('biaya_pendaftaran', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk..."]) !!}
+                                    {!! Form::text('biaya_pendaftaran', null, ['class' => 'form-control', 'placeholder' => "Masukkan uang masuk..."]) !!}
                                 </div>
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
                                     {!! Form::label('biaya_spp', 'Biaya Bulanan', ['class' => 'col-form-label']) !!}
-                                    {!! Form::number('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP.."]) !!}
+                                    {!! Form::text('biaya_spp', null, ['class' => 'form-control', 'placeholder' => "Masukkan biaya SPP.."]) !!}
                                     <!--<span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>-->
                                 </div>
                             </div>
@@ -336,6 +336,7 @@
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/min/dropzone.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-bs4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.1.0"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" type="text/javascript" charset="utf-8"></script>
 
     <script>
@@ -358,6 +359,13 @@
 
         $(document).ready(function(){
             $('select').select2();
+            var numericOption = {
+                decimalCharacter: ",",
+                digitGroupSeparator: "."
+            };
+
+            AutoNumeric.multiple(['#biaya_pendaftaran', '#biaya_spp'], numericOption);
+            //new AutoNumeric('#biaya_spp', numericOption);
             //$('#description').summernote({height: 200});
 
             /*$( "#city" ).autocomplete({
