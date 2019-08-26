@@ -263,13 +263,13 @@
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="section-header">
-                                    <span class="section-title">Logo, Foto, Brosur dan Video</span>
+                                    <span class="section-title">Logo, Foto, Brosur dan Video Sekolah</span>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
-                                <div class="alert alert-info"><strong>Perhatian</strong> Brosur dan Photo bisa lebih dari satu</div>
+                                <div class="alert alert-info"><strong>Perhatian</strong> Brosur dan Photo Sekolah bisa lebih dari satu</div>
                             </div>
                         </div>
 
@@ -282,7 +282,7 @@
                             </div>
                             <div class="col-md-6 col-sm-6">
                                 <div class="form-group">
-                                    {!! Form::label('logo', 'Logo', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('logo', 'Logo Sekolah', ['class' => 'col-form-label']) !!}
                                     <div class="col-sm-12 boxzone" id="logo">
                                         <div class="dz-message needsclick">
                                             Drop files here or click to upload.<br>
@@ -296,7 +296,7 @@
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('brochure', 'Brosur', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('brochure', 'Brosur Sekolah', ['class' => 'col-form-label']) !!}
                                     <div class="col-sm-12 boxzone" id="brochure">
                                         <div class="dz-message needsclick">
                                             Drop files here or click to upload.<br>
@@ -311,7 +311,7 @@
                         <div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="form-group">
-                                    {!! Form::label('photo', 'Photo', ['class' => 'col-form-label']) !!}
+                                    {!! Form::label('photo', 'Photo Sekolah', ['class' => 'col-form-label']) !!}
                                     <div class="col-sm-12 boxzone" id="photo">
                                         <div class="dz-message needsclick">
                                             Drop files here or click to upload.<br>
