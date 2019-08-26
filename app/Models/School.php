@@ -274,7 +274,7 @@ class School extends Model implements HasMedia
     }
 
     public function formattedBiayaPendaftaran() {
-        if (strpos($this->biaya_pendaftaran, '.') !== false) {
+        if (strpos($this->biaya_pendaftaran, ',') !== false) {
             return $this->biaya_pendaftaran;
         }
         else {
@@ -285,7 +285,7 @@ class School extends Model implements HasMedia
     }
 
     public function formattedBiayaSPP() {
-        if (strpos($this->biaya_spp, '.') !== false) {
+        if (strpos($this->biaya_spp, ',') !== false) {
             return $this->biaya_spp;
         }
         else {

@@ -360,9 +360,7 @@
         $(document).ready(function(){
             $('select').select2();
             var numericOption = {
-                decimalPlaces: 0,
-                decimalCharacter: ",",
-                digitGroupSeparator: "."
+                decimalPlaces: 0
             };
 
             AutoNumeric.multiple(['#biaya_pendaftaran', '#biaya_spp'], numericOption);
