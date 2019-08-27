@@ -31,6 +31,8 @@ class DashboardController extends Controller
             ->join('cities', 'city_id', '=', 'cities.id')
             ->join('provinces', 'province_id', '=', 'provinces.id')
             ->groupBy('city_id')
+            ->orderBy('total', 'desc')
+            ->take(15)
             ->get();
 
         $schools = \App\Models\School::orderBy('created_at', 'desc')
