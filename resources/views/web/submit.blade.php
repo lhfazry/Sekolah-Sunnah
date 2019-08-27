@@ -97,11 +97,11 @@
                             </div>
                         </div>
 
-                        <div class="form-row">
+                        <!--<div class="form-row">
                             <div class="col-md-12 col-sm-12">
                                 <div class="alert alert-info"><strong>Perhatian</strong> Uang masuk dan Biaya bulanan tidak boleh pakai titik dan koma. Cukup ditulis dengan angka saja</div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-row">
                             <div class="col-md-6 col-sm-6">
