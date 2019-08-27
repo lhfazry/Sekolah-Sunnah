@@ -163,8 +163,14 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12"><a href="{{route('reports.cities')}}">More cities ...</a></div>
+                        </div>
                     </div><!-- /.card-body -->
+                    <div class="card-footer">
+
+                    </div>
                 </div>
             </div>
         </div>
