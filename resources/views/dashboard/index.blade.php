@@ -131,7 +131,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            </div>
+                        </div>
                     </div><!-- /.card-body -->
                 </div>
             </div>
@@ -157,7 +157,7 @@
                                     @foreach($most_cities as $k=>$city)
                                     <tr>
                                         <td>{{ $k+1 }}</td>
-                                        <td><a href="">{{ $city->city. ", ". $city->province }}</a></td>
+                                        <td><a href="{{route('reports.cities', ['city_id' => $city->id])}}">{{ $city->city. ", ". $city->province }}</a></td>
                                         <td class="text-center">{{ $city->total }}</td>
                                     </tr>
                                     @endforeach

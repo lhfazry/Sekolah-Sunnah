@@ -320,6 +320,31 @@ class School extends Model implements HasMedia
         return \App\Helpers\StringHelper::exceprt($this->short_description);
     }
 
+    public function displayFacilities() {
+        $html = "";
+
+        foreach($this->facilities as $fct) {
+            $facility = $fct->facility;
+
+            if(empty($facility)) {
+                continue;
+            }
+
+            $html .= "<i title=\"".$facility->name."\" style=\"font-size:24px;\" class=\"text-success fas ".$facility->icon."\"></i>&nbsp;";
+        }
+
+        return $html;
+    }
+
+    public function displayStatus() {
+        if(!empty($this->verified_at)){
+            return "<span class=\"badge badge-success\">Verified</span>";
+        }
+        else {
+            return "<span class=\"badge badge-danger\">Unverified</span>";
+        }
+    }
+
     public function getTags() {
         $tags = "";
 

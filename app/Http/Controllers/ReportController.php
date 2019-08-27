@@ -30,7 +30,13 @@ class ReportController extends AppBaseController
 
         $city_id = Input::get('city_id');
 
-        return view('reports.cities', compact('cities'));
+        if(empty($city_id)) {
+            $city_id = $theCities[0]->id;
+        }
+
+        $schools = \App\Models\School::where('city_id', $city_id)->get();
+
+        return view('reports.cities', compact('city_id', 'cities', 'schools'));
     }
 
 }

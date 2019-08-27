@@ -60,6 +60,25 @@ $is_user_management = Request::is('admin/users*') || Request::is('admin/roles*')
 </li>
 @endif
 
+@php
+$is_report = Request::is('reports*')
+@endphp
+
+<li class="nav-item has-treeview {{ $is_report ? 'menu-open' : '' }}">
+    <a href="#" class="nav-link {{ $is_report ? 'active' : '' }}">
+        <i class="nav-icon fas fa-table"></i>
+        <p>
+        Report
+        <i class="right fas fa-angle-left"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview" style="{{ $is_report  ? 'display:block' : '' }}">
+        <li class="nav-item">
+            <a href="{!! route('reports.cities') !!}" class="nav-link {{ Request::is('reports/cities*') ? 'active' : '' }}"><i class="fa fa-table nav-icon"></i><p>By City</p></a>
+        </li>
+    </ul>
+</li>
+
 @if(\App\Models\Role::isAdmin())
 @php
 $is_master_data = Request::is('admin/provinces*') || Request::is('admin/cities*') || Request::is('admin/facilities*') || Request::is('admin/levels*');

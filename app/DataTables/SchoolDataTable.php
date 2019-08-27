@@ -32,19 +32,7 @@ class SchoolDataTable extends DataTable
                 return $city_name;
             })
             ->addColumn('facility', function($school){
-                $html = "";
-
-                foreach($school->facilities as $fct) {
-                    $facility = $fct->facility;
-
-                    if(empty($facility)) {
-                        continue;
-                    }
-
-                    $html .= "<i title=\"".$facility->name."\" style=\"font-size:24px;\" class=\"text-success fas ".$facility->icon."\"></i>&nbsp;";
-                }
-
-                return $html;
+                return $school->displayFacilities();
             })
             ->addColumn('status_name', function($school){
                 if(!empty($school->verified_at)){
