@@ -50,6 +50,7 @@ Route::group([
     Route::get('cities/cleaning', 'CityController@cleaning')->name('cities.cleaning');
     Route::get('schools/editor_choice', 'SchoolController@editor_choice')->name('schools.editor_choice');
     Route::get('provinces/cities', 'ProvinceController@getCities')->name('provinces.cities');
+    Route::get('reports/cities', 'ReportController@byCity')->name('reports.cities');
 
     Route::resource('provinces', 'ProvinceController');
     Route::resource('cities', 'CityController');

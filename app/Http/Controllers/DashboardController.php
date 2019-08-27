@@ -27,10 +27,15 @@ class DashboardController extends Controller
         $verified_schools = \App\Models\School::whereNotNull('verified_at')->count();
         $unverified_schools = \App\Models\School::whereNull('verified_at')->count();
         $published_schools = \App\Models\School::where('status', 'Published')->count();
+        $most_cities = \App\Models\School::selectRaw("cities.name as city, provinces.name as province, COUNT(*) total")
+            ->join('cities', 'city_id', '=', 'cities.id')
+            ->join('provinces', 'province_id', '=', 'provinces.id')
+            ->groupBy('city_id')
+            ->get();
 
         $schools = \App\Models\School::orderBy('created_at', 'desc')
             ->limit(10)
             ->get();
-        return view('dashboard.index', compact('schools', 'all_schools', 'verified_schools', 'unverified_schools', 'published_schools'));
+        return view('dashboard.index', compact('schools', 'all_schools', 'most_cities', 'verified_schools', 'unverified_schools', 'published_schools'));
     }
 }

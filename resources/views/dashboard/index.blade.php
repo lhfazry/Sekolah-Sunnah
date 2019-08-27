@@ -85,7 +85,7 @@
             </div>
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header d-flex p-0 ui-sortable-handle" style="cursor: move;">
                         <h3 class="card-title p-3">
@@ -99,21 +99,20 @@
                                 <thead>
                                     <tr>
                                         <th width="10">No</th>
-                                        <th width="120">Added Date</th>
-                                        <th>Name</th>
-                                        <th>City</th>
-                                        <th width="100">Level</th>
-                                        <th width="130" class="actions">Actions</th>
+                                        <th>School</th>
+                                        <th width="50" class="actions">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($schools as $k=>$school)
                                     <tr>
                                         <td>{{ $k+1 }}</td>
-                                        <td>{{ $school->created_at }}</td>
-                                        <td><a href="{{route('schools.show', $school->id)}}">{{ $school->nama_sekolah }}</a></td>
-                                        <td>{{ $school->city_province() }}</td>
-                                        <td>{{ $school->level->name }}</td>
+                                        <td>
+                                            {{ $school->created_at }}<br/>
+                                            <a href="{{route('schools.show', $school->id)}}">{{ $school->nama_sekolah }}</a><br/>
+                                            {{ $school->level->name }}<br/>
+                                            {{ $school->city_province() }}<br/>
+                                        </td>
                                         <td>
                                             <div class="btn-group">
                                                 <a href="{{ route('schools.show', ['id'=>$school->id]) }}" title="View school" class="btn btn-sm btn-danger"><i class="fas fa-eye"></i></a>
@@ -128,6 +127,38 @@
                                                 @endif
                                             </div>
                                         </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                            </div>
+                    </div><!-- /.card-body -->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex p-0 ui-sortable-handle" style="cursor: move;">
+                        <h3 class="card-title p-3">
+                            <i class="fas fa-graduation-cap mr-1"></i>
+                            Most Cities
+                        </h3>
+                    </div><!-- /.card-header -->
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table no-margin">
+                                <thead>
+                                    <tr>
+                                        <th width="10">No</th>
+                                        <th>Name</th>
+                                        <th width="50">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($most_cities as $k=>$city)
+                                    <tr>
+                                        <td>{{ $k+1 }}</td>
+                                        <td><a href="">{{ $city->city. ", ". $city->province }}</a></td>
+                                        <td class="text-center">{{ $city->total }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
