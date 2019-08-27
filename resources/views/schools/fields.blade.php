@@ -196,6 +196,28 @@
                 </div>
             </div>
 
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="form-group form-group-sm col-sm-6">
+                        <div class="row">
+                            {!! Form::label('contact_person', 'Contact Person', ['class' => 'col-sm-3 col-form-label']) !!}
+                            <div class="col-sm-9">
+                            {!! Form::text('contact_person', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-sm col-sm-6">
+                        <div class="row">
+                            {!! Form::label('hp', 'Nomor HP', ['class' => 'col-sm-3 col-form-label']) !!}
+                            <div class="col-sm-9">
+                            {!! Form::text('hp', null, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

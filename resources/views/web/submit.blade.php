@@ -200,6 +200,21 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="form-row">
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    {!! Form::label('contact_person', 'Contact Person', ['class' => 'col-form-label']) !!}
+                                    {!! Form::text('contact_person', null, ['class' => 'form-control', 'placeholder' => "Masukan Contact Person ..."]) !!}
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4">
+                                <div class="form-group">
+                                    {!! Form::label('hp', 'HP', ['class' => 'col-form-label']) !!}
+                                    {!! Form::text('hp', null, ['class' => 'form-control', 'placeholder' => "Masukkan Nomor HP ..."]) !!}
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="section">

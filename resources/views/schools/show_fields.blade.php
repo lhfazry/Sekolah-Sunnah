@@ -55,16 +55,16 @@
                         <div class="form-group col-sm-6">
                             <div class="row">
                                 {!! Form::label('name', 'Short Description', ['class' => 'col-sm-3 col-form-label']) !!}
-                                <div class="col-sm-9">
-                                    {!! Form::textarea('name', $school->short_description, ['class' => 'form-control', 'readonly', 'rows' => 4]) !!}
+                                <div class="col-sm-9" style="background: #e9ecef; padding: 8px;">
+                                    {!! $school->short_description !!}
                                 </div>
                             </div>
                         </div>
                         <div class="form-group col-sm-6">
                             <div class="row">
                                 {!! Form::label('name', 'Description', ['class' => 'col-sm-3 col-form-label']) !!}
-                                <div class="col-sm-9">
-                                    {!! Form::textarea('name', $school->description, ['class' => 'form-control', 'readonly', 'rows' => 4]) !!}
+                                <div class="col-sm-9" style="background: #e9ecef; padding: 8px;">
+                                        {!! $school->description !!}
                                 </div>
                             </div>
                         </div>
@@ -168,6 +168,28 @@
                             {!! Form::label('phone2', 'Phone 2', ['class' => 'col-sm-3 col-form-label']) !!}
                             <div class="col-sm-9">
                             {!! Form::text('phone2', $school->phone2, ['class' => 'form-control', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="row">
+                    <div class="form-group form-group-sm col-sm-6">
+                        <div class="row">
+                            {!! Form::label('contact_person', 'Contact Person', ['class' => 'col-sm-3 col-form-label']) !!}
+                            <div class="col-sm-9">
+                            {!! Form::text('contact_person', $school->contact_person, ['class' => 'form-control', 'readonly']) !!}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group form-group-sm col-sm-6">
+                        <div class="row">
+                            {!! Form::label('hp', 'Nomor HP', ['class' => 'col-sm-3 col-form-label']) !!}
+                            <div class="col-sm-9">
+                            {!! Form::text('hp', $school->hp, ['class' => 'form-control', 'readonly']) !!}
                             </div>
                         </div>
                     </div>

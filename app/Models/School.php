@@ -77,6 +77,8 @@ class School extends Model implements HasMedia
         'instagram',
         'twitter',
         'youtube',
+        'contact_person',
+        'hp',
         'logo',
         'photo1',
         'photo2',
@@ -130,6 +132,8 @@ class School extends Model implements HasMedia
         'instagram' => 'string',
         'twitter' => 'string',
         'youtube' => 'string',
+        'contact_person' => 'string',
+        'hp' => 'string',
         'logo' => 'string',
         'photo1' => 'string',
         'photo2' => 'string',
@@ -169,6 +173,8 @@ class School extends Model implements HasMedia
         'biaya_spp' => 'required',
         'address' => 'required',
         'phone1' => 'required',
+        'contact_person' => 'required',
+        'hp' => 'required',
     ];
 
     public static $messages = [
@@ -179,6 +185,8 @@ class School extends Model implements HasMedia
         'biaya_spp.required' => 'Biaya bulanan tidak boleh kosong',
         'address.required' => 'Alamat tidak boleh kosong',
         'phone1.required' => 'Telpon 1 tidak boleh kosong',
+        'contact_person.required' => 'Contact Person tidak boleh kosong',
+        'hp.required' => 'Nomor HP tidak boleh kosong',
     ];
 
     /**
