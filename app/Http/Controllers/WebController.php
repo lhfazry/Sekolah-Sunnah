@@ -27,7 +27,7 @@ class WebController extends AppBaseController
      */
     public function index()
     {
-        $facilities = \App\Models\Facility::all();
+        $facilities = \App\Models\Facility::where('display', true)->get();
         $editor_choices = \App\Models\School::orderBy('created_at', 'desc')->where('status', 'Published')->where('editor_choice', true)->take(4)->get();
         $latest_schools = \App\Models\School::orderBy('created_at', 'desc')->where('status', 'Published')->take(8)->get();
         $levels = \App\Models\Level::orderBy('sequence')->get();
@@ -141,6 +141,20 @@ class WebController extends AppBaseController
         Flash::success('Data sekolah berhasil ditambahkan.');
 
         return redirect(route('web.submit'));
+    }
+
+    public function subscribe() {
+        $email = Input::get('email');
+
+        $subsriber = new \App\Models\Subscriber;
+        $subsriber->email = $email;
+        $subsriber->save();
+
+        return redirect(route('web.subscribed'));
+    }
+
+    public function subscribed() {
+        return view('web.subscribed');
     }
 
 }

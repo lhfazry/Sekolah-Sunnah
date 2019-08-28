@@ -27,6 +27,15 @@
 
                 <div class="form-group col-sm-6">
                     <div class="row">
+                        {!! Form::label('display', 'Display', ['class' => 'col-sm-3 col-form-label']) !!}
+                        <div class="col-sm-9">
+                            {!! Form::text('dislay', $facility->display?'Yes':'No', ['class' => 'form-control', 'readonly']) !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group col-sm-6">
+                    <div class="row">
                         {!! Form::label('name', 'Description', ['class' => 'col-sm-3 col-form-label']) !!}
                         <div class="col-sm-9">
                             {!! Form::textarea('name', $facility->description, ['class' => 'form-control', 'readonly', 'rows' => 4]) !!}

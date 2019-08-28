@@ -37,6 +37,8 @@ class Level extends Model
     protected $casts = [
         'id' => 'integer',
         'name' => 'string',
+        'icon' => 'string',
+        'description' => 'string',
         'created_by' => 'integer',
         'updated_by' => 'integer',
         'deleted_by' => 'integer'

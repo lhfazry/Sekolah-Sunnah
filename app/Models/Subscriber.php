@@ -6,29 +6,24 @@ use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * Class Facility
+ * Class Level
  * @package App\Models
- * @version August 9, 2019, 2:05 pm UTC
+ * @version August 9, 2019, 2:08 pm UTC
  *
  * @property string name
- * @property string description
  */
-class Facility extends Model
+class Subscriber extends Model
 {
     use SoftDeletes;
-    use \Wildside\Userstamps\Userstamps;
 
-    public $table = 'facilities';
+    public $table = 'subscribers';
 
 
     protected $dates = ['deleted_at'];
 
 
     public $fillable = [
-        'name',
-        'description',
-        'icon',
-        'display'
+        'email'
     ];
 
     /**
@@ -38,12 +33,7 @@ class Facility extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'name' => 'string',
-        'display' => 'boolean',
-        'description' => 'string',
-        'created_by' => 'integer',
-        'updated_by' => 'integer',
-        'deleted_by' => 'integer'
+        'email' => 'string'
     ];
 
     /**
@@ -54,6 +44,4 @@ class Facility extends Model
     public static $rules = [
 
     ];
-
-
 }
