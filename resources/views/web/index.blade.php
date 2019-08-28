@@ -10,7 +10,7 @@
     </div>
 
     {!! Form::open(['route' => 'web.search', 'class' => 'hero-form form', 'method' => 'get']) !!}
-    {!! Form::hidden('city', null, ['id' => 'city']) !!}
+
         <div class="container">
             <div class="main-search-form">
                 <div class="form-row">
@@ -22,8 +22,8 @@
                     </div>
                     <div class="col-md-3 col-sm-3">
                         <div class="form-group">
-                            {!! Form::label('city_name', 'Dimana?', ['class' => 'col-form-label']) !!}
-                            {!! Form::text('city_name', null, ['class' => 'form-control', 'placeholder' => "Masukkan kota..."]) !!}
+                            {!! Form::label('city', 'Dimana?', ['class' => 'col-form-label']) !!}
+                            {!! Form::select('city', $cities, ['class' => 'form-control']) !!}
                             <!--<span class="geo-location input-group-addon" data-toggle="tooltip" data-placement="top" title="Find My Position"><i class="fa fa-map-marker"></i></span>-->
                         </div>
                     </div>
@@ -78,11 +78,11 @@
 @section('content')
     <section class="block">
         <div class="container">
-            <h2>Kategori Sekolah</h2>
+            <h2>Jenjang Sekolah</h2>
             <ul class="categories-list clearfix">
                 @foreach($levels as $level)
                 <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="#">{{$level->name}}</a></h3>
+                    <h3><a href="{{route('web.level', [$level->id])}}">{{$level->name}}</a></h3>
                     <div class="sub-categories">
                         {{$level->description}}
                     </div>
@@ -146,23 +146,24 @@
 
 @section('scripts')
 <script>
-    $(document).ready(function(){
-        var select = $("select");
-        select.selectize({
-            create: true,
-            onDropdownOpen: dropdownOpen,
-            onDropdownClose: dropdownClose,
-            allowEmptyOption: true,
-        });
+    function dropdownOpen($dropdown){
+        $dropdown.addClass("opening");
+    }
+    function dropdownClose($dropdown){
+        $dropdown.removeClass("opening");
+    }
 
-        $( "#city_name" ).autocomplete({
+    $(document).ready(function(){
+        $("#city").select2();
+
+        /*$( "#city_name" ).autocomplete({
             source: "{{ route('cities.autocomplete') }}",
             minLength: 3,
             select: function(event, ui) {
                 $('#city_name').val(ui.item.value);
                 $('#city').val(ui.item.id);
             }
-        });
+        });*/
     });
 </script>
 @endsection

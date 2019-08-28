@@ -174,7 +174,7 @@ class School extends Model implements HasMedia
         'address' => 'required',
         'phone1' => 'required',
         'contact_person' => 'required',
-        'hp' => 'required',
+        'hp' => 'required'
     ];
 
     public static $messages = [

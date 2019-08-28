@@ -28,11 +28,21 @@ class WebController extends AppBaseController
     public function index()
     {
         $facilities = \App\Models\Facility::all();
-        $editor_choices = \App\Models\School::orderBy('created_at', 'desc')->where('editor_choice', true)->take(4)->get();
-        $latest_schools = \App\Models\School::orderBy('created_at', 'desc')->take(8)->get();
+        $editor_choices = \App\Models\School::orderBy('created_at', 'desc')->where('status', 'Published')->where('editor_choice', true)->take(4)->get();
+        $latest_schools = \App\Models\School::orderBy('created_at', 'desc')->where('status', 'Published')->take(8)->get();
         $levels = \App\Models\Level::orderBy('sequence')->get();
 
-        return view('web.index', compact('facilities', 'editor_choices', 'latest_schools', 'levels'));
+        $theCities = \App\Models\City::all();
+        $cities = [];
+        //$cities[] = ['id' => '', 'text' => 'Ketik nama Kota'];
+        $cities[''] = 'Ketik nama Kota';
+
+        foreach($theCities as $city) {
+            //$cities[] = ['id' => $city->id, 'text' => $city->city_province()];
+            $cities[$city->id] = $city->city_province();
+        }
+
+        return view('web.index', compact('facilities', 'editor_choices', 'latest_schools', 'levels', 'cities'));
     }
 
     public function search() {
@@ -42,7 +52,8 @@ class WebController extends AppBaseController
         $min_price = Input::get('min_price');
         $max_price = Input::get('max_price');
 
-        $schools = \App\Models\School::orderBy('created_at', 'desc');
+        $schools = \App\Models\School::orderBy('created_at', 'desc')
+            ->where('status', 'Published');
 
         if(!empty($keyword)) {
             $schools = $schools->where('nama_sekolah', 'LIKE', "%{$keyword}%");
@@ -69,6 +80,18 @@ class WebController extends AppBaseController
         $schools = $schools->get();
 
         return view('web.search', compact('schools'));
+    }
+
+    public function level() {
+        $id = Input::get('id');
+
+        $schools = \App\Models\School::orderBy('created_at', 'desc')
+            ->where('level_id', $id)
+            ->where('status', 'Published');
+
+        $schools = $schools->get();
+
+        return view('web.level', compact('schools'));
     }
 
     public function submit() {

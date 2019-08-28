@@ -15,6 +15,25 @@
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
     @yield('css')
     <title>Direktori Sekolah Sunnah se-Indonesia | SekolahSunnah.com</title>
+    <style>
+        .select2-selection {
+            transition: .3s ease;
+            border-radius: .3rem !important;
+            font-weight: 500;
+            padding: 1.2rem;
+            height: auto !important;
+            background-image: none;
+            background-color: #fff !important;
+            position: relative;
+            line-height: inherit;
+            box-shadow: 0 0.2rem 1rem 0rem rgba(0,0,0, .1);
+            border: .1rem solid rgba(0,0,0, .15) !important;
+        }
+
+        .select2-selection__arrow {
+            height: 52px !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -40,12 +59,12 @@
                 <div class="main-navigation">
                     <div class="container">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="index.html"><img src="{{asset('FrontEnd/assets/img/logo-ss-c.png')}}" alt=""></a>
+                            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{asset('FrontEnd/assets/img/logo-ss-c.png')}}" alt=""></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                             <div class="collapse navbar-collapse" id="navbar">
                                 <ul class="navbar-nav">
                                     <li class="nav-item active"><a class="nav-link" href="{{URL::to('/')}}">Home</a></li>
-                                    <li class="nav-item has-child"><a class="nav-link" href="#">Sekolah</a>
+                                    <!--<li class="nav-item has-child"><a class="nav-link" href="#">Sekolah</a>
                                         <ul class="child">
                                             <li class="nav-item has-child"><a href="#" class="nav-link">Ikhwan</a>
                                                 <ul class="child">
@@ -60,9 +79,9 @@
                                                 </ul>
                                             </li>
                                         </ul>
-                                    </li>
+                                    </li>-->
                                     <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-                                    <li class="nav-item"><a href="#" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Data</a></li>
+                                    <li class="nav-item"><a href="{{route('web.submit')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Data</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -124,9 +143,9 @@
                                     <nav>
                                         <ul class="list-unstyled">
                                             <li><a href="{{URL::to('/')}}">Home</a></li>
-                                            <li><a href="#">Sekolah</a></li>
-                                            <li><a href="#">Kategori</a></li>
-                                            <li><a href="#">Submit Data</a></li>
+                                            <!--<li><a href="#">Sekolah</a></li>
+                                            <li><a href="#">Kategori</a></li>-->
+                                            <li><a href="{{route('web.submit')}}">Submit Data</a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -145,7 +164,7 @@
                             <h2>Kontak</h2><address><figure>
                                     Yayasan IT Support Dakwah<br>
                                     Jonggol, Jawa Barat
-                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 62 821 123 4567
+                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 6287876335618
                             </address></div>
                     </div>
                 </div>
