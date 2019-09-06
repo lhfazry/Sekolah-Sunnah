@@ -49,7 +49,7 @@
                             </span></li>
                         </ul>
                         <ul class="right">
-                            <li><a href="#"><i class="fa fa-sign-in"></i>Masuk
+                            <li><a href="{{route('login')}}"><i class="fa fa-sign-in"></i>Masuk
                                 </a></li>
                         </ul>
                     </div>
@@ -57,7 +57,7 @@
                 <div class="main-navigation">
                     <div class="container">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="index.html"><img src="{{asset('FrontEnd/assets/img/logo-ss-c.png')}}" alt=""></a>
+                            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{asset('FrontEnd/assets/img/logo-ss-c.png')}}" alt=""></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                             <div class="collapse navbar-collapse" id="navbar">
                                 <ul class="navbar-nav">
