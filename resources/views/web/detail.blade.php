@@ -52,11 +52,11 @@
                         <ul class="features-checkboxes columns-3">
                             @foreach($school->facilities as $facility)
                             @php
-                            if(empty($facility)) {
+                            if(empty($facility) || empty($facility->facility)) {
                                 continue;
                             }
                             @endphp
-                            <li>{{$facility->name}}</li>
+                            <li>{{$facility->facility->name}}</li>
                             @endforeach
                         </ul>
                     </section>
