@@ -9,12 +9,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.min.css" type="text/css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha256-rByPlHULObEjJ6XQxW/flG2r+22R5dKiAoef+aXWfik=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/style.css')}}?t=12312312">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
+    <title>{{$title}} | SekolahSunnah.com</title>
+
     @yield('css')
-    <title>Direktori Sekolah Sunnah se-Indonesia | SekolahSunnah.com</title>
     <style>
         .select2-selection {
             transition: .3s ease;
@@ -37,7 +38,7 @@
 </head>
 
 <body>
-    <div class="page home-page">
+    <div class="page detail-page">
         <header class="hero has-dark-background">
             <div class="hero-wrapper">
                 <div class="secondary-navigation">
@@ -48,18 +49,15 @@
                             </span></li>
                         </ul>
                         <ul class="right">
-                            <li><a href="{{route('login')}}"><i class="fa fa-sign-in"></i>Masuk
+                            <li><a href="#"><i class="fa fa-sign-in"></i>Masuk
                                 </a></li>
-                                <!--
-                            <li><a href="#"><i class="fa fa-pencil-square-o"></i>Daftar
-                                </a></li>-->
                         </ul>
                     </div>
                 </div>
                 <div class="main-navigation">
                     <div class="container">
                         <nav class="navbar navbar-expand-lg navbar-light justify-content-between">
-                            <a class="navbar-brand" href="{{URL::to('/')}}"><img src="{{asset('FrontEnd/assets/img/logo-ss-c.png')}}" alt=""></a>
+                            <a class="navbar-brand" href="index.html"><img src="{{asset('FrontEnd/assets/img/logo-ss-c.png')}}" alt=""></a>
                             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                             <div class="collapse navbar-collapse" id="navbar">
                                 <ul class="navbar-nav">
@@ -84,48 +82,90 @@
                                     <li class="nav-item"><a href="{{route('web.submit')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Data</a></li>
                                 </ul>
                             </div>
+                            <a href="#collapseMainSearchForm" class="main-search-form-toggle collapsed" data-toggle="collapse" aria-expanded="false" aria-controls="collapseMainSearchForm">
+                                <i class="fa fa-search"></i>
+                                <i class="fa fa-close"></i>
+                            </a>
                         </nav>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Sekolah</a></li>
+                            <li class="breadcrumb-item active">{{$title}}</li>
+                        </ol>
                     </div>
                 </div>
-                @yield('title')
-                <div class="background">
-                    <div class="background-image" style="background-image: url('{{asset('FrontEnd/assets/img/bg-ss-highlight.jpg')}}')"><img src="{{asset('FrontEnd/assets/img/bg-ss-highlight.jpg')}}" alt=""></div>
-                </div>
-            </div>
-        </header>
-        <section class="content">
-            @yield('content')
-            <section class="block" style="padding-top:0;">
-                <div class="container">
-                    <div class="box has-dark-background newsletter-box">
-                        <div class="row align-items-center justify-content-center d-flex">
-                            <div class="col-md-10 py-5">
-                                <h2>Dapatkan Info Sekolah Sunnah Terkini di Email Anda</h2>
-                                {!! Form::open(['route' => 'web.subscribe', 'class' => 'form email', 'id' => 'myForm']) !!}
-                                    <div class="form-row">
-                                        <div class="col-md-11 col-sm-11">
-                                            <div class="form-group">
-                                                {!! Form::label('email', 'Alamat Email', ['class' => 'col-form-label']) !!}
-                                                {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Masukan alamat email', 'required']) !!}
-                                            </div>
+                <div class="collapse" id="collapseMainSearchForm" style="">
+                    {!! Form::open(['route' => 'web.search', 'class' => 'hero-form form', 'method' => 'get']) !!}
+                        <div class="container">
+                            <div class="main-search-form">
+                                <div class="form-row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <div class="form-group">
+                                            {!! Form::label('keyword', 'Cari Sekolah Apa?', ['class' => 'col-form-label']) !!}
+                                            {!! Form::text('keyword', null, ['class' => 'form-control', 'placeholder' => "Masukkan nama sekolah..."]) !!}
                                         </div>
-                                        <div class="col-md-1 col-sm-1">
-                                            <div class="form-group">
-                                                <label class="invisible">.</label>
-                                                <button type="submit" class="btn btn-primary width-100"><i class="fa fa-chevron-right"></i></button>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <div class="form-group">
+                                            {!! Form::label('city', 'Dimana?', ['class' => 'col-form-label']) !!}
+                                            {!! Form::select('city', $cities, ['class' => 'form-control width-100']) !!}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-3">
+                                        <button type="submit" class="btn btn-primary width-100">Tampilkan Pencarian</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="alternative-search-form"><a href="#collapseAlternativeSearchForm" class="icon" data-toggle="collapse" aria-expanded="false" aria-controls="collapseAlternativeSearchForm"><i class="fa fa-plus"></i>Detail Pencarian</a>
+                                <div class="collapse" id="collapseAlternativeSearchForm">
+                                    <div class="wrapper">
+                                        <div class="form-row">
+                                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 d-xs-grid d-flex align-items-center justify-content-between">
+                                                @foreach($facilities as $facility)
+                                                <label>
+                                                    <input type="checkbox" name="facilities[]" value="{{$facility->id}}"> {{$facility->name}}
+                                                </label>
+                                                @endforeach
+                                            </div>
+                                            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                                <div class="form-row">
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input name="min_price" type="text" class="form-control small" id="min-price" placeholder="Budget Minimal"><span class="input-group-addon small">Rp</span></div>
+                                                    </div>
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <input name="max_price" type="text" class="form-control small" id="max-price" placeholder="Budget Maksimal"><span class="input-group-addon small">Rp</span></div>
+                                                    </div>
+                                                    <!--
+                                                    <div class="col-md-4 col-sm-4">
+                                                        <div class="form-group">
+                                                            <select name="distance" id="distance" class="small" data-placeholder="Jarak">
+                                                                <option value="">Jarak</option>
+                                                                <option value="1">1km</option>
+                                                                <option value="2">5km</option>
+                                                                <option value="3">10km</option>
+                                                                <option value="4">50km</option>
+                                                                <option value="5">100km</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>-->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                {!! Form::close() !!}
+                                </div>
                             </div>
                         </div>
-                        <div class="background">
-                            <div class="background-image"><img src="{{asset('FrontEnd/assets/img/bg-ss-highlight.jpg')}}" alt=""></div>
-                        </div>
-                    </div>
+                    {!! Form::close() !!}
                 </div>
-            </section>
-        </section>
+                @yield('title')
+                <div class="background"></div>
+            </div>
+        </header>
+
+        @yield('content')
+
         <footer class="footer">
             <div class="wrapper">
                 <div class="container">
@@ -164,7 +204,7 @@
                             <h2>Kontak</h2><address><figure>
                                     Yayasan IT Support Dakwah<br>
                                     Jonggol, Jawa Barat
-                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 6287876335618
+                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> <a target="_blank" href="https://wa.me/6287876335618">6287876335618</a>
                             </address></div>
                     </div>
                 </div>
@@ -181,12 +221,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.4/js/standalone/selectize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.0/masonry.pkgd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM=" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
     <script src="{{asset('FrontEnd/assets/js/site.js')}}?t=12312312"></script>
 
+    <script>
+        $(document).ready(function(){
+            $('select').select2({'width': '100%'});
+        });
+    </script>
     @yield('scripts')
 </body>
 

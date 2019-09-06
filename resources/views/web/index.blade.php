@@ -10,7 +10,6 @@
     </div>
 
     {!! Form::open(['route' => 'web.search', 'class' => 'hero-form form', 'method' => 'get']) !!}
-
         <div class="container">
             <div class="main-search-form">
                 <div class="form-row">

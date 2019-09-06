@@ -19,7 +19,6 @@ $(document).ready(function($) {
 
     $("[data-enable-search=true]").each(function(){
         $(this).selectize({
-            searchField: 'name',
             onDropdownOpen: dropdownOpen,
             onDropdownClose: dropdownClose,
             allowEmptyOption: false
@@ -28,7 +27,6 @@ $(document).ready(function($) {
 
     /*var select = $("select");
     select.selectize({
-        create: true,
         onDropdownOpen: dropdownOpen,
         onDropdownClose: dropdownClose,
         allowEmptyOption: true,
@@ -206,7 +204,6 @@ $(document).ready(function($) {
     $('[data-toggle="tooltip"]').tooltip();
 
 //  iCheck
-    console.log('asdfsdf');
 
     $("input[type=checkbox], input[type=radio]").iCheck();
 

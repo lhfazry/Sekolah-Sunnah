@@ -7,6 +7,7 @@ use Input;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\CreateSchoolRequest;
 use App\Repositories\SchoolRepository;
+use Exception;
 use Flash;
 use Response;
 
@@ -32,6 +33,12 @@ class WebController extends AppBaseController
         $latest_schools = \App\Models\School::orderBy('created_at', 'desc')->where('status', 'Published')->take(8)->get();
         $levels = \App\Models\Level::orderBy('sequence')->get();
 
+        $cities = $this->getCities();
+
+        return view('web.index', compact('facilities', 'editor_choices', 'latest_schools', 'levels', 'cities'));
+    }
+
+    public function getCities() {
         $theCities = \App\Models\City::all();
         $cities = [];
         //$cities[] = ['id' => '', 'text' => 'Ketik nama Kota'];
@@ -42,7 +49,34 @@ class WebController extends AppBaseController
             $cities[$city->id] = $city->city_province();
         }
 
-        return view('web.index', compact('facilities', 'editor_choices', 'latest_schools', 'levels', 'cities'));
+        return $cities;
+    }
+
+    public function detail($id)
+    {
+        try {
+            $id = decrypt($id);
+        }
+        catch(Exception $e) {
+            $id = 0;
+        }
+
+        $school = \App\Models\School::find($id);
+
+        if(empty($school)) {
+            return abort(404);
+        }
+
+        $facilities = \App\Models\Facility::where('display', true)->get();
+        $other_schools = \App\Models\School::orderBy('created_at', 'desc')
+            ->where('id', '!=', $id)
+            ->where('status', 'Published')->inRandomOrder()->take(4)->get();
+        $levels = \App\Models\Level::orderBy('sequence')->get();
+
+        $cities = $this->getCities();
+        $title = $school->nama_sekolah;
+
+        return view('web.detail', compact('school', 'title', 'facilities', 'other_schools', 'levels', 'cities'));
     }
 
     public function search() {

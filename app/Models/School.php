@@ -246,6 +246,15 @@ class School extends Model implements HasMedia
         }
     }
 
+    public function getPhotoUrl($number) {
+        if(!empty($this->{"photo".$number})) {
+            return Storage::disk('s3')->url($this->{"photo".$number});
+        }
+        else {
+            return "";
+        }
+    }
+
     public function getPhoto1Url() {
         if(!empty($this->photo1)) {
             return Storage::disk('s3')->url($this->photo1);
@@ -304,8 +313,13 @@ class School extends Model implements HasMedia
         //return $this->biaya_spp;
     }
 
-    public function displaySPP() {
-        return "Rp. " .$this->formattedBiayaSPP()."/Bulan";
+    public function displaySPP($withMonth = true) {
+        if($withMonth) {
+            return "Rp. " .$this->formattedBiayaSPP()."/Bulan";
+        }
+        else {
+            return "Rp. " .$this->formattedBiayaSPP();
+        }
     }
 
     public function displayBiayaPendaftaran() {
@@ -325,7 +339,8 @@ class School extends Model implements HasMedia
     }
 
     public function exceprt() {
-        return \App\Helpers\StringHelper::exceprt($this->short_description);
+        //return \App\Helpers\StringHelper::exceprt($this->short_description);
+        return \Illuminate\Support\Str::words($this->description, 100, '...');
     }
 
     public function displayFacilities() {
@@ -413,6 +428,24 @@ class School extends Model implements HasMedia
         }
 
         return "http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
+    }
+
+    public function getPhotos() {
+        $photos = [];
+
+        for($i=1; $i<=8; $i++) {
+            $url = $this->getPhotoUrl($i);
+
+            if(!empty($url)) {
+                $photos[] = $url;
+            }
+        }
+
+        if(sizeof($photos) == 0) {
+            $photos[] = $this->getPhotoCoverUrl();
+        }
+
+        return $photos;
     }
 
     public function isMySchool() {

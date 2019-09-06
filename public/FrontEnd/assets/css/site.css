@@ -7,7 +7,10 @@
     position: relative;
     background: rgba(0,0,0,.5);
 }
-.hero .page-title h1 {
+.page.detail-page .hero-wrapper {
+    background: #12A771;
+}
+.page.home-page .hero .page-title h1 {
     padding: 0 10rem;
 }
 .form.hero-form {
@@ -21,6 +24,33 @@
     background-color: rgba(0,0,0,.5)!important;
     border-radius: 10px;
     overflow: hidden;
+}
+.hero .main-navigation .main-search-form-toggle,
+.page.detail-page .hero .page-title h1 .tag {
+    background-color: #2EE8A5;
+}
+.breadcrumb-item.active {
+    color: #2EE8A5;
+}
+.page.detail-page .hero-form .btn.btn-primary {
+    background-color: #2EE8A5;
+    border-color: #2EE8A5;
+}
+.page.detail-page .hero-form a.icon i {
+    color: #2EE8A5;
+}
+.page.detail-page .hero .main-navigation .navbar ul.navbar-nav .btn {
+    border-color: #fff;
+}
+.hero .page-title .price .number,
+.hero .page-title .price .id {
+    color: #fff;
+}
+.page.detail-page .detail {
+    padding-bottom: 0;
+}
+.page.detail-page .related {
+    padding-top: 0;
 }
 
 @media (max-width: 767px) {

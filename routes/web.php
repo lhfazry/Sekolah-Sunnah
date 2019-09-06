@@ -22,6 +22,7 @@ Route::group([
 });
 
 Route::get('landing', 'WebController@index');
+Route::get('detail/{id}', 'WebController@detail')->name('web.detail');
 Route::get('search', 'WebController@search')->name('web.search');
 Route::get('submit', 'WebController@submit')->name('web.submit');
 Route::post('submit', 'WebController@store')->name('web.store');
