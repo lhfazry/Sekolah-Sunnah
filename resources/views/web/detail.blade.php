@@ -44,7 +44,7 @@
                     <section>
                         <h2>Tentang</h2>
                         <p>
-                            {{$school->description}}
+                            {!! $school->description !!}
                         </p>
                     </section>
                     <section>
