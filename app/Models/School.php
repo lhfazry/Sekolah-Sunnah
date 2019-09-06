@@ -340,7 +340,7 @@ class School extends Model implements HasMedia
 
     public function exceprt() {
         //return \App\Helpers\StringHelper::exceprt($this->short_description);
-        return \Illuminate\Support\Str::words(htmlspecialchars($this->description, ENT_QUOTES), 150, '...');
+        return \Illuminate\Support\Str::words(strip_tags($this->description), 150, '...');
     }
 
     public function displayFacilities() {
