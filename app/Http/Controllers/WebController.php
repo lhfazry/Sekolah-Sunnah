@@ -116,11 +116,15 @@ class WebController extends AppBaseController
         return view('web.search', compact('schools'));
     }
 
-    public function level() {
-        $id = Input::get('id');
+    public function level($name) {
+        $level = \App\Models\Level::where('name', $name)->first();
+
+        if(empty($level)) {
+            return abort(404);
+        }
 
         $schools = \App\Models\School::orderBy('created_at', 'desc')
-            ->where('level_id', $id)
+            ->where('level_id', $level->id)
             ->where('status', 'Published');
 
         $schools = $schools->get();

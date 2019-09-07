@@ -1,6 +1,11 @@
 @extends('web.web2')
 @section('css')
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+    .box h3 {
+        margin-bottom: 5px;
+    }
+</style>
 @endsection
 
 @section('title')
@@ -76,34 +81,33 @@
                         <section>
                             <h2>Data Lainnya</h2>
                             <div class="box">
-                                <dl>
-                                    <dt>Nama</dt>
-                                    <dd>{{$school->nama_sekolah}}</dd>
+                                <h3>Nama</h3>
+                                <p>{{$school->nama_sekolah}}</p>
 
-                                    <dt>Jenjang</dt>
-                                    <dd>{{$school->level->name}}</dd>
+                                <h3>Jenjang</h3>
+                                <p>{{$school->level->name}}</p>
 
-                                    <dt>Uang Masuk</dt>
-                                    <dd>{{$school->displayBiayaPendaftaran()}}</dd>
+                                <h3>Uang Masuk</h3>
+                                <p>{{$school->displayBiayaPendaftaran()}}</p>
 
-                                    <dt>Biaya Bulanan</dt>
-                                    <dd>{{$school->displaySPP()}}</dd>
+                                <h3>Biaya Bulanan</h3>
+                                <p>{{$school->displaySPP()}}</p>
 
-                                    <dt>Alamat</dt>
-                                    <dd>{{$school->address}}</dd>
+                                <h3>Alamat</h3>
+                                <p>{{$school->apress}}</p>
 
-                                    <dt>Kota</dt>
-                                    <dd>{{$school->city_province()}}</dd>
+                                <h3>Kota</h3>
+                                <p>{{$school->city_province()}}</p>
 
-                                    <dt>Telepon</dt>
-                                    <dd>{{$school->phone1}}</dd>
+                                <h3>Telepon</h3>
+                                <p>{{$school->phone1}}</p>
 
-                                    <dt>Email</dt>
-                                    <dd>{{$school->email}}</dd>
+                                <h3>Email</h3>
+                                <p>{{$school->email}}</p>
 
-                                    <dt>Website</dt>
-                                    <dd>{{$school->website}}</dd>
-                                </dl>
+                                <h3>Website</h3>
+                                <p>{{$school->website}}</p>
+
                                 <!--<hr>
                                 <form class="form email">
                                     <div class="form-group">

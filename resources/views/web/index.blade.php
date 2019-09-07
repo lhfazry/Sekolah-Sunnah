@@ -81,7 +81,7 @@
             <ul class="categories-list clearfix">
                 @foreach($levels as $level)
                 <li><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
-                    <h3><a href="{{route('web.level', [$level->id])}}">{{$level->name}}</a></h3>
+                    <h3><a href="{{route('web.level', [$level->name])}}">{{$level->name}}</a></h3>
                     <div class="sub-categories">
                         {{$level->description}}
                     </div>
