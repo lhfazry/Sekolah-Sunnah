@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('coming_soon');
-});
+});*/
 
 Route::group([
     'prefix' => 'admin'
@@ -21,7 +21,7 @@ Route::group([
     Auth::routes();
 });
 
-Route::get('landing', 'WebController@index');
+Route::get('/', 'WebController@index');
 Route::get('detail/{id}', 'WebController@detail')->name('web.detail');
 Route::get('search', 'WebController@search')->name('web.search');
 Route::get('submit', 'WebController@submit')->name('web.submit');

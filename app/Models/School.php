@@ -462,4 +462,8 @@ class School extends Model implements HasMedia
 
         return false;
     }
+
+    public function isLocationExists() {
+        return !empty($this->lat) && !empty($this->lng);
+    }
 }

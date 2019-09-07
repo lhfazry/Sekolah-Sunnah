@@ -1,4 +1,7 @@
 @extends('web.web2')
+@section('css')
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
+@endsection
 
 @section('title')
 <div class="page-title">
@@ -60,26 +63,48 @@
                             @endforeach
                         </ul>
                     </section>
-                    <!--
+
+                    @if($school->isLocationExists())
                     <section>
                         <h2>Lokasi</h2>
-                        <div class="map height-300px" id="map-small">
-                            <iframe src="https://g.page/rumahcoding?share" width="730" height="300" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                        </div>
-                    </section>-->
+                        <div id='map' class="map height-500px"></div>
+                    </section>
+                    @endif
                 </div>
                 <div class="col-md-4">
                     <aside class="sidebar">
                         <section>
-                            <h2>Hubungi</h2>
+                            <h2>Data Lainnya</h2>
                             <div class="box">
                                 <dl>
+                                    <dt>Nama</dt>
+                                    <dd>{{$school->nama_sekolah}}</dd>
+
+                                    <dt>Jenjang</dt>
+                                    <dd>{{$school->level->name}}</dd>
+
+                                    <dt>Uang Masuk</dt>
+                                    <dd>{{$school->displayBiayaPendaftaran()}}</dd>
+
+                                    <dt>Biaya Bulanan</dt>
+                                    <dd>{{$school->displaySPP()}}</dd>
+
+                                    <dt>Alamat</dt>
+                                    <dd>{{$school->address}}</dd>
+
+                                    <dt>Kota</dt>
+                                    <dd>{{$school->city_province()}}</dd>
+
                                     <dt>Telepon</dt>
                                     <dd>{{$school->phone1}}</dd>
+
                                     <dt>Email</dt>
                                     <dd>{{$school->email}}</dd>
+
+                                    <dt>Website</dt>
+                                    <dd>{{$school->website}}</dd>
                                 </dl>
-                                <hr>
+                                <!--<hr>
                                 <form class="form email">
                                     <div class="form-group">
                                         <label for="name" class="col-form-label">Nama</label>
@@ -94,7 +119,7 @@
                                         <textarea name="message" id="message" class="form-control" rows="4" placeholder="Assalaamualaikum, ana tertarik dengan sekolah ini..."></textarea>
                                     </div>
                                     <button type="submit" class="btn btn-primary">Kirim</button>
-                                </form>
+                                </form>-->
                             </div>
                         </section>
                     </aside>
@@ -128,4 +153,27 @@
         </div>
     </section>
 </section>
+@endsection
+
+@section('scripts')
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+
+
+<script>
+    $(document).ready(function(){
+        @if($school->isLocationExists())
+        mapboxgl.accessToken = 'pk.eyJ1IjoibGhmYXpyeSIsImEiOiJjazA5OGt0aDgwNDh3M29vYzF0YWpkNXI4In0.s5lg_BvXMi989GI2liegVg';
+        var map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [{{$school->lng}}, {{$school->lat}}],
+            zoom: 15
+        });
+
+        var marker = new mapboxgl.Marker()
+        .setLngLat([{{$school->lng}}, {{$school->lat}}])
+        .addTo(map);
+        @endif
+    });
+</script>
 @endsection
