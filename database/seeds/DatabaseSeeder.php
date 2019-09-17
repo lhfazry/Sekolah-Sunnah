@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        /*app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+        // app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
         $user = new \App\User;
         $user->name = 'Admin';
@@ -31,19 +31,24 @@ class DatabaseSeeder extends Seeder
 
         $user->assignRole('Admin');
 
+        Level::create(['name' => 'Day Care']);
         Level::create(['name' => 'PAUD']);
         Level::create(['name' => 'TK']);
+        Level::create(['name' => 'Madrasah Ibtidaiyah (MI)']);
+        Level::create(['name' => 'Madrasah Tsnawiyah (MTs)']);
+        Level::create(['name' => 'Madrasah Aliyah (MA)']);
         Level::create(['name' => 'SD']);
         Level::create(['name' => 'SMP']);
         Level::create(['name' => 'SMA']);
         Level::create(['name' => 'SMK']);
-        Level::create(['name' => 'Pesantren']);
         Level::create(['name' => 'Perguruan Tinggi']);
+        Level::create(['name' => 'Pesantren']);
+        Level::create(['name' => 'Pelatihan / Kursus']);
 
         Facility::create(['name' => 'Akhwat', 'description' => 'Tersedia kelas Akhwat', 'icon' => 'fa-female']);
         Facility::create(['name' => 'Ikhwan', 'description' => 'Tersedia kelas Ikhwan', 'icon' => 'fa-male']);
         Facility::create(['name' => 'Full Day', 'description' => 'Menyelenggarakan kelas Full Day', 'icon' => 'fa-cloud-sun']);
-        Facility::create(['name' => 'Boarding', 'description' => 'Menyelenggarakan kelas Boarding', 'icon' => 'fa-building']);*/
+        Facility::create(['name' => 'Boarding', 'description' => 'Menyelenggarakan kelas Boarding', 'icon' => 'fa-building']);
 
         Level::where('name', 'Day Care')->first()->update(['name' => 'DC', 'sequence' => 1, 'description' => 'Pendidikan Anak Usia Dini', 'icon' => 'fa-graduation-cap']);
         Level::where('name', 'PAUD')->first()->update(['sequence' => 2, 'description' => 'Pendidikan Anak Usia Dini', 'icon' => 'fa-graduation-cap']);
