@@ -94,7 +94,7 @@
                                 <p>{{$school->displaySPP()}}</p>
 
                                 <h3>Alamat</h3>
-                                <p>{{$school->apress}}</p>
+                                <p>{{$school->address}}</p>
 
                                 <h3>Kota</h3>
                                 <p>{{$school->city_province()}}</p>
