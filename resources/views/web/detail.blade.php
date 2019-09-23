@@ -140,18 +140,18 @@
                 <div class="item">
                     <div class="wrapper">
                         <div class="image">
-                            <h3>{!!$school->getTags()!!}<a href="{{route('web.detail', encrypt($school->id))}}" class="title">{{$oschool->nama_sekolah}}</a></h3>
-                            <a href="#" class="image-wrapper background-image" style="background-image: url(&quot;{{$school->getPhotoCoverUrl()}}&quot;);"><img src="{{$school->getPhotoCoverUrl()}}" alt=""></a>
+                            <h3>{!!$school->getTags()!!}<a href="{{route('web.detail', encrypt($oschool->id))}}" class="title">{{$oschool->nama_sekolah}}</a></h3>
+                            <a href="#" class="image-wrapper background-image" style="background-image: url(&quot;{{$oschool->getPhotoCoverUrl()}}&quot;);"><img src="{{$oschool->getPhotoCoverUrl()}}" alt=""></a>
                         </div>
                         <h4 class="location"><a href="#">{{$oschool->city_province()}}</a></h4>
                         <div class="price">{{$oschool->displaySPP()}}</div>
                         <div class="meta">
                             {!!$school->getOtherFacilities()!!}
-                            <figure><a href="#" title="Uang Pangkal"><i class="fa fa-money"></i>&nbsp;{{$school->displayBiayaPendaftaran()}}</a></figure>
+                            <figure><a href="#" title="Uang Pangkal"><i class="fa fa-money"></i>&nbsp;{{$oschool->displayBiayaPendaftaran()}}</a></figure>
                         </div>
                         <div class="description">
                             <p>{{$oschool->exceprt()}}</p>
-                        </div><a href="{{route('web.detail', encrypt($school->id))}}" class="detail text-caps underline">Lihat Sekolah</a></div>
+                        </div><a href="{{route('web.detail', encrypt($oschool->id))}}" class="detail text-caps underline">Lihat Sekolah</a></div>
                 </div>
                 @endforeach
         </div>
