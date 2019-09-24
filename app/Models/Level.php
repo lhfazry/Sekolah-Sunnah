@@ -53,5 +53,7 @@ class Level extends Model
 
     ];
 
-
+    public function displayCountLevel() {
+        return School::where('level_id', $this->id)->count();
+    }
 }
