@@ -100,3 +100,9 @@
         margin-bottom: 1rem;
     }
 }
+
+.badge-level-counter {
+    position: relative;
+    top: -3px;
+    padding-bottom: 1px;
+}
