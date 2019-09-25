@@ -15,6 +15,7 @@ use Wildside\Userstamps\Userstamps;
  * @version August 7, 2019, 9:42 am UTC
  *
  * @property string nama_sekolah
+ * @property string slug_sekolah
  * @property string jenjang
  * @property boolean ikhwan
  * @property boolean akhowat
@@ -56,6 +57,7 @@ class School extends Model implements HasMedia
 
     public $fillable = [
         'nama_sekolah',
+        'slug_sekolah',
         'level_id',
         'city_id',
         'ikhwan',
@@ -112,6 +114,7 @@ class School extends Model implements HasMedia
     protected $casts = [
         'id' => 'integer',
         'nama_sekolah' => 'string',
+        'slug_sekolah' => 'string',
         'jenjang' => 'string',
         'ikhwan' => 'boolean',
         'akhowat' => 'boolean',

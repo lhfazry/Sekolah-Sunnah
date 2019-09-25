@@ -15,6 +15,7 @@ use App\Http\Controllers\AppBaseController;
 use Response;
 use Illuminate\Support\Facades\Storage;
 use Input;
+use Illuminate\Support\Str;
 
 class SchoolController extends AppBaseController
 {
@@ -101,6 +102,8 @@ class SchoolController extends AppBaseController
             $schoolFacility->facility_id = $facility;
             $schoolFacility->save();
         }
+
+        $school->slug_sekolah = Str::slug($school->nama_sekolah, '-');
 
         $school->save();
 
@@ -193,6 +196,8 @@ class SchoolController extends AppBaseController
             $schoolFacility->facility_id = $facility;
             $schoolFacility->save();
         }
+
+        $school->slug_sekolah = Str::slug($school->nama_sekolah, '-');
 
         $school->save();
 

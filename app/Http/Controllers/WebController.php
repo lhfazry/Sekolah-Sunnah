@@ -10,6 +10,7 @@ use App\Repositories\SchoolRepository;
 use Exception;
 use Flash;
 use Response;
+use Illuminate\Support\Str;
 
 class WebController extends AppBaseController
 {
@@ -174,6 +175,8 @@ class WebController extends AppBaseController
             $schoolFacility->save();
         }
 
+        $school->slug_sekolah = Str::slug($school->nama_sekolah, '-');
+        
         $school->save();
 
         Flash::success('Data sekolah berhasil ditambahkan.');
