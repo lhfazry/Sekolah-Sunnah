@@ -53,16 +53,9 @@ class WebController extends AppBaseController
         return $cities;
     }
 
-    public function detail($id)
+    public function detail($slug_sekolah)
     {
-        try {
-            $id = decrypt($id);
-        }
-        catch(Exception $e) {
-            $id = 0;
-        }
-
-        $school = \App\Models\School::find($id);
+        $school = \App\Models\School::where('slug_sekolah', $slug_sekolah)->first();
 
         if(empty($school)) {
             return abort(404);
@@ -70,7 +63,7 @@ class WebController extends AppBaseController
 
         $facilities = \App\Models\Facility::where('display', true)->get();
         $other_schools = \App\Models\School::orderBy('created_at', 'desc')
-            ->where('id', '!=', $id)
+            ->where('id', '!=', $school->id)
             ->where('status', 'Published')->inRandomOrder()->take(4)->get();
         $levels = \App\Models\Level::orderBy('sequence')->get();
 

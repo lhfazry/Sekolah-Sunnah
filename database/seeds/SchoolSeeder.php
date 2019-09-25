@@ -19,6 +19,7 @@ class SchoolSeeder extends Seeder
                 'level_id' => $faker->numberBetween(1,13),
                 'city_id' => $faker->numberBetween(3171,3175),
                 'nama_sekolah' => $faker->stateAbbr.' '.$faker->firstNameMale.' '.$faker->word,
+                'slug_sekolah' => strtolower($faker->stateAbbr.'-'.$faker->firstNameMale.'-'.$faker->word),
                 'biaya_pendaftaran' => $faker->numberBetween(5000000,10000000),
                 'biaya_spp' => $faker->numberBetween(250000,500000),
                 'yayasan' => 'Yayasan '.$faker->streetName,

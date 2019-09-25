@@ -22,7 +22,6 @@ Route::group([
 });
 
 Route::get('/', 'WebController@index');
-Route::get('detail/{id}', 'WebController@detail')->name('web.detail');
 Route::get('search', 'WebController@search')->name('web.search');
 Route::get('submit', 'WebController@submit')->name('web.submit');
 Route::post('submit', 'WebController@store')->name('web.store');
@@ -30,6 +29,9 @@ Route::post('subscribe', 'WebController@subscribe')->name('web.subscribe');
 Route::get('subscribed', 'WebController@subscribed')->name('web.subscribed');
 Route::get('level/{name}', 'WebController@level')->name('web.level');
 Route::get('cities/autocomplete', 'CityController@autocomplete')->name('cities.autocomplete');
+
+// Keep below route at bottom
+Route::get('{slug_sekolah}', 'WebController@detail')->name('web.detail');
 
 Route::group([
     'prefix' => 'admin',
