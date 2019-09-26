@@ -136,24 +136,7 @@
             <hr>
             <h2>Sekolah Lainnya</h2>
             <div class="items grid grid-xl-4-items grid-lg-3-items grid-md-2-items">
-                @foreach($other_schools as $oschool)
-                <div class="item">
-                    <div class="wrapper">
-                        <div class="image">
-                            <h3>{!!$school->getTags()!!}<a href="{{route('web.detail', encrypt($oschool->id))}}" class="title">{{$oschool->nama_sekolah}}</a></h3>
-                            <a href="#" class="image-wrapper background-image" style="background-image: url(&quot;{{$oschool->getPhotoCoverUrl()}}&quot;);"><img src="{{$oschool->getPhotoCoverUrl()}}" alt=""></a>
-                        </div>
-                        <h4 class="location"><a href="#">{{$oschool->city_province()}}</a></h4>
-                        <div class="price">{{$oschool->displaySPP()}}</div>
-                        <div class="meta">
-                            {!!$school->getOtherFacilities()!!}
-                            <figure><a href="#" title="Uang Pangkal"><i class="fa fa-money"></i>&nbsp;{{$oschool->displayBiayaPendaftaran()}}</a></figure>
-                        </div>
-                        <div class="description">
-                            <p>{{$oschool->exceprt()}}</p>
-                        </div><a href="{{route('web.detail', encrypt($oschool->id))}}" class="detail text-caps underline">Lihat Sekolah</a></div>
-                </div>
-                @endforeach
+                @component('web.schoolcard', ['schools' => $other_schools])@endcomponent
         </div>
     </section>
 </section>
