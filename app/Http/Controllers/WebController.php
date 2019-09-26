@@ -11,6 +11,7 @@ use Exception;
 use Flash;
 use Response;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 class WebController extends AppBaseController
 {
@@ -105,7 +106,7 @@ class WebController extends AppBaseController
             $schools = $schools->where('biaya_spp', '<=', $min_price);
         }
 
-        $schools = $schools->get();
+        $schools = $schools->paginate(config('app.pagination_page', 40))->appends(request()->except('page'));
 
         return view('web.search', compact('schools'));
     }
@@ -121,7 +122,7 @@ class WebController extends AppBaseController
             ->where('level_id', $level->id)
             ->where('status', 'Published');
 
-        $schools = $schools->get();
+        $schools = $schools->paginate(config('app.pagination_page', 40))->appends(request()->except('page'));
 
         return view('web.level', compact('schools'));
     }

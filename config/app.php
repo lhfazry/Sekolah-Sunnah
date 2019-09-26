@@ -236,4 +236,16 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
     ],
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Pagination Page
+    |--------------------------------------------------------------------------
+    |
+    | This value is the amount of items in one page.
+    |
+    */
+    
+    'pagination_page' => env('PAGINATION_PAGE', 40),
+
 ];
