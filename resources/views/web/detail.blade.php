@@ -156,6 +156,12 @@
             center: [{{$school->lng}}, {{$school->lat}}],
             zoom: 15
         });
+        
+        // disable map zoom when using scroll
+        map.scrollZoom.disable();
+
+        // Add zoom and rotation controls to the map.
+        map.addControl(new mapboxgl.NavigationControl());
 
         var marker = new mapboxgl.Marker()
         .setLngLat([{{$school->lng}}, {{$school->lat}}])
