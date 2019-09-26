@@ -106,3 +106,20 @@
     top: -3px;
     padding-bottom: 1px;
 }
+
+.item .wrapper .image .image-wrapper {
+    background-color: rgba(18,167,113,1);
+}
+
+.page-item.active .page-link {
+    background-color:  rgba(18,167,113,1);
+    border-color:  rgba(18,167,113,1);
+}
+
+.page-link {
+    color: rgba(18,167,113,1);
+}
+
+.pagination {
+    display: inline-flex !important;
+}

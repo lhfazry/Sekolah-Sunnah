@@ -80,7 +80,7 @@
                                             </li>
                                         </ul>
                                     </li>-->
-                                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{{route('web.contact')}}">Contact</a></li>
                                     <li class="nav-item"><a href="{{route('web.submit')}}" class="btn btn-primary text-caps btn-rounded btn-framed">Submit Data</a></li>
                                 </ul>
                             </div>
@@ -152,7 +152,7 @@
                                 <div class="col-md-6 col-sm-6">
                                     <nav>
                                         <ul class="list-unstyled">
-                                            <li><a href="#">Tentang</a></li>
+                                            <li><a href="{{route('web.tentang')}}">Tentang</a></li>
                                             <li><a href="{{route('login')}}">Masuk</a></li>
                                             <!--<li><a href="#">Daftar</a></li>-->
                                         </ul>

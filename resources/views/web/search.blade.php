@@ -23,7 +23,9 @@
 
             <div class="items grid grid-xl-4-items grid-lg-3-items grid-md-2-items">
                 @component('web.schoolcard', ['schools' => $schools])@endcomponent
+                
             </div>
+            <div style="text-align:center">{{ $schools->links() }}</div>
         </div>
     </section>
 @endsection
