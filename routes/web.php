@@ -29,6 +29,8 @@ Route::post('subscribe', 'WebController@subscribe')->name('web.subscribe');
 Route::get('subscribed', 'WebController@subscribed')->name('web.subscribed');
 Route::get('level/{name}', 'WebController@level')->name('web.level');
 Route::get('cities/autocomplete', 'CityController@autocomplete')->name('cities.autocomplete');
+Route::get('tentang', 'WebController@tentang')->name('web.tentang');
+Route::get('contact', 'WebController@contact')->name('web.contact');
 
 // Keep below route at bottom
 Route::get('{slug_sekolah}', 'WebController@detail')->name('web.detail');

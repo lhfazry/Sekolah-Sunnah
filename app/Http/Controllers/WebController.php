@@ -192,4 +192,11 @@ class WebController extends AppBaseController
         return view('web.subscribed');
     }
 
+    public function tentang() {
+        return view('web.tentang');
+    }
+
+    public function contact() {
+        return view('web.contact');
+    }
 }
