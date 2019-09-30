@@ -164,7 +164,7 @@
                             <h2>Kontak</h2><address><figure>
                                     Yayasan IT Support Dakwah<br>
                                     Jonggol, Jawa Barat
-                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 6287876335618
+                                </figure><br><strong>Email:</strong><a href="mailto: info@sekolahsunnah.com">info<code>@</code>sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 6287876335618
                             </address></div>
                     </div>
                 </div>
