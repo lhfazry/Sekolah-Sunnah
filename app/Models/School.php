@@ -172,7 +172,7 @@ class School extends Model implements HasMedia
         'nama_sekolah' => 'required',
         'level_id' => 'required',
         'city_id' => 'required',
-        'biaya_pendaftaran' => 'required|min:50000',
+        'biaya_pendaftaran' => 'required',
         'biaya_spp' => 'required',
         'address' => 'required',
         'phone1' => 'required',
