@@ -431,7 +431,7 @@ class School extends Model implements HasMedia
             return $this->getPhoto4Url();
         }
 
-        return "http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
+        return "https://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
     }
 
     public function getPhotos() {
