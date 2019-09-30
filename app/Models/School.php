@@ -383,11 +383,11 @@ class School extends Model implements HasMedia
             }
 
             if($facility->name == "Ikhwan") {
-                $tags .= "<a href=\"#\" class=\"tag category\">Ikhwan</a>&nbsp;";
+                $tags .= "<a href=\"".route('web.search', ['facilities[]'=>$facility->id])."\" class=\"tag category\">Ikhwan</a>&nbsp;";
             }
 
             if($facility->name == "Akhwat") {
-                $tags .= "<a href=\"#\" class=\"tag category\">Akhwat</a>&nbsp;";
+                $tags .= "<a href=\"".route('web.search', ['facilities[]'=>$facility->id])."\" class=\"tag category\">Akhwat</a>&nbsp;";
             }
         }
 

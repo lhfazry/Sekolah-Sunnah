@@ -88,8 +88,8 @@
                             </a>
                         </nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Sekolah</a></li>
+                            <li class="breadcrumb-item"><a href="{{URL::to('/')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('web.level', $school->level->name)}}">{{ $school->level->name }}</a></li>
                             <li class="breadcrumb-item active">{{$title}}</li>
                         </ol>
                     </div>

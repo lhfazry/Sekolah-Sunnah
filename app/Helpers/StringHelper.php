@@ -16,4 +16,17 @@ class StringHelper
 
         return $string;
     }
+
+    public static function prep_url($str = '') {
+        if ($str === 'http://' OR $str === '')
+        {
+            return '';
+        }
+        $url = parse_url($str);
+        if ( ! $url OR ! isset($url['scheme']))
+        {
+            return 'http://'.$str;
+        }
+        return $str;
+    }
 }

@@ -18,7 +18,7 @@
     <meta property="og:url" content="{{ request()->getSchemeAndHttpHost() }}/{{$school->slug_sekolah}}" />
     <meta property="og:image" content="{{ $school->getPhotoCoverUrl() }}" />
     <meta property="og:description" content="{!! $school->short_description !!}" />
-    
+
 @endsection
 
 @section('css')
@@ -38,7 +38,7 @@
                 {!! $school->getTags()!!}
             </h1>
             <h4 class="location">
-                <a href="#">{{$school->city->city_province()}}</a>
+                <a href="{{route('web.search', ['city'=>$school->city_id])}}">{{$school->city->city_province()}}</a>
             </h4>
         </div>
         <div class="float-right float-xs-none price">
@@ -86,7 +86,7 @@
                                 continue;
                             }
                             @endphp
-                            <li>{{$facility->facility->name}}</li>
+                            <li><a href="{{ route('web.search', ['facilities[]'=>$facility->facility->id]) }}">{{$facility->facility->name}}</a></li>
                             @endforeach
                         </ul>
                     </section>
@@ -107,7 +107,7 @@
                                 <p>{{$school->nama_sekolah}}</p>
 
                                 <h3>Jenjang</h3>
-                                <p>{{$school->level->name}}</p>
+                                <p><a href="{{route('web.level', $school->level->name)}}">{{$school->level->name}}</a></p>
 
                                 <h3>Uang Masuk</h3>
                                 <p>{{$school->displayBiayaPendaftaran()}}</p>
@@ -119,16 +119,16 @@
                                 <p>{{$school->address}}</p>
 
                                 <h3>Kota</h3>
-                                <p>{{$school->city_province()}}</p>
+                                <p><a href="{{route('web.search', ['city'=>$school->city_id])}}">{{$school->city_province()}}</a></p>
 
                                 <h3>Telepon</h3>
                                 <p>{{$school->phone1}}</p>
 
                                 <h3>Email</h3>
-                                <p>{{$school->email}}</p>
+                                <p>{!! str_replace('@', '<code>@</code>', $school->email) !!}</p>
 
                                 <h3>Website</h3>
-                                <p>{{$school->website}}</p>
+                                <p><a target="_blank" href="{{ (new \App\Helpers\StringHelper)::prep_url($school->website) }}">{{$school->website}}</a></p>
 
                                 <!--<hr>
                                 <form class="form email">

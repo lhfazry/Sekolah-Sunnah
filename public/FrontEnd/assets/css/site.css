@@ -123,3 +123,7 @@
 .pagination {
     display: inline-flex !important;
 }
+
+.sidebar .box a {
+    color: #12a771;
+}
