@@ -1,4 +1,26 @@
 @extends('web.web2')
+
+@section('meta')
+
+    <meta name="description" content="{!! $school->short_description !!}"/>
+
+    <meta name="twitter:card" content="summary"/>
+    <meta name="twitter:image" content="{{ $school->getPhotoCoverUrl() }}"/>
+    <meta name="twitter:title" content="{!! $school->nama_sekolah !!}"/>
+    <meta name="twitter:description" content="{!! $school->short_description !!}" />
+    <meta name="twitter:label1" content="Jenjang" />
+    <meta name="twitter:data1" content="{{ $school->level->name }}" />
+    <meta name="twitter:label2" content="Nama Sekolah" />
+    <meta name="twitter:data2" content="{!! $school->nama_sekolah !!}" /> 
+
+    <meta property="og:title" content="{!! $school->nama_sekolah !!}" />
+    <meta property="og:type" content="post" />
+    <meta property="og:url" content="{{ request()->getSchemeAndHttpHost() }}/{{$school->slug_sekolah}}" />
+    <meta property="og:image" content="{{ $school->getPhotoCoverUrl() }}" />
+    <meta property="og:description" content="{!! $school->short_description !!}" />
+    
+@endsection
+
 @section('css')
 <link href='https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
 <style>

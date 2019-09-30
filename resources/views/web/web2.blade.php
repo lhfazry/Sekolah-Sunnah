@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/style.css')}}?t=12312312">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
     <title>{{$title}} | SekolahSunnah.com</title>
-
+    @yield('meta')
     @yield('css')
     <style>
         .select2-selection {
