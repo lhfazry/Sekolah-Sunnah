@@ -160,12 +160,18 @@
         // disable map zoom when using scroll
         map.scrollZoom.disable();
 
+        if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            map.dragPan.disable();
+        }
+        
+
         // Add zoom and rotation controls to the map.
         map.addControl(new mapboxgl.NavigationControl());
 
         var marker = new mapboxgl.Marker()
         .setLngLat([{{$school->lng}}, {{$school->lat}}])
         .addTo(map);
+        
         @endif
     });
 </script>
