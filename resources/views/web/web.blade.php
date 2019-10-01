@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/style.css')}}?t=12312312">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
     @yield('css')
+
+    @if(isset($title))
+    <title>{{$title}} | SekolahSunnah.com</title>
+    @else
     <title>Direktori Sekolah Sunnah se-Indonesia | SekolahSunnah.com</title>
+    @endif
+    
     <style>
         .select2-selection {
             transition: .3s ease;

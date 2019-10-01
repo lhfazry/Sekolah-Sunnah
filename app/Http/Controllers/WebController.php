@@ -136,13 +136,15 @@ class WebController extends AppBaseController
             return abort(404);
         }
 
+        $title = $level->description;
+
         $schools = \App\Models\School::orderBy('created_at', 'desc')
             ->where('level_id', $level->id)
             ->where('status', 'Published');
 
         $schools = $schools->paginate(config('app.pagination_page', 40))->appends(request()->except('page'));
 
-        return view('web.level', compact('schools'));
+        return view('web.level', compact('schools', 'level', 'title'));
     }
 
     public function submit() {
@@ -156,7 +158,9 @@ class WebController extends AppBaseController
             $cities[$city->id] = $city->city_province();
         }
 
-        return view('web.submit', compact('levels', 'facilities', 'cities'));
+        $title = "Submit Data";
+
+        return view('web.submit', compact('levels', 'facilities', 'cities', 'title'));
     }
 
     public function store(CreateSchoolRequest $request)
@@ -207,14 +211,17 @@ class WebController extends AppBaseController
     }
 
     public function subscribed() {
-        return view('web.subscribed');
+        $title = "Subscribed";
+        return view('web.subscribed', compact('title'));
     }
 
     public function tentang() {
-        return view('web.tentang');
+        $title = "Tentang";
+        return view('web.tentang', compact('title'));
     }
 
     public function contact() {
-        return view('web.contact');
+        $title = "Contact";
+        return view('web.contact', compact('title'));
     }
 }
