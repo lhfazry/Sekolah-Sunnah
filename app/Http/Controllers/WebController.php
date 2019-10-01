@@ -77,9 +77,13 @@ class WebController extends AppBaseController
     public function search() {
         $keyword = Input::get('keyword');
         $city = Input::get('city');
-        $facilities = Input::get('facilities');
+        $facilities_form = Input::get('facilities');
         $min_price = Input::get('min_price');
         $max_price = Input::get('max_price');
+        $expand = false;
+
+        $facilities = \App\Models\Facility::where('display', true)->get();
+        $cities = $this->getCities();
 
         $schools = \App\Models\School::orderBy('created_at', 'desc')
             ->where('status', 'Published');
@@ -92,23 +96,37 @@ class WebController extends AppBaseController
             $schools = $schools->where('city_id', $city);
         }
 
-        if(isset($facilities)) {
-            $schools->whereHas('facilities', function($query) use($facilities) {
-                $query->whereIn('facility_id', $facilities);
+        if(count($facilities_form) > 0) {
+            $schools->whereHas('facilities', function($query) use($facilities_form) {
+                $query->whereIn('facility_id', $facilities_form);
             });
+            if(count($facilities_form) > 1) $schools->havingRaw('count(distinct id) = ?', [count($facilities_form)]);
+            $expand = true;
         }
 
         if(!empty($min_price)) {
             $schools = $schools->where('biaya_spp', '>=', $min_price);
+            $expand = true;
         }
 
         if(!empty($max_price)) {
-            $schools = $schools->where('biaya_spp', '<=', $min_price);
+            $schools = $schools->where('biaya_spp', '<=', $max_price);
+            $expand = true;
         }
-
+        
         $schools = $schools->paginate(config('app.pagination_page', 40))->appends(request()->except('page'));
-
-        return view('web.search', compact('schools'));
+        
+        return view('web.search', compact(
+            'schools', 
+            'facilities', 
+            'cities', 
+            'city', 
+            'keyword', 
+            'min_price', 
+            'max_price', 
+            'facilities_form',
+            'expand'
+        ));
     }
 
     public function level($name) {

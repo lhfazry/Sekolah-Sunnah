@@ -10,7 +10,7 @@
         <div class="price">{{$school->displaySPP()}}</div>
         <div class="meta">
             {!!$school->getOtherFacilities()!!}
-            <figure><i class="fa fa-money"></i>&nbsp;{{$school->displayBiayaPendaftaran()}}</figure>
+            <figure><i class="fa fa-money"></i>&nbsp;{{$school->displaySPP()}}</figure>
         </div>
         <div class="description">
             <p>{{$school->exceprt()}}</p>
