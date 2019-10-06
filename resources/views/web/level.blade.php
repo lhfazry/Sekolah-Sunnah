@@ -4,7 +4,7 @@
 <div class="page-title">
     <div class="container">
         <h1 class="center">
-            Sekolah yang sesuai dengan kriteria pencarian Anda
+            {{$level->description}}
         </h1>
     </div>
 </div>
@@ -21,6 +21,9 @@
             </div>
             @endif
 
+            <div class="col-md-12">
+                <h2 class="lead">Halaman <strong class="text-danger">{{ $schools->currentPage() }}</strong> dari <strong class="text-danger">{{ $schools->total() }}</strong> hasil pencarian</h2>
+            </div>
             <div class="items grid grid-xl-4-items grid-lg-3-items grid-md-2-items">
             @component('web.schoolcard', ['schools' => $schools])@endcomponent
             </div>

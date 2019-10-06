@@ -383,11 +383,11 @@ class School extends Model implements HasMedia
             }
 
             if($facility->name == "Ikhwan") {
-                $tags .= "<a href=\"#\" class=\"tag category\">Ikhwan</a>&nbsp;";
+                $tags .= "<a href=\"".route('web.search', ['facilities[]'=>$facility->id])."\" class=\"tag category\">Ikhwan</a>&nbsp;";
             }
 
             if($facility->name == "Akhwat") {
-                $tags .= "<a href=\"#\" class=\"tag category\">Akhwat</a>&nbsp;";
+                $tags .= "<a href=\"".route('web.search', ['facilities[]'=>$facility->id])."\" class=\"tag category\">Akhwat</a>&nbsp;";
             }
         }
 
@@ -431,7 +431,7 @@ class School extends Model implements HasMedia
             return $this->getPhoto4Url();
         }
 
-        return "http://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
+        return "https://www.fiwa.sch.id/static_content/img/BasketBall5d454d6ab8989.jpg";
     }
 
     public function getPhotos() {
