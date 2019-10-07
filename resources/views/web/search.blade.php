@@ -31,6 +31,7 @@
             </div>
             @endif
 
+            @if(sizeof($schools) > 0)
             <div class="col-md-12">
                 <h2 class="lead">Halaman <strong class="text-danger">{{ $schools->currentPage() }}</strong> dari <strong class="text-danger">{{ $schools->total() }}</strong> hasil pencarian</h2>
             </div>
@@ -38,6 +39,7 @@
                 @component('web.schoolcard', ['schools' => $schools])@endcomponent
             </div>
             <div style="text-align:center">{{ $schools->links() }}</div>
+            @endif
         </div>
     </section>
 @endsection

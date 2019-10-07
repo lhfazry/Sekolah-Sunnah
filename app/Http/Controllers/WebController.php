@@ -96,6 +96,8 @@ class WebController extends AppBaseController
             $schools = $schools->where('city_id', $city);
         }
 
+        if(!isset($facilities_form)) $facilities_form=[];
+        
         if(count($facilities_form) > 0) {
             $schools->whereHas('facilities', function($query) use($facilities_form) {
                 $query->whereIn('facility_id', $facilities_form);
