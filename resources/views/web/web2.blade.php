@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/style.css')}}?t=12312312">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
     <title>{{$title}} | SekolahSunnah.com</title>
-
+    @yield('meta')
     @yield('css')
     <style>
         .select2-selection {
@@ -88,8 +88,8 @@
                             </a>
                         </nav>
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Sekolah</a></li>
+                            <li class="breadcrumb-item"><a href="{{URL::to('/')}}">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{route('web.level', $school->level->name)}}">{{ $school->level->description }}</a></li>
                             <li class="breadcrumb-item active">{{$title}}</li>
                         </ol>
                     </div>
@@ -204,7 +204,7 @@
                             <h2>Kontak</h2><address><figure>
                                     Yayasan IT Support Dakwah<br>
                                     Jonggol, Jawa Barat
-                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> <a target="_blank" href="https://wa.me/6287876335618">6287876335618</a>
+                                </figure><br><strong>Email:</strong><a href="mailto: info@sekolahsunnah.com">info<code>@</code>sekolahsunnah.com</a><br><strong>WhatsApp: </strong> <a target="_blank" href="https://wa.me/6287876335618">6287876335618</a>
                             </address></div>
                     </div>
                 </div>
