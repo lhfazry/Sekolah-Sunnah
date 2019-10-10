@@ -81,7 +81,8 @@ class SchoolDataTable extends DataTable
             ->minifiedAjax()
             // ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'       => 'frtip',
+                'dom'       => 'lfrtip',
+                
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
                 // "sScrollX" => "120%",
@@ -95,6 +96,7 @@ class SchoolDataTable extends DataTable
                 ],
                 'responsive' => true,
                 'autoWidth' => false,
+                'lengthMenu' => [[10, 25, 50, -1], [10, 25, 50, "All"]]
             ]);
     }
 
