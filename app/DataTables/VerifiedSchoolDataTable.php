@@ -62,7 +62,10 @@ class VerifiedSchoolDataTable extends DataTable
                     $query->where('name', 'LIKE', "%{$keyword}%");
                 });
             })
-            ->rawColumns(['action', 'facility', 'status_name']);
+            ->rawColumns(['action', 'status_name', 'facility'])
+            ->orderColumn('status_name', 'status $1')
+            ->orderColumn('creator_name', 'creator_name $1')
+            ->orderColumn('city_name', 'city_name $1');
     }
 
     /**
@@ -73,7 +76,13 @@ class VerifiedSchoolDataTable extends DataTable
      */
     public function query(School $model)
     {
-        return $model->newQuery()->whereNotNull('verified_at');
+        // return $model->newQuery()
+        return $model->newQuery()
+            ->selectRaw('schools.*, users.name AS creator_name, CONCAT(cities.name, ", ", provinces.name) AS city_name')
+            ->join('users', 'users.id', '=', 'schools.created_by')
+            ->join('cities', 'cities.id', '=', 'schools.city_id')
+            ->join('provinces', 'provinces.id', '=', 'cities.province_id')
+            ->whereNotNull('verified_at');
     }
 
     /**
@@ -86,13 +95,10 @@ class VerifiedSchoolDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
-                'dom'       => 'frtip',
+                'dom'       => 'lfrtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                "sScrollX" => "120%",
-                "sScrollXInner" => "120%",
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -100,6 +106,9 @@ class VerifiedSchoolDataTable extends DataTable
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
+                'responsive' => true,
+                'autoWidth' => false,
+                'lengthMenu' => [[10, 25, 50, -1], [10, 25, 50, "All"]]
             ]);
     }
 
@@ -111,13 +120,12 @@ class VerifiedSchoolDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'action' => ['searchable' => false, 'visible' => true, 'orderable' => false, 'width' => '50'],
             'updated_at' => ['searchable' => false, 'visible' => false],
-            'nama_sekolah' => ['searchable' => true, 'title' => 'Name', 'width' => '220'],
-            'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center', 'width' => '200'],
-            'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center', 'width' => '100'],
-            'facility' => ['searchable' => true, 'class' => 'text-center', 'width' => '150'],
-            'status_name' => ['searchable' => true, 'title' => 'Status', 'class' => 'text-center', 'width' => '80'],
-            'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'width' => '120']
+            'nama_sekolah' => ['searchable' => true, 'title' => 'Name', 'orderable' => true],
+            'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center', 'orderable' => true],
+            'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center', 'orderable' => true],
+            'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'orderable' => true]
         ];
     }
 
