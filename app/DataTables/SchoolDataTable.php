@@ -79,13 +79,13 @@ class SchoolDataTable extends DataTable
         return $this->builder()
             ->columns($this->getColumns())
             ->minifiedAjax()
-            ->addAction(['width' => '120px', 'printable' => false])
+            // ->addAction(['width' => '120px', 'printable' => false])
             ->parameters([
                 'dom'       => 'frtip',
                 'stateSave' => true,
                 'order'     => [[0, 'desc']],
-                "sScrollX" => "120%",
-                "sScrollXInner" => "120%",
+                // "sScrollX" => "120%",
+                // "sScrollXInner" => "120%",
                 'buttons'   => [
                     ['extend' => 'create', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'export', 'className' => 'btn btn-default btn-sm no-corner',],
@@ -93,6 +93,8 @@ class SchoolDataTable extends DataTable
                     ['extend' => 'reset', 'className' => 'btn btn-default btn-sm no-corner',],
                     ['extend' => 'reload', 'className' => 'btn btn-default btn-sm no-corner',],
                 ],
+                'responsive' => true,
+                'autoWidth' => false,
             ]);
     }
 
@@ -104,13 +106,15 @@ class SchoolDataTable extends DataTable
     protected function getColumns()
     {
         return [
+            'action' => ['searchable' => false, 'visible' => true, 'orderable' => false],
             'updated_at' => ['searchable' => false, 'visible' => false],
             'nama_sekolah' => ['searchable' => true, 'title' => 'Name', 'width' => '200'],
             'city_name' => ['searchable' => true, 'title' => 'City', 'class' => 'text-center', 'width' => '200'],
-            'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center', 'width' => '100'],
-            'facility' => ['searchable' => false, 'orderable' => false, 'class' => 'text-center', 'width' => '150'],
+            // 'level_name' => ['searchable' => true, 'title' => 'Level', 'class' => 'text-center', 'width' => '100'],
+            // 'facility' => ['searchable' => false, 'orderable' => false, 'class' => 'text-center', 'width' => '150'],
             'status_name' => ['searchable' => false, 'title' => 'Status', 'class' => 'text-center', 'width' => '80'],
             'creator_name' => ['searchable' => true, 'title' => 'Created By','class' => 'text-center', 'width' => '120']
+            
         ];
     }
 
