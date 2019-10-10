@@ -153,6 +153,7 @@
             </div>
         </div>
     </section>
+    @if(sizeof($other_schools) > 0)
     <section class="block related">
         <div class="container">
             <hr>
@@ -161,6 +162,7 @@
                 @component('web.schoolcard', ['schools' => $other_schools])@endcomponent
         </div>
     </section>
+    @endif
 </section>
 @endsection
 
