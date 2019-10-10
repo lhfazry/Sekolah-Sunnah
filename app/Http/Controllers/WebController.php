@@ -100,7 +100,7 @@ class WebController extends AppBaseController
         $facilities = \App\Models\Facility::where('display', true)->get();
         $cities = $this->getCities();
 
-        $schools = \App\Models\School::orderBy('created_at', 'desc')
+        $schools = \App\Models\School::orderBy('schools.created_at', 'desc')
             ->where('status', 'Published');
 
         if(!empty($keyword)) {
@@ -111,11 +111,13 @@ class WebController extends AppBaseController
             $schools = $schools->where('city_id', $city);
         }
 
+        if(!isset($facilities_form)) $facilities_form=array();
         if(count($facilities_form) > 0) {
-            $schools->whereHas('facilities', function($query) use($facilities_form) {
-                $query->whereIn('facility_id', $facilities_form);
-            });
-            if(count($facilities_form) > 1) $schools->havingRaw('count(distinct id) = ?', [count($facilities_form)]);
+            foreach ($facilities_form as $ff) {
+                $schools->whereHas('facilities', function ($query) use ($ff) {     
+                    $query->where('facility_id', $ff);
+                });
+            }
             $expand = true;
         }
 
