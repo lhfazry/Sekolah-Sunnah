@@ -26,12 +26,14 @@
             <h2>Jenjang Sekolah</h2>
             <ul class="categories-list clearfix row">
                 @foreach($levels as $level)
+                @if($level->displayCountLevel() > 0)
                 <li class="col-lg-2 col-md-4 col-sm-6 col-xs-12 ml-4"><i class="category-icon"><img src="{{asset('FrontEnd/assets/img/icon-sekolah.png')}}" alt=""></i>
                     <h3><a href="{{route('web.level', [$level->name])}}">{{$level->name}}</a>&nbsp;<span class="badge badge-primary badge-level-counter">{{$level->displayCountLevel()}}</span></h3> 
                     <div class="sub-categories">
                         {{$level->description}}
                     </div>
                 </li>
+                @endif
                 @endforeach
             </ul>
         </div>
