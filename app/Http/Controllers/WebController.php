@@ -63,9 +63,24 @@ class WebController extends AppBaseController
         }
 
         $facilities = \App\Models\Facility::where('display', true)->get();
-        $other_schools = \App\Models\School::orderBy('created_at', 'desc')
+        
+        $other_schools_samelevelcity = \App\Models\School::orderBy('created_at', 'desc')
             ->where('id', '!=', $school->id)
-            ->where('status', 'Published')->inRandomOrder()->take(4)->get();
+            ->where('level_id', '=', $school->level_id)
+            ->where('city_id', '=', $school->city_id)
+            ->where('status', 'Published')
+            ->inRandomOrder()->take(4)
+            ->get();
+
+        $other_schools_samelevel = \App\Models\School::orderBy('created_at', 'desc')
+            ->where('id', '!=', $school->id)
+            ->where('level_id', '=', $school->level_id)
+            ->where('status', 'Published')
+            ->inRandomOrder()->take(4)
+            ->get();
+
+        $other_schools  = $other_schools_samelevel->merge($other_schools_samelevelcity);
+
         $levels = \App\Models\Level::orderBy('sequence')->get();
 
         $cities = $this->getCities();
