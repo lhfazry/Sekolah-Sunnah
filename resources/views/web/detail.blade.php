@@ -107,7 +107,7 @@
                                 <p>{{$school->nama_sekolah}}</p>
 
                                 <h3>Jenjang</h3>
-                                <p><a href="{{route('web.level', $school->level->name)}}">{{$school->level->name}}</a></p>
+                                <p><a href="{{route('web.level', $school->level->name)}}">{{$school->level->description}}</a></p>
 
                                 <h3>Uang Masuk</h3>
                                 <p>{{$school->displayBiayaPendaftaran()}}</p>
