@@ -124,12 +124,15 @@
                                 <h3>Telepon</h3>
                                 <p>{{$school->phone1}}</p>
 
+                                @if(strlen($school->email) > 0)
                                 <h3>Email</h3>
                                 <p>{!! str_replace('@', '<code>@</code>', $school->email) !!}</p>
+                                @endif
 
+                                @if(strlen($school->website) > 0)
                                 <h3>Website</h3>
                                 <p><a target="_blank" href="{{ (new \App\Helpers\StringHelper)::prep_url($school->website) }}">{{$school->website}}</a></p>
-
+                                @endif
                                 <!--<hr>
                                 <form class="form email">
                                     <div class="form-group">
