@@ -2,22 +2,22 @@
 
 @section('meta')
 
-    <meta name="description" content="{!! $school->short_description !!}"/>
+    <meta name="description" content="{!! strip_tags($school->short_description) !!}"/>
 
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:image" content="{{ $school->getPhotoCoverUrl() }}"/>
-    <meta name="twitter:title" content="{!! $school->nama_sekolah !!}"/>
-    <meta name="twitter:description" content="{!! $school->short_description !!}" />
+    <meta name="twitter:title" content="{!! strip_tags($school->nama_sekolah) !!}"/>
+    <meta name="twitter:description" content="{!! strip_tags($school->short_description) !!}" />
     <meta name="twitter:label1" content="Jenjang" />
     <meta name="twitter:data1" content="{{ $school->level->name }}" />
     <meta name="twitter:label2" content="Nama Sekolah" />
-    <meta name="twitter:data2" content="{!! $school->nama_sekolah !!}" /> 
+    <meta name="twitter:data2" content="{!! strip_tags($school->nama_sekolah) !!}" /> 
 
-    <meta property="og:title" content="{!! $school->nama_sekolah !!}" />
+    <meta property="og:title" content="{!! strip_tags($school->nama_sekolah) !!}" />
     <meta property="og:type" content="post" />
     <meta property="og:url" content="{{ request()->getSchemeAndHttpHost() }}/{{$school->slug_sekolah}}" />
     <meta property="og:image" content="{{ $school->getPhotoCoverUrl() }}" />
-    <meta property="og:description" content="{!! $school->short_description !!}" />
+    <meta property="og:description" content="{!! strip_tags($school->short_description) !!}" />
 
 @endsection
 
@@ -107,7 +107,7 @@
                                 <p>{{$school->nama_sekolah}}</p>
 
                                 <h3>Jenjang</h3>
-                                <p><a href="{{route('web.level', $school->level->name)}}">{{$school->level->name}}</a></p>
+                                <p><a href="{{route('web.level', $school->level->name)}}">{{$school->level->description}}</a></p>
 
                                 <h3>Uang Masuk</h3>
                                 <p>{{$school->displayBiayaPendaftaran()}}</p>
@@ -124,12 +124,15 @@
                                 <h3>Telepon</h3>
                                 <p>{{$school->phone1}}</p>
 
+                                @if(strlen($school->email) > 0)
                                 <h3>Email</h3>
                                 <p>{!! str_replace('@', '<code>@</code>', $school->email) !!}</p>
+                                @endif
 
+                                @if(strlen($school->website) > 0)
                                 <h3>Website</h3>
                                 <p><a target="_blank" href="{{ (new \App\Helpers\StringHelper)::prep_url($school->website) }}">{{$school->website}}</a></p>
-
+                                @endif
                                 <!--<hr>
                                 <form class="form email">
                                     <div class="form-group">
@@ -153,6 +156,7 @@
             </div>
         </div>
     </section>
+    @if(sizeof($other_schools) > 0)
     <section class="block related">
         <div class="container">
             <hr>
@@ -161,6 +165,7 @@
                 @component('web.schoolcard', ['schools' => $other_schools])@endcomponent
         </div>
     </section>
+    @endif
 </section>
 @endsection
 
