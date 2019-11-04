@@ -14,7 +14,13 @@
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/style.css')}}?t=12312312">
     <link rel="stylesheet" href="{{asset('FrontEnd/assets/css/site.css')}}?t=12312312">
     @yield('css')
+
+    @if(isset($title))
+    <title>{{$title}} | SekolahSunnah.com</title>
+    @else
     <title>Direktori Sekolah Sunnah se-Indonesia | SekolahSunnah.com</title>
+    @endif
+    
     <style>
         .select2-selection {
             transition: .3s ease;
@@ -164,7 +170,7 @@
                             <h2>Kontak</h2><address><figure>
                                     Yayasan IT Support Dakwah<br>
                                     Jonggol, Jawa Barat
-                                </figure><br><strong>Email:</strong><a href="#">info@sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 6287876335618
+                                </figure><br><strong>Email:</strong><a href="mailto: info@sekolahsunnah.com">info<code>@</code>sekolahsunnah.com</a><br><strong>WhatsApp: </strong> 6287876335618
                             </address></div>
                     </div>
                 </div>

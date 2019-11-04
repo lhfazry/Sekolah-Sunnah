@@ -63,9 +63,24 @@ class WebController extends AppBaseController
         }
 
         $facilities = \App\Models\Facility::where('display', true)->get();
-        $other_schools = \App\Models\School::orderBy('created_at', 'desc')
+        
+        $other_schools_samelevelcity = \App\Models\School::orderBy('created_at', 'desc')
             ->where('id', '!=', $school->id)
-            ->where('status', 'Published')->inRandomOrder()->take(4)->get();
+            ->where('level_id', '=', $school->level_id)
+            ->where('city_id', '=', $school->city_id)
+            ->where('status', 'Published')
+            ->inRandomOrder()->take(4)
+            ->get();
+
+        $other_schools_samelevel = \App\Models\School::orderBy('created_at', 'desc')
+            ->where('id', '!=', $school->id)
+            ->where('level_id', '=', $school->level_id)
+            ->where('status', 'Published')
+            ->inRandomOrder()->take(4)
+            ->get();
+
+        $other_schools  = $other_schools_samelevel->merge($other_schools_samelevelcity);
+
         $levels = \App\Models\Level::orderBy('sequence')->get();
 
         $cities = $this->getCities();
@@ -77,11 +92,15 @@ class WebController extends AppBaseController
     public function search() {
         $keyword = Input::get('keyword');
         $city = Input::get('city');
-        $facilities = Input::get('facilities');
+        $facilities_form = Input::get('facilities');
         $min_price = Input::get('min_price');
         $max_price = Input::get('max_price');
+        $expand = false;
 
-        $schools = \App\Models\School::orderBy('created_at', 'desc')
+        $facilities = \App\Models\Facility::where('display', true)->get();
+        $cities = $this->getCities();
+
+        $schools = \App\Models\School::orderBy('schools.created_at', 'desc')
             ->where('status', 'Published');
 
         if(!empty($keyword)) {
@@ -92,23 +111,39 @@ class WebController extends AppBaseController
             $schools = $schools->where('city_id', $city);
         }
 
-        if(isset($facilities)) {
-            $schools->whereHas('facilities', function($query) use($facilities) {
-                $query->whereIn('facility_id', $facilities);
-            });
+        if(!isset($facilities_form)) $facilities_form=array();
+        if(count($facilities_form) > 0) {
+            foreach ($facilities_form as $ff) {
+                $schools->whereHas('facilities', function ($query) use ($ff) {     
+                    $query->where('facility_id', $ff);
+                });
+            }
+            $expand = true;
         }
 
         if(!empty($min_price)) {
             $schools = $schools->where('biaya_spp', '>=', $min_price);
+            $expand = true;
         }
 
         if(!empty($max_price)) {
-            $schools = $schools->where('biaya_spp', '<=', $min_price);
+            $schools = $schools->where('biaya_spp', '<=', $max_price);
+            $expand = true;
         }
-
+        
         $schools = $schools->paginate(config('app.pagination_page', 40))->appends(request()->except('page'));
-
-        return view('web.search', compact('schools'));
+        
+        return view('web.search', compact(
+            'schools', 
+            'facilities', 
+            'cities', 
+            'city', 
+            'keyword', 
+            'min_price', 
+            'max_price', 
+            'facilities_form',
+            'expand'
+        ));
     }
 
     public function level($name) {
@@ -118,13 +153,15 @@ class WebController extends AppBaseController
             return abort(404);
         }
 
+        $title = $level->description;
+
         $schools = \App\Models\School::orderBy('created_at', 'desc')
             ->where('level_id', $level->id)
             ->where('status', 'Published');
 
         $schools = $schools->paginate(config('app.pagination_page', 40))->appends(request()->except('page'));
 
-        return view('web.level', compact('schools'));
+        return view('web.level', compact('schools', 'level', 'title'));
     }
 
     public function submit() {
@@ -138,7 +175,9 @@ class WebController extends AppBaseController
             $cities[$city->id] = $city->city_province();
         }
 
-        return view('web.submit', compact('levels', 'facilities', 'cities'));
+        $title = "Submit Data";
+
+        return view('web.submit', compact('levels', 'facilities', 'cities', 'title'));
     }
 
     public function store(CreateSchoolRequest $request)
@@ -189,14 +228,17 @@ class WebController extends AppBaseController
     }
 
     public function subscribed() {
-        return view('web.subscribed');
+        $title = "Subscribed";
+        return view('web.subscribed', compact('title'));
     }
 
     public function tentang() {
-        return view('web.tentang');
+        $title = "Tentang";
+        return view('web.tentang', compact('title'));
     }
 
     public function contact() {
-        return view('web.contact');
+        $title = "Contact";
+        return view('web.contact', compact('title'));
     }
 }
